@@ -1,6 +1,9 @@
-FROM node:20-alpine
+FROM node:20-slim
 
 WORKDIR /app
+
+# Install Redis and openssl
+RUN apt-get update && apt-get install -y redis-server openssl && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies
 COPY package.json package-lock.json* ./
@@ -14,7 +17,7 @@ COPY tsconfig.base.json ./
 COPY packages/shared/ ./packages/shared/
 COPY packages/api/ ./packages/api/
 
-# Generate Prisma client for the Linux musl runtime used by this image
+# Generate Prisma client
 RUN npx prisma generate --schema=packages/api/prisma/schema.prisma
 
 # Build
@@ -26,4 +29,10 @@ COPY .env.example .env
 ENV PORT=7860
 EXPOSE 7860
 
-CMD ["npx", "tsx", "packages/api/src/app.ts"]
+# Create a startup script that runs Redis and the app
+RUN echo '#!/bin/sh\n\
+redis-server --daemonize yes\n\
+npx tsx packages/api/src/app.ts\n\
+' > start.sh && chmod +x start.sh
+
+CMD ["./start.sh"]

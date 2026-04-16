@@ -14,8 +14,8 @@ COPY tsconfig.base.json ./
 COPY packages/shared/ ./packages/shared/
 COPY packages/api/ ./packages/api/
 
-# Generate Prisma client
-RUN cd packages/api && npx prisma generate
+# Generate Prisma client for the Linux musl runtime used by this image
+RUN npx prisma generate --schema=packages/api/prisma/schema.prisma
 
 # Build
 RUN npm run build --workspace=@dinesmart/shared 2>/dev/null || true

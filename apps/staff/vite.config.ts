@@ -10,9 +10,9 @@ export default defineConfig({
       ignored: ['**/.git/**'],
     },
     proxy: { 
-      '/api': 'http://api:4000',
+      '/api': 'http://localhost:4000',
       '/socket.io': {
-        target: 'ws://api:4000',
+        target: 'ws://localhost:4000',
         ws: true
       }
     },

@@ -61,7 +61,7 @@ export const createMenuItemSchema = z.object({
     name: z.string().min(1, 'Item name is required').max(200),
     description: z.string().max(1000).default(''),
     price: z.number().positive('Price must be positive'),
-    imageUrl: z.string().url().optional(),
+    imageUrl: z.preprocess((val) => (val === '' || val === null ? undefined : val), z.string().url().optional()),
     isVeg: z.boolean().default(false),
     preparationTimeMinutes: z.number().int().positive().default(15),
     sortOrder: z.number().int().default(0),
@@ -157,10 +157,10 @@ export const menuItemInventorySchema = z.object({
 export const createCouponSchema = z.object({
     code: z.string().min(3, 'Code must be at least 3 characters').max(20).transform(v => v.toUpperCase()),
     discountType: z.enum(['PERCENT', 'FLAT']),
-    discountValue: z.number().positive('Discount value must be positive'),
-    minOrderValue: z.number().min(0).default(0),
-    maxUses: z.number().int().positive().default(100),
-    expiresAt: z.string().datetime(),
+    discountValue: z.coerce.number().positive('Discount value must be positive'),
+    minOrderValue: z.coerce.number().min(0).default(0),
+    maxUses: z.coerce.number().int().positive().default(100),
+    expiresAt: z.coerce.date().transform(d => d.toISOString()),
 });
 export const updateCouponSchema = createCouponSchema.partial().extend({
     isActive: z.boolean().optional(),
@@ -179,6 +179,7 @@ export const createReviewSchema = z.object({
     orderId: z.string().uuid('Invalid order ID'),
     rating: z.number().int().min(1).max(5),
     comment: z.string().max(1000).default(''),
+    itemRatings: z.record(z.string(), z.number().int().min(1).max(5)).optional(),
 });
 // ── User Management Schemas ──────────────
 export const createUserSchema = z.object({

@@ -11,7 +11,8 @@ import {
   AlertTriangle, IndianRupee, Calendar, Shield
 } from 'lucide-react';
 
-const API_BASE = '/api/v1';
+const API_URL = import.meta.env.VITE_API_URL || '';
+const API_BASE = `${API_URL}/api/v1`;
 
 async function fetchApi<T>(url: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE}${url}`, {

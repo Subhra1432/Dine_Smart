@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: dinesmart-api
+    env: node
+    buildCommand: npm install && npm run build:api
+    startCommand: npm start -w packages/api
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false

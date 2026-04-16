@@ -2,7 +2,8 @@
 // DineSmart — Staff API Client
 // ═══════════════════════════════════════════
 
-const API_BASE = '/api/v1';
+const API_URL = import.meta.env.VITE_API_URL || '';
+const API_BASE = `${API_URL}/api/v1`;
 
 // Module-level guards to prevent parallel refresh/redirect storms
 let refreshPromise: Promise<Response> | null = null;

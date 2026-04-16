@@ -50,7 +50,9 @@ export type Plan = (typeof PLAN)[keyof typeof PLAN];
 export declare const PLAN_LIMITS: Record<Plan, {
     maxBranches: number;
     maxTables: number;
-    aiFeatures: boolean;
+    aiRecommendations: boolean;
+    aiDemandForecast: boolean;
+    aiSmartPricing: boolean;
     inventory: boolean;
     analytics: boolean;
     whiteLabel: boolean;

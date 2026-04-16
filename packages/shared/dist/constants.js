@@ -52,7 +52,9 @@ export const PLAN_LIMITS = {
     STARTER: {
         maxBranches: 2,
         maxTables: 20,
-        aiFeatures: false,
+        aiRecommendations: false,
+        aiDemandForecast: false,
+        aiSmartPricing: false,
         inventory: false,
         analytics: false,
         whiteLabel: false,
@@ -61,7 +63,9 @@ export const PLAN_LIMITS = {
     GROWTH: {
         maxBranches: 5,
         maxTables: 50,
-        aiFeatures: true,
+        aiRecommendations: true,
+        aiDemandForecast: true,
+        aiSmartPricing: false,
         inventory: false,
         analytics: true,
         whiteLabel: false,
@@ -70,7 +74,9 @@ export const PLAN_LIMITS = {
     PREMIUM: {
         maxBranches: -1,
         maxTables: -1,
-        aiFeatures: true,
+        aiRecommendations: true,
+        aiDemandForecast: true,
+        aiSmartPricing: true,
         inventory: true,
         analytics: true,
         whiteLabel: true,

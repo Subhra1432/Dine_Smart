@@ -1,0 +1,20 @@
+import type { Request, Response } from 'express';
+export declare function getCategories(req: Request, res: Response): Promise<void>;
+export declare function createCategory(req: Request, res: Response): Promise<void>;
+export declare function updateCategory(req: Request, res: Response): Promise<void>;
+export declare function deleteCategory(req: Request, res: Response): Promise<void>;
+export declare function getMenuItems(req: Request, res: Response): Promise<void>;
+export declare function createMenuItem(req: Request, res: Response): Promise<void>;
+export declare function updateMenuItem(req: Request, res: Response): Promise<void>;
+export declare function deleteMenuItem(req: Request, res: Response): Promise<void>;
+export declare function toggleAvailability(req: Request, res: Response): Promise<void>;
+export declare function getAddons(req: Request, res: Response): Promise<void>;
+export declare function createAddon(req: Request, res: Response): Promise<void>;
+export declare function updateAddon(req: Request, res: Response): Promise<void>;
+export declare function deleteAddon(req: Request, res: Response): Promise<void>;
+export declare function getPublicMenu(req: Request, res: Response): Promise<void>;
+export declare function getPublicHistory(req: Request, res: Response): Promise<void>;
+export declare function sendOtp(req: Request, res: Response): Promise<void>;
+export declare function verifyOtp(req: Request, res: Response): Promise<void>;
+export declare function uploadImage(req: Request, res: Response): Promise<void>;
+//# sourceMappingURL=menu.controller.d.ts.map

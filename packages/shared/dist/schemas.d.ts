@@ -150,7 +150,7 @@ export declare const createMenuItemSchema: z.ZodObject<{
     name: z.ZodString;
     description: z.ZodDefault<z.ZodString>;
     price: z.ZodNumber;
-    imageUrl: z.ZodOptional<z.ZodString>;
+    imageUrl: z.ZodEffects<z.ZodOptional<z.ZodString>, string | undefined, unknown>;
     isVeg: z.ZodDefault<z.ZodBoolean>;
     preparationTimeMinutes: z.ZodDefault<z.ZodNumber>;
     sortOrder: z.ZodDefault<z.ZodNumber>;
@@ -187,7 +187,7 @@ export declare const createMenuItemSchema: z.ZodObject<{
     price: number;
     sortOrder?: number | undefined;
     description?: string | undefined;
-    imageUrl?: string | undefined;
+    imageUrl?: unknown;
     isVeg?: boolean | undefined;
     preparationTimeMinutes?: number | undefined;
     tags?: string[] | undefined;
@@ -202,7 +202,7 @@ export declare const updateMenuItemSchema: z.ZodObject<{
     name: z.ZodOptional<z.ZodString>;
     description: z.ZodOptional<z.ZodDefault<z.ZodString>>;
     price: z.ZodOptional<z.ZodNumber>;
-    imageUrl: z.ZodOptional<z.ZodOptional<z.ZodString>>;
+    imageUrl: z.ZodOptional<z.ZodEffects<z.ZodOptional<z.ZodString>, string | undefined, unknown>>;
     isVeg: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     preparationTimeMinutes: z.ZodOptional<z.ZodDefault<z.ZodNumber>>;
     sortOrder: z.ZodOptional<z.ZodDefault<z.ZodNumber>>;
@@ -242,7 +242,7 @@ export declare const updateMenuItemSchema: z.ZodObject<{
     categoryId?: string | undefined;
     description?: string | undefined;
     price?: number | undefined;
-    imageUrl?: string | undefined;
+    imageUrl?: unknown;
     isVeg?: boolean | undefined;
     preparationTimeMinutes?: number | undefined;
     tags?: string[] | undefined;
@@ -490,7 +490,7 @@ export declare const createCouponSchema: z.ZodObject<{
     discountValue: z.ZodNumber;
     minOrderValue: z.ZodDefault<z.ZodNumber>;
     maxUses: z.ZodDefault<z.ZodNumber>;
-    expiresAt: z.ZodString;
+    expiresAt: z.ZodEffects<z.ZodDate, string, Date>;
 }, "strip", z.ZodTypeAny, {
     code: string;
     discountType: "PERCENT" | "FLAT";
@@ -502,7 +502,7 @@ export declare const createCouponSchema: z.ZodObject<{
     code: string;
     discountType: "PERCENT" | "FLAT";
     discountValue: number;
-    expiresAt: string;
+    expiresAt: Date;
     minOrderValue?: number | undefined;
     maxUses?: number | undefined;
 }>;
@@ -512,7 +512,7 @@ export declare const updateCouponSchema: z.ZodObject<{
     discountValue: z.ZodOptional<z.ZodNumber>;
     minOrderValue: z.ZodOptional<z.ZodDefault<z.ZodNumber>>;
     maxUses: z.ZodOptional<z.ZodDefault<z.ZodNumber>>;
-    expiresAt: z.ZodOptional<z.ZodString>;
+    expiresAt: z.ZodOptional<z.ZodEffects<z.ZodDate, string, Date>>;
 } & {
     isActive: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
@@ -530,7 +530,7 @@ export declare const updateCouponSchema: z.ZodObject<{
     discountValue?: number | undefined;
     minOrderValue?: number | undefined;
     maxUses?: number | undefined;
-    expiresAt?: string | undefined;
+    expiresAt?: Date | undefined;
 }>;
 export declare const validateCouponSchema: z.ZodObject<{
     code: z.ZodString;
@@ -556,14 +556,17 @@ export declare const createReviewSchema: z.ZodObject<{
     orderId: z.ZodString;
     rating: z.ZodNumber;
     comment: z.ZodDefault<z.ZodString>;
+    itemRatings: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodNumber>>;
 }, "strip", z.ZodTypeAny, {
     orderId: string;
     rating: number;
     comment: string;
+    itemRatings?: Record<string, number> | undefined;
 }, {
     orderId: string;
     rating: number;
     comment?: string | undefined;
+    itemRatings?: Record<string, number> | undefined;
 }>;
 export declare const createUserSchema: z.ZodObject<{
     email: z.ZodString;

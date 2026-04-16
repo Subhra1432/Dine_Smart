@@ -1,0 +1,53 @@
+{
+  "last_reminder": 1776010566210,
+  "cached_at": 1776010522019,
+  "version": "5.22.0",
+  "cli_path": "/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/prisma/build/index.js",
+  "output": {
+    "product": "prisma",
+    "previous_version": "5.22.0",
+    "checkpoint_version": 4,
+    "local_timestamp_without_timezone": "2026-04-12T21:45:21Z",
+    "current_version": "7.7.0",
+    "current_release_date": 1775577373,
+    "client_event_id": "d1976489-bfda-4fd3-94fb-378366d14f06",
+    "current_download_url": "https://github.com/prisma/prisma",
+    "package": "prisma",
+    "release_tag": "latest",
+    "install_command": "npm install --save-dev prisma",
+    "schema_providers": [
+      "postgresql"
+    ],
+    "schema_preview_features": [],
+    "schema_generators_providers": [
+      "prisma-client-js"
+    ],
+    "current_changelog_url": "https://github.com/prisma/prisma",
+    "outdated": true,
+    "project_website": "https://prisma.io",
+    "alerts": []
+  },
+  "product": "prisma",
+  "cli_install_type": "local",
+  "local_timestamp": "2026-04-12T21:46:06+05:30",
+  "project_hash": "82f2669d",
+  "cli_path_hash": "b0435cd5",
+  "endpoint": "https://checkpoint.prisma.io",
+  "arch": "arm64",
+  "os": "darwin",
+  "node_version": "v18.18.0",
+  "command": "db push",
+  "schema_providers": [
+    "postgresql"
+  ],
+  "schema_preview_features": [],
+  "schema_generators_providers": [
+    "prisma-client-js"
+  ],
+  "cache_file": "/Users/subhrakantabehera/Downloads/DineSmart 2/Library/Caches/checkpoint-nodejs/prisma-b0435cd5",
+  "cache_duration": 43200000,
+  "remind_duration": 172800000,
+  "timeout": 5000,
+  "unref": true,
+  "child_path": "/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/prisma/build/child"
+}

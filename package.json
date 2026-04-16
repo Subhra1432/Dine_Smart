@@ -1,0 +1,33 @@
+{
+  "name": "dinesmart-os",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DineSmart OS — Complete Multi-Tenant SaaS Restaurant Operating System",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev -w packages/api",
+    "dev:customer": "npm run dev -w apps/customer",
+    "dev:staff": "npm run dev -w apps/staff",
+    "dev:superadmin": "npm run dev -w apps/superadmin",
+    "build": "npm run build --workspaces",
+    "build:api": "npm run build -w packages/api",
+    "build:customer": "npm run build -w apps/customer",
+    "build:staff": "npm run build -w apps/staff",
+    "build:superadmin": "npm run build -w apps/superadmin",
+    "db:generate": "npm run db:generate -w packages/api",
+    "db:push": "npm run db:push -w packages/api",
+    "db:migrate": "npm run db:migrate -w packages/api",
+    "db:seed": "npm run db:seed -w packages/api",
+    "lint": "eslint . --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit --workspaces"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "browserslist": [
+    "defaults"
+  ]
+}

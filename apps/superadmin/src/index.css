@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white font-sans antialiased transition-colors duration-200;
+  }
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { @apply bg-transparent dark:bg-slate-900; }
+::-webkit-scrollbar-thumb { @apply bg-slate-300 dark:bg-brand-600 rounded-full; }
+
+.glass {
+  @apply bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border border-slate-200 dark:border-white/5;
+}

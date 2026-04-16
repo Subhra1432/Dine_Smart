@@ -1,0 +1,833 @@
+0 verbose cli /usr/local/bin/node /usr/local/bin/npm
+1 info using npm@9.8.1
+2 info using node@v18.18.0
+3 timing npm:load:whichnode Completed in 0ms
+4 timing config:load:defaults Completed in 1ms
+5 timing config:load:file:/usr/local/lib/node_modules/npm/npmrc Completed in 1ms
+6 timing config:load:builtin Completed in 1ms
+7 timing config:load:cli Completed in 1ms
+8 timing config:load:env Completed in 1ms
+9 timing config:load:project Completed in 2ms
+10 timing config:load:file:/Users/subhrakantabehera/Downloads/DineSmart 2/.npmrc Completed in 0ms
+11 timing config:load:user Completed in 0ms
+12 timing config:load:file:/usr/local/etc/npmrc Completed in 0ms
+13 timing config:load:global Completed in 0ms
+14 timing config:load:setEnvs Completed in 0ms
+15 timing config:load Completed in 6ms
+16 timing npm:load:configload Completed in 7ms
+17 timing config:load:flatten Completed in 1ms
+18 timing npm:load:mkdirpcache Completed in 0ms
+19 timing npm:load:mkdirplogs Completed in 0ms
+20 verbose title npm install bcryptjs @types/bcryptjs
+21 verbose argv "install" "bcryptjs" "@types/bcryptjs" "--workspace" "packages/api"
+22 timing npm:load:setTitle Completed in 7ms
+23 timing npm:load:display Completed in 0ms
+24 verbose logfile logs-max:10 dir:/Users/subhrakantabehera/Downloads/DineSmart 2/.npm/_logs/2026-04-12T16_17_41_799Z-
+25 verbose logfile /Users/subhrakantabehera/Downloads/DineSmart 2/.npm/_logs/2026-04-12T16_17_41_799Z-debug-0.log
+26 timing npm:load:logFile Completed in 4ms
+27 timing npm:load:timers Completed in 0ms
+28 timing npm:load:configScope Completed in 0ms
+29 timing npm:load Completed in 29ms
+30 silly logfile done cleaning log files
+31 timing arborist:ctor Completed in 1ms
+32 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: apps/customer
+33 timing idealTree:init Completed in 237ms
+34 timing idealTree:userRequests Completed in 2ms
+35 silly idealTree buildDeps
+36 timing idealTree:#root Completed in 1ms
+37 silly fetch manifest bcryptjs@*
+38 http fetch GET 200 https://registry.npmjs.org/bcryptjs 458ms (cache miss)
+39 silly fetch manifest @types/bcryptjs@*
+40 http fetch GET 200 https://registry.npmjs.org/@types%2fbcryptjs 574ms (cache miss)
+41 silly placeDep ROOT @types/bcryptjs@3.0.0 OK for: @dinesmart/api@1.0.0 want: *
+42 silly placeDep ROOT bcryptjs@3.0.3 OK for: @dinesmart/api@1.0.0 want: *
+43 timing idealTree:packages/api Completed in 1048ms
+44 timing idealTree:node_modules/@types/bcryptjs Completed in 0ms
+45 timing idealTree:node_modules/bcryptjs Completed in 0ms
+46 timing idealTree:apps/customer Completed in 2ms
+47 timing idealTree:apps/staff Completed in 1ms
+48 timing idealTree:apps/superadmin Completed in 1ms
+49 timing idealTree:packages/shared Completed in 0ms
+50 timing idealTree:buildDeps Completed in 1054ms
+51 timing idealTree:fixDepFlags Completed in 2ms
+52 warn EBADENGINE Unsupported engine {
+52 warn EBADENGINE   package: 'dinesmart-os@1.0.0',
+52 warn EBADENGINE   required: { node: '>=20.0.0' },
+52 warn EBADENGINE   current: { node: 'v18.18.0', npm: '9.8.1' }
+52 warn EBADENGINE }
+53 warn EBADENGINE Unsupported engine {
+53 warn EBADENGINE   package: 'smob@1.6.1',
+53 warn EBADENGINE   required: { node: '>=20.0.0' },
+53 warn EBADENGINE   current: { node: 'v18.18.0', npm: '9.8.1' }
+53 warn EBADENGINE }
+54 warn EBADENGINE Unsupported engine {
+54 warn EBADENGINE   package: 'workbox-build@7.4.0',
+54 warn EBADENGINE   required: { node: '>=20.0.0' },
+54 warn EBADENGINE   current: { node: 'v18.18.0', npm: '9.8.1' }
+54 warn EBADENGINE }
+55 warn EBADENGINE Unsupported engine {
+55 warn EBADENGINE   package: 'glob@11.1.0',
+55 warn EBADENGINE   required: { node: '20 || >=22' },
+55 warn EBADENGINE   current: { node: 'v18.18.0', npm: '9.8.1' }
+55 warn EBADENGINE }
+56 warn EBADENGINE Unsupported engine {
+56 warn EBADENGINE   package: 'jackspeak@4.2.3',
+56 warn EBADENGINE   required: { node: '20 || >=22' },
+56 warn EBADENGINE   current: { node: 'v18.18.0', npm: '9.8.1' }
+56 warn EBADENGINE }
+57 warn EBADENGINE Unsupported engine {
+57 warn EBADENGINE   package: 'lru-cache@11.3.3',
+57 warn EBADENGINE   required: { node: '20 || >=22' },
+57 warn EBADENGINE   current: { node: 'v18.18.0', npm: '9.8.1' }
+57 warn EBADENGINE }
+58 timing idealTree Completed in 1305ms
+59 timing reify:loadTrees Completed in 1306ms
+60 timing reify:diffTrees Completed in 13ms
+61 silly reify moves {}
+62 timing reify:retireShallow Completed in 1ms
+63 timing reify:createSparse Completed in 2ms
+64 timing reify:loadBundles Completed in 0ms
+65 silly audit bulk request {
+65 silly audit   '@colors/colors': [ '1.6.0' ],
+65 silly audit   '@dabh/diagnostics': [ '2.0.8' ],
+65 silly audit   '@esbuild/aix-ppc64': [ '0.27.7' ],
+65 silly audit   '@esbuild/android-arm': [ '0.27.7' ],
+65 silly audit   '@esbuild/android-arm64': [ '0.27.7' ],
+65 silly audit   '@esbuild/android-x64': [ '0.27.7' ],
+65 silly audit   '@esbuild/darwin-arm64': [ '0.27.7' ],
+65 silly audit   '@esbuild/darwin-x64': [ '0.27.7' ],
+65 silly audit   '@esbuild/freebsd-arm64': [ '0.27.7' ],
+65 silly audit   '@esbuild/freebsd-x64': [ '0.27.7' ],
+65 silly audit   '@esbuild/linux-arm': [ '0.27.7' ],
+65 silly audit   '@esbuild/linux-arm64': [ '0.27.7' ],
+65 silly audit   '@esbuild/linux-ia32': [ '0.27.7' ],
+65 silly audit   '@esbuild/linux-loong64': [ '0.27.7' ],
+65 silly audit   '@esbuild/linux-mips64el': [ '0.27.7' ],
+65 silly audit   '@esbuild/linux-ppc64': [ '0.27.7' ],
+65 silly audit   '@esbuild/linux-riscv64': [ '0.27.7' ],
+65 silly audit   '@esbuild/linux-s390x': [ '0.27.7' ],
+65 silly audit   '@esbuild/linux-x64': [ '0.27.7' ],
+65 silly audit   '@esbuild/netbsd-arm64': [ '0.27.7' ],
+65 silly audit   '@esbuild/netbsd-x64': [ '0.27.7' ],
+65 silly audit   '@esbuild/openbsd-arm64': [ '0.27.7' ],
+65 silly audit   '@esbuild/openbsd-x64': [ '0.27.7' ],
+65 silly audit   '@esbuild/openharmony-arm64': [ '0.27.7' ],
+65 silly audit   '@esbuild/sunos-x64': [ '0.27.7' ],
+65 silly audit   '@esbuild/win32-arm64': [ '0.27.7' ],
+65 silly audit   '@esbuild/win32-ia32': [ '0.27.7' ],
+65 silly audit   '@esbuild/win32-x64': [ '0.27.7' ],
+65 silly audit   '@ioredis/commands': [ '1.5.1' ],
+65 silly audit   '@isaacs/cliui': [ '8.0.2' ],
+65 silly audit   'ansi-regex': [ '6.2.2', '5.0.1' ],
+65 silly audit   'emoji-regex': [ '9.2.2', '8.0.0' ],
+65 silly audit   'string-width': [ '5.1.2', '4.2.3' ],
+65 silly audit   'strip-ansi': [ '7.2.0', '6.0.1' ],
+65 silly audit   '@mapbox/node-pre-gyp': [ '1.0.11' ],
+65 silly audit   semver: [ '7.7.4', '6.3.1' ],
+65 silly audit   '@msgpackr-extract/msgpackr-extract-darwin-arm64': [ '3.0.3' ],
+65 silly audit   '@msgpackr-extract/msgpackr-extract-darwin-x64': [ '3.0.3' ],
+65 silly audit   '@msgpackr-extract/msgpackr-extract-linux-arm': [ '3.0.3' ],
+65 silly audit   '@msgpackr-extract/msgpackr-extract-linux-arm64': [ '3.0.3' ],
+65 silly audit   '@msgpackr-extract/msgpackr-extract-linux-x64': [ '3.0.3' ],
+65 silly audit   '@msgpackr-extract/msgpackr-extract-win32-x64': [ '3.0.3' ],
+65 silly audit   '@one-ini/wasm': [ '0.1.1' ],
+65 silly audit   '@pkgjs/parseargs': [ '0.11.0' ],
+65 silly audit   '@prisma/client': [ '5.22.0' ],
+65 silly audit   '@prisma/debug': [ '5.22.0' ],
+65 silly audit   '@prisma/engines': [ '5.22.0' ],
+65 silly audit   '@prisma/engines-version': [ '5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2' ],
+65 silly audit   '@prisma/fetch-engine': [ '5.22.0' ],
+65 silly audit   '@prisma/get-platform': [ '5.22.0' ],
+65 silly audit   '@react-email/render': [ '0.0.16' ],
+65 silly audit   '@selderee/plugin-htmlparser2': [ '0.11.0' ],
+65 silly audit   '@so-ric/colorspace': [ '1.1.6' ],
+65 silly audit   '@socket.io/component-emitter': [ '3.1.2' ],
+65 silly audit   '@socket.io/redis-adapter': [ '8.3.0' ],
+65 silly audit   debug: [ '4.3.7', '2.6.9', '4.4.3' ],
+65 silly audit   '@swc/helpers': [ '0.3.17' ],
+65 silly audit   '@types/bcrypt': [ '5.0.2' ],
+65 silly audit   '@types/body-parser': [ '1.19.6' ],
+65 silly audit   '@types/connect': [ '3.4.38' ],
+65 silly audit   '@types/cookie-parser': [ '1.4.10' ],
+65 silly audit   '@types/cors': [ '2.8.19' ],
+65 silly audit   '@types/express': [ '4.17.25' ],
+65 silly audit   '@types/express-serve-static-core': [ '4.19.8' ],
+65 silly audit   '@types/http-errors': [ '2.0.5' ],
+65 silly audit   '@types/jsonwebtoken': [ '9.0.10' ],
+65 silly audit   '@types/mime': [ '1.3.5' ],
+65 silly audit   '@types/ms': [ '2.1.0' ],
+65 silly audit   '@types/multer': [ '1.4.13' ],
+65 silly audit   '@types/node': [ '22.19.17' ],
+65 silly audit   '@types/nodemailer': [ '6.4.23' ],
+65 silly audit   '@types/qrcode': [ '1.5.6' ],
+65 silly audit   '@types/qs': [ '6.15.0' ],
+65 silly audit   '@types/range-parser': [ '1.2.7' ],
+65 silly audit   '@types/send': [ '1.2.1', '0.17.6' ],
+65 silly audit   '@types/serve-static': [ '1.15.10' ],
+65 silly audit   '@types/triple-beam': [ '1.3.5' ],
+65 silly audit   '@types/ws': [ '8.18.1' ],
+65 silly audit   abbrev: [ '1.1.1', '2.0.0' ],
+65 silly audit   accepts: [ '1.3.8' ],
+65 silly audit   'agent-base': [ '6.0.2' ],
+65 silly audit   'fast-deep-equal': [ '2.0.1' ],
+65 silly audit   'ansi-styles': [ '6.2.3', '4.3.0' ],
+65 silly audit   'append-field': [ '1.0.0' ],
+65 silly audit   aproba: [ '2.1.0' ],
+65 silly audit   'are-we-there-yet': [ '2.0.0' ],
+65 silly audit   'readable-stream': [ '3.6.2', '2.3.8' ],
+65 silly audit   'array-buffer-byte-length': [ '1.0.2' ],
+65 silly audit   'array-flatten': [ '1.1.1' ],
+65 silly audit   async: [ '3.2.6' ],
+65 silly audit   asynckit: [ '0.4.0' ],
+65 silly audit   'available-typed-arrays': [ '1.0.7' ],
+65 silly audit   axios: [ '1.15.0' ],
+65 silly audit   'balanced-match': [ '1.0.2' ],
+65 silly audit   'base64-js': [ '1.5.1', '0.0.8' ],
+65 silly audit   base64id: [ '2.0.0' ],
+65 silly audit   bcrypt: [ '5.1.1' ],
+65 silly audit   'body-parser': [ '1.20.4' ],
+65 silly audit   ms: [ '2.0.0', '2.1.3' ],
+65 silly audit   'brace-expansion': [ '2.1.0', '1.1.14' ],
+65 silly audit   brotli: [ '1.3.3' ],
+65 silly audit   'buffer-equal-constant-time': [ '1.0.1' ],
+65 silly audit   'buffer-from': [ '1.1.2' ],
+65 silly audit   bullmq: [ '5.73.4' ],
+65 silly audit   busboy: [ '1.6.0' ],
+65 silly audit   bytes: [ '3.1.2' ],
+65 silly audit   'call-bind': [ '1.0.9' ],
+65 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+65 silly audit   'call-bound': [ '1.0.4' ],
+65 silly audit   camelcase: [ '5.3.1' ],
+65 silly audit   chownr: [ '2.0.0' ],
+65 silly audit   cliui: [ '6.0.0' ],
+65 silly audit   'color-convert': [ '2.0.1', '3.1.3' ],
+65 silly audit   'color-name': [ '1.1.4', '2.1.0' ],
+65 silly audit   'wrap-ansi': [ '6.2.0', '8.1.0', '7.0.0' ],
+65 silly audit   clone: [ '2.1.2' ],
+65 silly audit   cloudinary: [ '2.9.0' ],
+65 silly audit   'cluster-key-slot': [ '1.1.2' ],
+65 silly audit   color: [ '5.0.3' ],
+65 silly audit   'color-string': [ '2.1.4' ],
+65 silly audit   'color-support': [ '1.1.3' ],
+65 silly audit   'combined-stream': [ '1.0.8' ],
+65 silly audit   commander: [ '10.0.1' ],
+65 silly audit   'concat-map': [ '0.0.1' ],
+65 silly audit   'concat-stream': [ '1.6.2' ],
+65 silly audit   'config-chain': [ '1.1.13' ],
+65 silly audit   'console-control-strings': [ '1.1.0' ],
+65 silly audit   'content-disposition': [ '0.5.4' ],
+65 silly audit   'content-type': [ '1.0.5' ],
+65 silly audit   cookie: [ '0.7.2' ],
+65 silly audit   'cookie-parser': [ '1.4.7' ],
+65 silly audit   'cookie-signature': [ '1.0.6' ],
+65 silly audit   'core-util-is': [ '1.0.3' ],
+65 silly audit   cors: [ '2.8.6' ],
+65 silly audit   'cron-parser': [ '4.9.0' ],
+65 silly audit   'cross-spawn': [ '7.0.6' ],
+65 silly audit   crypto: [ '1.0.1' ],
+65 silly audit   'crypto-js': [ '4.2.0' ],
+65 silly audit   decamelize: [ '1.2.0' ],
+65 silly audit   'deep-equal': [ '2.2.3' ],
+65 silly audit   deepmerge: [ '4.3.1' ],
+65 silly audit   'define-data-property': [ '1.1.4' ],
+65 silly audit   'define-properties': [ '1.2.1' ],
+65 silly audit   'delayed-stream': [ '1.0.0' ],
+65 silly audit   delegates: [ '1.0.0' ],
+65 silly audit   denque: [ '2.1.0' ],
+65 silly audit   depd: [ '2.0.0' ],
+65 silly audit   destroy: [ '1.2.0' ],
+65 silly audit   'detect-libc': [ '2.1.2' ],
+65 silly audit   dfa: [ '1.2.0' ],
+65 silly audit   dijkstrajs: [ '1.0.3' ],
+65 silly audit   'dom-serializer': [ '2.0.0' ],
+65 silly audit   domelementtype: [ '2.3.0' ],
+65 silly audit   domhandler: [ '5.0.3' ],
+65 silly audit   domutils: [ '3.2.2' ],
+65 silly audit   dotenv: [ '16.6.1' ],
+65 silly audit   'dunder-proto': [ '1.0.1' ],
+65 silly audit   eastasianwidth: [ '0.2.0' ],
+65 silly audit   'ecdsa-sig-formatter': [ '1.0.11' ],
+65 silly audit   editorconfig: [ '1.0.7' ],
+65 silly audit   'ee-first': [ '1.1.1' ],
+65 silly audit   enabled: [ '2.0.0' ],
+65 silly audit   encodeurl: [ '2.0.0' ],
+65 silly audit   'engine.io': [ '6.6.6' ],
+65 silly audit   'engine.io-parser': [ '5.2.3' ],
+65 silly audit   entities: [ '4.5.0' ],
+65 silly audit   'es-define-property': [ '1.0.1' ],
+65 silly audit   'es-errors': [ '1.3.0' ],
+65 silly audit   'es-get-iterator': [ '1.1.3' ],
+65 silly audit   'es-object-atoms': [ '1.1.1' ],
+65 silly audit   'es-set-tostringtag': [ '2.1.0' ],
+65 silly audit   esbuild: [ '0.27.7' ],
+65 silly audit   'escape-html': [ '1.0.3' ],
+65 silly audit   etag: [ '1.8.1' ],
+65 silly audit   express: [ '4.22.1' ],
+65 silly audit   'express-rate-limit': [ '7.5.1' ],
+65 silly audit   fecha: [ '4.2.3' ],
+65 silly audit   minimatch: [ '9.0.9', '3.1.5' ],
+65 silly audit   finalhandler: [ '1.3.2' ],
+65 silly audit   'find-up': [ '4.1.0' ],
+65 silly audit   'fn.name': [ '1.1.0' ],
+65 silly audit   'follow-redirects': [ '1.15.11' ],
+65 silly audit   fontkit: [ '1.9.0' ],
+65 silly audit   'for-each': [ '0.3.5' ],
+65 silly audit   'foreground-child': [ '3.3.1' ],
+65 silly audit   'signal-exit': [ '4.1.0', '3.0.7' ],
+65 silly audit   'form-data': [ '4.0.5' ],
+65 silly audit   forwarded: [ '0.2.0' ],
+65 silly audit   fresh: [ '0.5.2' ],
+65 silly audit   'fs-minipass': [ '2.1.0' ],
+65 silly audit   minipass: [ '3.3.6', '7.1.3', '5.0.0' ],
+65 silly audit   yallist: [ '4.0.0' ],
+65 silly audit   'fs.realpath': [ '1.0.0' ],
+65 silly audit   fsevents: [ '2.3.3' ],
+65 silly audit   'function-bind': [ '1.1.2' ],
+65 silly audit   'functions-have-names': [ '1.2.3' ],
+65 silly audit   gauge: [ '3.0.2' ],
+65 silly audit   'get-caller-file': [ '2.0.5' ],
+65 silly audit   'get-intrinsic': [ '1.3.0' ],
+65 silly audit   'get-proto': [ '1.0.1' ],
+65 silly audit   'get-tsconfig': [ '4.13.7' ],
+65 silly audit   glob: [ '10.5.0', '7.2.3' ],
+65 silly audit   gopd: [ '1.2.0' ],
+65 silly audit   'has-bigints': [ '1.1.0' ],
+65 silly audit   'has-property-descriptors': [ '1.0.2' ],
+65 silly audit   'has-symbols': [ '1.1.0' ],
+65 silly audit   'has-tostringtag': [ '1.0.2' ],
+65 silly audit   'has-unicode': [ '2.0.1' ],
+65 silly audit   hasown: [ '2.0.2' ],
+65 silly audit   helmet: [ '7.2.0' ],
+65 silly audit   'html-to-text': [ '9.0.5' ],
+65 silly audit   htmlparser2: [ '8.0.2' ],
+65 silly audit   'http-errors': [ '2.0.1' ],
+65 silly audit   'https-proxy-agent': [ '5.0.1' ],
+65 silly audit   'iconv-lite': [ '0.4.24' ],
+65 silly audit   inflight: [ '1.0.6' ],
+65 silly audit   inherits: [ '2.0.4' ],
+65 silly audit   ini: [ '1.3.8' ],
+65 silly audit   'internal-slot': [ '1.1.0' ],
+65 silly audit   ioredis: [ '5.10.1' ],
+65 silly audit   'ipaddr.js': [ '1.9.1' ],
+65 silly audit   'is-arguments': [ '1.2.0' ],
+65 silly audit   'is-array-buffer': [ '3.0.5' ],
+65 silly audit   'is-bigint': [ '1.1.0' ],
+65 silly audit   'is-boolean-object': [ '1.2.2' ],
+65 silly audit   'is-callable': [ '1.2.7' ],
+65 silly audit   'is-date-object': [ '1.1.0' ],
+65 silly audit   'is-fullwidth-code-point': [ '3.0.0' ],
+65 silly audit   'is-map': [ '2.0.3' ],
+65 silly audit   'is-number-object': [ '1.1.1' ],
+65 silly audit   'is-regex': [ '1.2.1' ],
+65 silly audit   'is-set': [ '2.0.3' ],
+65 silly audit   'is-shared-array-buffer': [ '1.0.4' ],
+65 silly audit   'is-stream': [ '2.0.1' ],
+65 silly audit   'is-string': [ '1.1.1' ],
+65 silly audit   'is-symbol': [ '1.1.1' ],
+65 silly audit   'is-weakmap': [ '2.0.2' ],
+65 silly audit   'is-weakset': [ '2.0.4' ],
+65 silly audit   isarray: [ '2.0.5', '1.0.0' ],
+65 silly audit   isexe: [ '2.0.0' ],
+65 silly audit   jackspeak: [ '3.4.3' ],
+65 silly audit   'jpeg-exif': [ '1.1.4' ],
+65 silly audit   'js-beautify': [ '1.15.4' ],
+65 silly audit   nopt: [ '7.2.1', '5.0.0' ],
+65 silly audit   'js-cookie': [ '3.0.5' ],
+65 silly audit   'js-tokens': [ '4.0.0' ],
+65 silly audit   jsonwebtoken: [ '9.0.3' ],
+65 silly audit   jwa: [ '2.0.1' ],
+65 silly audit   jws: [ '4.0.1' ],
+65 silly audit   kuler: [ '2.0.0' ],
+65 silly audit   leac: [ '0.6.0' ],
+65 silly audit   linebreak: [ '1.1.0' ],
+65 silly audit   'locate-path': [ '5.0.0' ],
+65 silly audit   lodash: [ '4.18.1' ],
+65 silly audit   'lodash.defaults': [ '4.2.0' ],
+65 silly audit   'lodash.includes': [ '4.3.0' ],
+65 silly audit   'lodash.isarguments': [ '3.1.0' ],
+65 silly audit   'lodash.isboolean': [ '3.0.3' ],
+65 silly audit   'lodash.isinteger': [ '4.0.4' ],
+65 silly audit   'lodash.isnumber': [ '3.0.3' ],
+65 silly audit   'lodash.isplainobject': [ '4.0.6' ],
+65 silly audit   'lodash.isstring': [ '4.0.1' ],
+65 silly audit   'lodash.once': [ '4.1.1' ],
+65 silly audit   logform: [ '2.7.0' ],
+65 silly audit   'loose-envify': [ '1.4.0' ],
+65 silly audit   'lru-cache': [ '10.4.3' ],
+65 silly audit   luxon: [ '3.7.2' ],
+65 silly audit   'make-dir': [ '3.1.0' ],
+65 silly audit   'math-intrinsics': [ '1.1.0' ],
+65 silly audit   'media-typer': [ '0.3.0' ],
+65 silly audit   'merge-descriptors': [ '1.0.3' ],
+65 silly audit   methods: [ '1.1.2' ],
+65 silly audit   mime: [ '1.6.0' ],
+65 silly audit   'mime-db': [ '1.52.0' ],
+65 silly audit   'mime-types': [ '2.1.35' ],
+65 silly audit   minimist: [ '1.2.8' ],
+65 silly audit   minizlib: [ '2.1.2' ],
+65 silly audit   mkdirp: [ '0.5.6', '1.0.4' ],
+65 silly audit   msgpackr: [ '1.11.5' ],
+65 silly audit   'msgpackr-extract': [ '3.0.3' ],
+65 silly audit   multer: [ '1.4.5-lts.2' ],
+65 silly audit   negotiator: [ '0.6.3' ],
+65 silly audit   'node-abort-controller': [ '3.1.1' ],
+65 silly audit   'node-addon-api': [ '5.1.0' ],
+65 silly audit   'node-fetch': [ '2.7.0' ],
+65 silly audit   'node-gyp-build-optional-packages': [ '5.2.2' ],
+65 silly audit   nodemailer: [ '6.10.1' ],
+65 silly audit   'notepack.io': [ '3.0.1' ],
+65 silly audit   npmlog: [ '5.0.1' ],
+65 silly audit   'object-assign': [ '4.1.1' ],
+65 silly audit   'object-inspect': [ '1.13.4' ],
+65 silly audit   'object-is': [ '1.1.6' ],
+65 silly audit   'object-keys': [ '1.1.1' ],
+65 silly audit   'object.assign': [ '4.1.7' ],
+65 silly audit   'on-finished': [ '2.4.1' ],
+65 silly audit   once: [ '1.4.0' ],
+65 silly audit   'one-time': [ '1.0.0' ],
+65 silly audit   'p-limit': [ '2.3.0' ],
+65 silly audit   'p-locate': [ '4.1.0' ],
+65 silly audit   'p-try': [ '2.2.0' ],
+65 silly audit   'package-json-from-dist': [ '1.0.1' ],
+65 silly audit   pako: [ '0.2.9' ],
+65 silly audit   parseley: [ '0.12.1' ],
+65 silly audit   parseurl: [ '1.3.3' ],
+65 silly audit   'path-exists': [ '4.0.0' ],
+65 silly audit   'path-is-absolute': [ '1.0.1' ],
+65 silly audit   'path-key': [ '3.1.1' ],
+65 silly audit   'path-scurry': [ '1.11.1' ],
+65 silly audit   'path-to-regexp': [ '0.1.13' ],
+65 silly audit   pdfkit: [ '0.15.2' ],
+65 silly audit   peberminta: [ '0.9.0' ],
+65 silly audit   'png-js': [ '1.0.0' ],
+65 silly audit   pngjs: [ '5.0.0' ],
+65 silly audit   'possible-typed-array-names': [ '1.1.0' ],
+65 silly audit   prisma: [ '5.22.0' ],
+65 silly audit   'process-nextick-args': [ '2.0.1' ],
+65 silly audit   'proto-list': [ '1.2.4' ],
+65 silly audit   'proxy-addr': [ '2.0.7' ],
+65 silly audit   'proxy-from-env': [ '2.1.0' ],
+65 silly audit   qrcode: [ '1.5.4' ],
+65 silly audit   qs: [ '6.14.2' ],
+65 silly audit   'range-parser': [ '1.2.1' ],
+65 silly audit   'raw-body': [ '2.5.3' ],
+65 silly audit   razorpay: [ '2.9.6' ],
+65 silly audit   react: [ '18.3.1' ],
+65 silly audit   'react-dom': [ '18.3.1' ],
+65 silly audit   'react-promise-suspense': [ '0.3.4' ],
+65 silly audit   'safe-buffer': [ '5.1.2', '5.2.1' ],
+65 silly audit   'redis-errors': [ '1.2.0' ],
+65 silly audit   'redis-parser': [ '3.0.0' ],
+65 silly audit   'regexp.prototype.flags': [ '1.5.4' ],
+65 silly audit   'require-directory': [ '2.1.1' ],
+65 silly audit   'require-main-filename': [ '2.0.0' ],
+65 silly audit   resend: [ '3.5.0' ],
+65 silly audit   'resolve-pkg-maps': [ '1.0.0' ],
+65 silly audit   restructure: [ '2.0.1' ],
+65 silly audit   rimraf: [ '3.0.2' ],
+65 silly audit   'safe-regex-test': [ '1.1.0' ],
+65 silly audit   'safe-stable-stringify': [ '2.5.0' ],
+65 silly audit   'safer-buffer': [ '2.1.2' ],
+65 silly audit   scheduler: [ '0.23.2' ],
+65 silly audit   selderee: [ '0.11.0' ],
+65 silly audit   send: [ '0.19.2' ],
+65 silly audit   'serve-static': [ '1.16.3' ],
+65 silly audit   'set-blocking': [ '2.0.0' ],
+65 silly audit   'set-function-length': [ '1.2.2' ],
+65 silly audit   'set-function-name': [ '2.0.2' ],
+65 silly audit   setprototypeof: [ '1.2.0' ],
+65 silly audit   'shebang-command': [ '2.0.0' ],
+65 silly audit   'shebang-regex': [ '3.0.0' ],
+65 silly audit   'side-channel': [ '1.1.0' ],
+65 silly audit   'side-channel-list': [ '1.0.1' ],
+65 silly audit   'side-channel-map': [ '1.0.1' ],
+65 silly audit   'side-channel-weakmap': [ '1.0.2' ],
+65 silly audit   'socket.io': [ '4.8.3' ],
+65 silly audit   'socket.io-adapter': [ '2.5.6' ],
+65 silly audit   'socket.io-parser': [ '4.2.6' ],
+65 silly audit   tr46: [ '0.0.3' ],
+65 silly audit   'webidl-conversions': [ '3.0.1' ],
+65 silly audit   'whatwg-url': [ '5.0.0' ],
+65 silly audit   'stack-trace': [ '0.0.10' ],
+65 silly audit   'standard-as-callback': [ '2.1.0' ],
+65 silly audit   statuses: [ '2.0.2' ],
+65 silly audit   'stop-iteration-iterator': [ '1.1.0' ],
+65 silly audit   streamsearch: [ '1.1.0' ],
+65 silly audit   string_decoder: [ '1.1.1' ],
+65 silly audit   tar: [ '6.2.1' ],
+65 silly audit   'text-hex': [ '1.0.0' ],
+65 silly audit   'tiny-inflate': [ '1.0.3' ],
+65 silly audit   toidentifier: [ '1.0.1' ],
+65 silly audit   'triple-beam': [ '1.4.1' ],
+65 silly audit   tslib: [ '2.8.1' ],
+65 silly audit   tsx: [ '4.21.0' ],
+65 silly audit   'type-is': [ '1.6.18' ],
+65 silly audit   typedarray: [ '0.0.6' ],
+65 silly audit   typescript: [ '5.9.3' ],
+65 silly audit   uid2: [ '1.0.0' ],
+65 silly audit   'undici-types': [ '6.21.0' ],
+65 silly audit   'unicode-properties': [ '1.4.1' ],
+65 silly audit   'unicode-trie': [ '2.0.0' ],
+65 silly audit   unpipe: [ '1.0.0' ],
+65 silly audit   'util-deprecate': [ '1.0.2' ],
+65 silly audit   'utils-merge': [ '1.0.1' ],
+65 silly audit   uuid: [ '11.1.0' ],
+65 silly audit   vary: [ '1.1.2' ],
+65 silly audit   which: [ '2.0.2' ],
+65 silly audit   'which-boxed-primitive': [ '1.1.1' ],
+65 silly audit   'which-collection': [ '1.0.2' ],
+65 silly audit   'which-module': [ '2.0.1' ],
+65 silly audit   'which-typed-array': [ '1.1.20' ],
+65 silly audit   'wide-align': [ '1.1.5' ],
+65 silly audit   winston: [ '3.19.0' ],
+65 silly audit   'winston-transport': [ '4.9.0' ],
+65 silly audit   wrappy: [ '1.0.2' ],
+65 silly audit   ws: [ '8.18.3' ],
+65 silly audit   xtend: [ '4.0.2' ],
+65 silly audit   y18n: [ '4.0.3' ],
+65 silly audit   yargs: [ '15.4.1' ],
+65 silly audit   'yargs-parser': [ '18.1.3' ],
+65 silly audit   zod: [ '3.25.76' ],
+65 silly audit   '@dinesmart/api': [ '1.0.0' ],
+65 silly audit   '@dinesmart/shared': [ '1.0.0' ],
+65 silly audit   '@types/bcryptjs': [ '3.0.0' ],
+65 silly audit   bcryptjs: [ '3.0.3' ]
+65 silly audit }
+66 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@msgpackr-extract/msgpackr-extract-linux-x64
+67 silly reify mark deleted [
+67 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@msgpackr-extract/msgpackr-extract-linux-x64'
+67 silly reify ]
+68 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@msgpackr-extract/msgpackr-extract-linux-arm
+69 silly reify mark deleted [
+69 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@msgpackr-extract/msgpackr-extract-linux-arm'
+69 silly reify ]
+70 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@msgpackr-extract/msgpackr-extract-darwin-x64
+71 silly reify mark deleted [
+71 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@msgpackr-extract/msgpackr-extract-darwin-x64'
+71 silly reify ]
+72 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/win32-ia32
+73 silly reify mark deleted [
+73 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/win32-ia32'
+73 silly reify ]
+74 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/win32-arm64
+75 silly reify mark deleted [
+75 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/win32-arm64'
+75 silly reify ]
+76 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/sunos-x64
+77 silly reify mark deleted [
+77 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/sunos-x64'
+77 silly reify ]
+78 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/openharmony-arm64
+79 silly reify mark deleted [
+79 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/openharmony-arm64'
+79 silly reify ]
+80 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/openbsd-x64
+81 silly reify mark deleted [
+81 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/openbsd-x64'
+81 silly reify ]
+82 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/openbsd-arm64
+83 silly reify mark deleted [
+83 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/openbsd-arm64'
+83 silly reify ]
+84 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/netbsd-x64
+85 silly reify mark deleted [
+85 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/netbsd-x64'
+85 silly reify ]
+86 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/netbsd-arm64
+87 silly reify mark deleted [
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/netbsd-arm64'
+87 silly reify ]
+88 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-x64
+89 silly reify mark deleted [
+89 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-x64'
+89 silly reify ]
+90 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-s390x
+91 silly reify mark deleted [
+91 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-s390x'
+91 silly reify ]
+92 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-riscv64
+93 silly reify mark deleted [
+93 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-riscv64'
+93 silly reify ]
+94 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-ppc64
+95 silly reify mark deleted [
+95 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-ppc64'
+95 silly reify ]
+96 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-mips64el
+97 silly reify mark deleted [
+97 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-mips64el'
+97 silly reify ]
+98 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-loong64
+99 silly reify mark deleted [
+99 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-loong64'
+99 silly reify ]
+100 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-ia32
+101 silly reify mark deleted [
+101 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-ia32'
+101 silly reify ]
+102 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-arm
+103 silly reify mark deleted [
+103 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-arm'
+103 silly reify ]
+104 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/freebsd-x64
+105 silly reify mark deleted [
+105 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/freebsd-x64'
+105 silly reify ]
+106 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/freebsd-arm64
+107 silly reify mark deleted [
+107 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/freebsd-arm64'
+107 silly reify ]
+108 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/darwin-x64
+109 silly reify mark deleted [
+109 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/darwin-x64'
+109 silly reify ]
+110 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/android-x64
+111 silly reify mark deleted [
+111 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/android-x64'
+111 silly reify ]
+112 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/android-arm64
+113 silly reify mark deleted [
+113 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/android-arm64'
+113 silly reify ]
+114 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/android-arm
+115 silly reify mark deleted [
+115 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/android-arm'
+115 silly reify ]
+116 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/aix-ppc64
+117 silly reify mark deleted [
+117 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/aix-ppc64'
+117 silly reify ]
+118 timing reifyNode:node_modules/@msgpackr-extract/msgpackr-extract-linux-x64 Completed in 5ms
+119 timing reifyNode:node_modules/@msgpackr-extract/msgpackr-extract-linux-arm Completed in 5ms
+120 timing reifyNode:node_modules/@msgpackr-extract/msgpackr-extract-darwin-x64 Completed in 5ms
+121 timing reifyNode:node_modules/@esbuild/win32-ia32 Completed in 6ms
+122 timing reifyNode:node_modules/@esbuild/win32-arm64 Completed in 6ms
+123 timing reifyNode:node_modules/@esbuild/sunos-x64 Completed in 6ms
+124 timing reifyNode:node_modules/@esbuild/openharmony-arm64 Completed in 6ms
+125 timing reifyNode:node_modules/@esbuild/openbsd-x64 Completed in 6ms
+126 timing reifyNode:node_modules/@esbuild/openbsd-arm64 Completed in 6ms
+127 timing reifyNode:node_modules/@esbuild/netbsd-x64 Completed in 5ms
+128 timing reifyNode:node_modules/@esbuild/netbsd-arm64 Completed in 5ms
+129 timing reifyNode:node_modules/@esbuild/linux-x64 Completed in 5ms
+130 timing reifyNode:node_modules/@esbuild/linux-s390x Completed in 5ms
+131 timing reifyNode:node_modules/@esbuild/linux-riscv64 Completed in 5ms
+132 timing reifyNode:node_modules/@esbuild/linux-ppc64 Completed in 5ms
+133 timing reifyNode:node_modules/@esbuild/linux-mips64el Completed in 5ms
+134 timing reifyNode:node_modules/@esbuild/linux-loong64 Completed in 5ms
+135 timing reifyNode:node_modules/@esbuild/linux-ia32 Completed in 5ms
+136 timing reifyNode:node_modules/@esbuild/linux-arm Completed in 5ms
+137 timing reifyNode:node_modules/@esbuild/freebsd-x64 Completed in 5ms
+138 timing reifyNode:node_modules/@esbuild/freebsd-arm64 Completed in 5ms
+139 timing reifyNode:node_modules/@esbuild/darwin-x64 Completed in 5ms
+140 timing reifyNode:node_modules/@esbuild/android-x64 Completed in 5ms
+141 timing reifyNode:node_modules/@esbuild/android-arm64 Completed in 5ms
+142 timing reifyNode:node_modules/@esbuild/android-arm Completed in 5ms
+143 timing reifyNode:node_modules/@esbuild/aix-ppc64 Completed in 5ms
+144 silly tarball no local data for bcryptjs@https://registry.npmjs.org/bcryptjs/-/bcryptjs-3.0.3.tgz. Extracting by manifest.
+145 silly tarball no local data for @types/bcryptjs@https://registry.npmjs.org/@types/bcryptjs/-/bcryptjs-3.0.0.tgz. Extracting by manifest.
+146 http fetch GET 200 https://registry.npmjs.org/bcryptjs/-/bcryptjs-3.0.3.tgz 71ms (cache miss)
+147 timing reifyNode:node_modules/bcryptjs Completed in 80ms
+148 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 289ms
+149 timing auditReport:getReport Completed in 292ms
+150 silly audit report {
+150 silly audit report   nodemailer: [
+150 silly audit report     {
+150 silly audit report       id: 1109804,
+150 silly audit report       url: 'https://github.com/advisories/GHSA-mm7p-fcc7-pg87',
+150 silly audit report       title: 'Nodemailer: Email to an unintended domain can occur due to Interpretation Conflict',
+150 silly audit report       severity: 'moderate',
+150 silly audit report       vulnerable_versions: '<7.0.7',
+150 silly audit report       cwe: [Array],
+150 silly audit report       cvss: [Object]
+150 silly audit report     },
+150 silly audit report     {
+150 silly audit report       id: 1113165,
+150 silly audit report       url: 'https://github.com/advisories/GHSA-rcmh-qjqh-p98v',
+150 silly audit report       title: 'Nodemailer’s addressparser is vulnerable to DoS caused by recursive calls',
+150 silly audit report       severity: 'high',
+150 silly audit report       vulnerable_versions: '<=7.0.10',
+150 silly audit report       cwe: [Array],
+150 silly audit report       cvss: [Object]
+150 silly audit report     },
+150 silly audit report     {
+150 silly audit report       id: 1115470,
+150 silly audit report       url: 'https://github.com/advisories/GHSA-c7w3-x93f-qmm8',
+150 silly audit report       title: 'Nodemailer has SMTP command injection due to unsanitized `envelope.size` parameter',
+150 silly audit report       severity: 'low',
+150 silly audit report       vulnerable_versions: '<8.0.4',
+150 silly audit report       cwe: [Array],
+150 silly audit report       cvss: [Object]
+150 silly audit report     },
+150 silly audit report     {
+150 silly audit report       id: 1116270,
+150 silly audit report       url: 'https://github.com/advisories/GHSA-vvjj-xcjg-gr5g',
+150 silly audit report       title: 'Nodemailer Vulnerable to SMTP Command Injection via CRLF in Transport name Option (EHLO/HELO) ',
+150 silly audit report       severity: 'moderate',
+150 silly audit report       vulnerable_versions: '<=8.0.4',
+150 silly audit report       cwe: [Array],
+150 silly audit report       cvss: [Object]
+150 silly audit report     }
+150 silly audit report   ],
+150 silly audit report   tar: [
+150 silly audit report     {
+150 silly audit report       id: 1112659,
+150 silly audit report       url: 'https://github.com/advisories/GHSA-34x7-hfp2-rc4v',
+150 silly audit report       title: 'node-tar Vulnerable to Arbitrary File Creation/Overwrite via Hardlink Path Traversal',
+150 silly audit report       severity: 'high',
+150 silly audit report       vulnerable_versions: '<7.5.7',
+150 silly audit report       cwe: [Array],
+150 silly audit report       cvss: [Object]
+150 silly audit report     },
+150 silly audit report     {
+150 silly audit report       id: 1113300,
+150 silly audit report       url: 'https://github.com/advisories/GHSA-8qq5-rm4j-mr97',
+150 silly audit report       title: 'node-tar is Vulnerable to Arbitrary File Overwrite and Symlink Poisoning via Insufficient Path Sanitization',
+150 silly audit report       severity: 'high',
+150 silly audit report       vulnerable_versions: '<=7.5.2',
+150 silly audit report       cwe: [Array],
+150 silly audit report       cvss: [Object]
+150 silly audit report     },
+150 silly audit report     {
+150 silly audit report       id: 1113375,
+150 silly audit report       url: 'https://github.com/advisories/GHSA-83g3-92jg-28cx',
+150 silly audit report       title: 'Arbitrary File Read/Write via Hardlink Target Escape Through Symlink Chain in node-tar Extraction',
+150 silly audit report       severity: 'high',
+150 silly audit report       vulnerable_versions: '<7.5.8',
+150 silly audit report       cwe: [Array],
+150 silly audit report       cvss: [Object]
+150 silly audit report     },
+150 silly audit report     {
+150 silly audit report       id: 1114200,
+150 silly audit report       url: 'https://github.com/advisories/GHSA-qffp-2rhf-9h96',
+150 silly audit report       title: 'tar has Hardlink Path Traversal via Drive-Relative Linkpath',
+150 silly audit report       severity: 'high',
+150 silly audit report       vulnerable_versions: '<=7.5.9',
+150 silly audit report       cwe: [Array],
+150 silly audit report       cvss: [Object]
+150 silly audit report     },
+150 silly audit report     {
+150 silly audit report       id: 1114302,
+150 silly audit report       url: 'https://github.com/advisories/GHSA-9ppj-qmqm-q256',
+150 silly audit report       title: 'node-tar Symlink Path Traversal via Drive-Relative Linkpath',
+150 silly audit report       severity: 'high',
+150 silly audit report       vulnerable_versions: '<=7.5.10',
+150 silly audit report       cwe: [Array],
+150 silly audit report       cvss: [Object]
+150 silly audit report     },
+150 silly audit report     {
+150 silly audit report       id: 1114680,
+150 silly audit report       url: 'https://github.com/advisories/GHSA-r6q2-hw4h-h46w',
+150 silly audit report       title: 'Race Condition in node-tar Path Reservations via Unicode Ligature Collisions on macOS APFS',
+150 silly audit report       severity: 'high',
+150 silly audit report       vulnerable_versions: '<=7.5.3',
+150 silly audit report       cwe: [Array],
+150 silly audit report       cvss: [Object]
+150 silly audit report     }
+150 silly audit report   ]
+150 silly audit report }
+151 timing metavuln:cache:get:security-advisory:nodemailer:3ULLNjvoBxNGNC8u3orauF8BGh/YS0v5X9YClUWhcKsoOzz5ls4je5DO6OkLIH96r2wwxPiat4WkQpCJevqaCg== Completed in 1ms
+152 timing metavuln:cache:get:security-advisory:nodemailer:sSa92SiwIkGaDWb7f+4uLJBKzBpJ0W2wWyyGnJ3WYf6b+X9DoWcraKM3PNTiyqrvMDI8W0G1ZM6Hlc4ILtBaPg== Completed in 1ms
+153 timing metavuln:cache:get:security-advisory:nodemailer:2ROANmhD3m0IXphkSTUcaLNQqKolXHF7GP0hsQax8xiPPGpfe2aL4Rzps0P6bTa55sqxMoUWlIjeZjrvoY2QDQ== Completed in 0ms
+154 timing metavuln:cache:get:security-advisory:nodemailer:vfdl10OpL6SlquIpp/QJEMjbkuYS3I9a5siBm4lwhfmKI7BK83/J6CmdRO2lEkQBe57yPhvtQej+N2Ilyrgxfw== Completed in 0ms
+155 timing metavuln:cache:get:security-advisory:tar:qPQeYPFDBIedTWfYK3sbnScF6Ha7ouTs+wgndnz4PT5P+/K+GBD4epoPcYpXlu6AC7gSJlCJTJeuKbYAFoK9PA== Completed in 0ms
+156 timing metavuln:cache:get:security-advisory:tar:cbwMpzkxWE086TmEbj2aUk80Z6hlvP0jzlWS+XiX15JwqEtFzUgHyHj3QX4I6EZYk8tgcYPuNr3hYFVCQY6e3Q== Completed in 1ms
+157 timing metavuln:cache:get:security-advisory:tar:Bbf0Br7FJ1lJBIJDoLLFwjsDrbaYgLVqfrwr0ATzSQWEKW7Xp073S+5zxU9imRf4OqRJHo2MsCDeyKR0KRVsdA== Completed in 1ms
+158 timing metavuln:cache:get:security-advisory:tar:eeMx7uxRjV2T2ub1XcSZGVUMDQllh5SgBOjApRXoDwccZb2xPyoJEKCNDkl/ZQGHcurw9K/Nf+wQF6u7SWH6CQ== Completed in 1ms
+159 timing metavuln:cache:get:security-advisory:tar:UWW3Y4BpqE/fE3Qp2/QBaix5a7TZZoP7gM6asxPYL9ED9MweoK3ryao+Bp0Y6Y8Xds/rmjAafpG21YRYkP3N4g== Completed in 1ms
+160 timing metavuln:cache:get:security-advisory:tar:vbDW3SJe6e2hhLv65iuyXehzCzEAirdu2MloZluu8ApJ5S0mpjZNCz+7tMRaz8WDOzMKfYQKi/M/IfcFNOa3Cw== Completed in 1ms
+161 http fetch GET 200 https://registry.npmjs.org/tar 58ms (cache miss)
+162 timing metavuln:packument:tar Completed in 59ms
+163 timing metavuln:load:security-advisory:tar:1112659 Completed in 2ms
+164 timing metavuln:load:security-advisory:tar:1113300 Completed in 2ms
+165 timing metavuln:load:security-advisory:tar:1113375 Completed in 2ms
+166 timing metavuln:load:security-advisory:tar:1114200 Completed in 1ms
+167 timing metavuln:load:security-advisory:tar:1114302 Completed in 0ms
+168 timing metavuln:load:security-advisory:tar:1114680 Completed in 1ms
+169 http fetch GET 200 https://registry.npmjs.org/@types/bcryptjs/-/bcryptjs-3.0.0.tgz 351ms (cache miss)
+170 warn deprecated @types/bcryptjs@3.0.0: This is a stub types definition. bcryptjs provides its own type definitions, so you do not need this installed.
+171 timing reifyNode:node_modules/@types/bcryptjs Completed in 361ms
+172 timing reify:unpack Completed in 361ms
+173 timing reify:unretire Completed in 1ms
+174 timing build:queue Completed in 1ms
+175 timing build:link:node_modules/bcryptjs Completed in 2ms
+176 timing build:link Completed in 2ms
+177 timing build:deps Completed in 3ms
+178 timing build:queue Completed in 0ms
+179 timing build:links Completed in 0ms
+180 timing build Completed in 3ms
+181 timing reify:build Completed in 3ms
+182 http fetch GET 200 https://registry.npmjs.org/nodemailer 79ms (cache miss)
+183 timing metavuln:packument:nodemailer Completed in 80ms
+184 timing metavuln:load:security-advisory:nodemailer:1109804 Completed in 3ms
+185 timing metavuln:load:security-advisory:nodemailer:1113165 Completed in 2ms
+186 timing metavuln:load:security-advisory:nodemailer:1115470 Completed in 2ms
+187 timing metavuln:load:security-advisory:nodemailer:1116270 Completed in 1ms
+188 timing reify:trash Completed in 12ms
+189 timing metavuln:cache:put:security-advisory:tar:Bbf0Br7FJ1lJBIJDoLLFwjsDrbaYgLVqfrwr0ATzSQWEKW7Xp073S+5zxU9imRf4OqRJHo2MsCDeyKR0KRVsdA== Completed in 24ms
+190 timing metavuln:calculate:security-advisory:tar:1113375 Completed in 89ms
+191 timing metavuln:cache:put:security-advisory:tar:UWW3Y4BpqE/fE3Qp2/QBaix5a7TZZoP7gM6asxPYL9ED9MweoK3ryao+Bp0Y6Y8Xds/rmjAafpG21YRYkP3N4g== Completed in 22ms
+192 timing metavuln:calculate:security-advisory:tar:1114302 Completed in 89ms
+193 timing metavuln:cache:put:security-advisory:tar:cbwMpzkxWE086TmEbj2aUk80Z6hlvP0jzlWS+XiX15JwqEtFzUgHyHj3QX4I6EZYk8tgcYPuNr3hYFVCQY6e3Q== Completed in 26ms
+194 timing metavuln:calculate:security-advisory:tar:1113300 Completed in 89ms
+195 timing metavuln:cache:put:security-advisory:tar:qPQeYPFDBIedTWfYK3sbnScF6Ha7ouTs+wgndnz4PT5P+/K+GBD4epoPcYpXlu6AC7gSJlCJTJeuKbYAFoK9PA== Completed in 28ms
+196 timing metavuln:calculate:security-advisory:tar:1112659 Completed in 89ms
+197 timing metavuln:cache:put:security-advisory:tar:vbDW3SJe6e2hhLv65iuyXehzCzEAirdu2MloZluu8ApJ5S0mpjZNCz+7tMRaz8WDOzMKfYQKi/M/IfcFNOa3Cw== Completed in 20ms
+198 timing metavuln:calculate:security-advisory:tar:1114680 Completed in 89ms
+199 timing metavuln:cache:put:security-advisory:tar:eeMx7uxRjV2T2ub1XcSZGVUMDQllh5SgBOjApRXoDwccZb2xPyoJEKCNDkl/ZQGHcurw9K/Nf+wQF6u7SWH6CQ== Completed in 24ms
+200 timing metavuln:calculate:security-advisory:tar:1114200 Completed in 90ms
+201 timing metavuln:cache:put:security-advisory:nodemailer:2ROANmhD3m0IXphkSTUcaLNQqKolXHF7GP0hsQax8xiPPGpfe2aL4Rzps0P6bTa55sqxMoUWlIjeZjrvoY2QDQ== Completed in 201ms
+202 timing metavuln:calculate:security-advisory:nodemailer:1115470 Completed in 287ms
+203 timing metavuln:cache:put:security-advisory:nodemailer:sSa92SiwIkGaDWb7f+4uLJBKzBpJ0W2wWyyGnJ3WYf6b+X9DoWcraKM3PNTiyqrvMDI8W0G1ZM6Hlc4ILtBaPg== Completed in 203ms
+204 timing metavuln:calculate:security-advisory:nodemailer:1113165 Completed in 288ms
+205 timing metavuln:cache:put:security-advisory:nodemailer:vfdl10OpL6SlquIpp/QJEMjbkuYS3I9a5siBm4lwhfmKI7BK83/J6CmdRO2lEkQBe57yPhvtQej+N2Ilyrgxfw== Completed in 200ms
+206 timing metavuln:calculate:security-advisory:nodemailer:1116270 Completed in 287ms
+207 timing metavuln:cache:put:security-advisory:nodemailer:3ULLNjvoBxNGNC8u3orauF8BGh/YS0v5X9YClUWhcKsoOzz5ls4je5DO6OkLIH96r2wwxPiat4WkQpCJevqaCg== Completed in 205ms
+208 timing metavuln:calculate:security-advisory:nodemailer:1109804 Completed in 288ms
+209 timing metavuln:cache:get:security-advisory:@mapbox/node-pre-gyp:AwnVuVUFqVnPfq5n1V9r83xD25HDCYpV7ws8YnGmozy04XUqf6i2qYt7o659eFxFO96sEh4mNuIX+QZPlcUYUA== Completed in 1ms
+210 timing reify:save Completed in 206ms
+211 http fetch GET 200 https://registry.npmjs.org/@mapbox%2fnode-pre-gyp 865ms (cache miss)
+212 timing metavuln:packument:@mapbox/node-pre-gyp Completed in 867ms
+213 timing metavuln:load:security-advisory:@mapbox/node-pre-gyp:qPQeYPFDBIedTWfYK3sbnScF6Ha7ouTs+wgndnz4PT5P+/K+GBD4epoPcYpXlu6AC7gSJlCJTJeuKbYAFoK9PA== Completed in 3ms
+214 timing metavuln:cache:put:security-advisory:@mapbox/node-pre-gyp:AwnVuVUFqVnPfq5n1V9r83xD25HDCYpV7ws8YnGmozy04XUqf6i2qYt7o659eFxFO96sEh4mNuIX+QZPlcUYUA== Completed in 3ms
+215 timing metavuln:calculate:security-advisory:@mapbox/node-pre-gyp:qPQeYPFDBIedTWfYK3sbnScF6Ha7ouTs+wgndnz4PT5P+/K+GBD4epoPcYpXlu6AC7gSJlCJTJeuKbYAFoK9PA== Completed in 874ms
+216 timing metavuln:cache:get:security-advisory:bcrypt:Qp7VqeTnwP45tAqiBKyn9zIiyqBrRH5XUDAeHbN+2fjnYOogPXKnMq1MH8oHiuNcYbxBA2sg42i2wlG7jHR/Ag== Completed in 1ms
+217 http fetch GET 200 https://registry.npmjs.org/bcrypt 293ms (cache miss)
+218 timing metavuln:packument:bcrypt Completed in 294ms
+219 timing metavuln:load:security-advisory:bcrypt:AwnVuVUFqVnPfq5n1V9r83xD25HDCYpV7ws8YnGmozy04XUqf6i2qYt7o659eFxFO96sEh4mNuIX+QZPlcUYUA== Completed in 2ms
+220 timing metavuln:cache:put:security-advisory:bcrypt:Qp7VqeTnwP45tAqiBKyn9zIiyqBrRH5XUDAeHbN+2fjnYOogPXKnMq1MH8oHiuNcYbxBA2sg42i2wlG7jHR/Ag== Completed in 3ms
+221 timing metavuln:calculate:security-advisory:bcrypt:AwnVuVUFqVnPfq5n1V9r83xD25HDCYpV7ws8YnGmozy04XUqf6i2qYt7o659eFxFO96sEh4mNuIX+QZPlcUYUA== Completed in 299ms
+222 timing auditReport:init Completed in 1467ms
+223 timing reify:audit Completed in 1761ms
+224 timing reify Completed in 3084ms
+225 silly ADD node_modules/bcryptjs
+226 silly ADD node_modules/@types/bcryptjs
+227 silly ADD
+228 silly ADD
+229 silly ADD
+230 silly ADD
+231 silly ADD
+232 silly ADD
+233 silly ADD
+234 silly ADD
+235 silly ADD
+236 silly ADD
+237 silly ADD
+238 silly ADD
+239 silly ADD
+240 silly ADD
+241 silly ADD
+242 silly ADD
+243 silly ADD
+244 silly ADD
+245 silly ADD
+246 silly ADD
+247 silly ADD
+248 silly ADD
+249 silly ADD
+250 silly ADD
+251 silly ADD
+252 silly ADD
+253 timing command:install Completed in 3106ms
+254 verbose exit 0
+255 timing npm Completed in 3341ms
+256 info ok

@@ -1,0 +1,1 @@
+{"version":3,"file":"socket-events.d.ts","sourceRoot":"","sources":["../src/socket-events.ts"],"names":[],"mappings":"AAIA,eAAO,MAAM,aAAa;;;;;;;;;;;;;;CAiBhB,CAAC;AAEX,MAAM,MAAM,WAAW,GAAG,CAAC,OAAO,aAAa,CAAC,CAAC,MAAM,OAAO,aAAa,CAAC,CAAC;AAE7E,eAAO,MAAM,YAAY;wCACI,MAAM;gCACd,MAAM;8BACR,MAAM;iCACH,MAAM;iCACN,MAAM;CAClB,CAAC"}

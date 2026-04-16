@@ -1,0 +1,867 @@
+0 verbose cli /usr/local/bin/node /usr/local/bin/npm
+1 info using npm@9.8.1
+2 info using node@v18.18.0
+3 timing npm:load:whichnode Completed in 0ms
+4 timing config:load:defaults Completed in 3ms
+5 timing config:load:file:/usr/local/lib/node_modules/npm/npmrc Completed in 1ms
+6 timing config:load:builtin Completed in 1ms
+7 timing config:load:cli Completed in 2ms
+8 timing config:load:env Completed in 0ms
+9 timing config:load:project Completed in 2ms
+10 timing config:load:file:/Users/subhrakantabehera/Downloads/DineSmart 2/.npmrc Completed in 0ms
+11 timing config:load:user Completed in 0ms
+12 timing config:load:file:/usr/local/etc/npmrc Completed in 0ms
+13 timing config:load:global Completed in 0ms
+14 timing config:load:setEnvs Completed in 1ms
+15 timing config:load Completed in 9ms
+16 timing npm:load:configload Completed in 9ms
+17 timing config:load:flatten Completed in 1ms
+18 timing npm:load:mkdirpcache Completed in 1ms
+19 timing npm:load:mkdirplogs Completed in 0ms
+20 verbose title npm uninstall bcrypt @types/bcrypt
+21 verbose argv "uninstall" "bcrypt" "@types/bcrypt" "--workspace" "packages/api"
+22 timing npm:load:setTitle Completed in 10ms
+23 timing npm:load:display Completed in 1ms
+24 verbose logfile logs-max:10 dir:/Users/subhrakantabehera/Downloads/DineSmart 2/.npm/_logs/2026-04-12T16_17_45_329Z-
+25 verbose logfile /Users/subhrakantabehera/Downloads/DineSmart 2/.npm/_logs/2026-04-12T16_17_45_329Z-debug-0.log
+26 timing npm:load:logFile Completed in 6ms
+27 timing npm:load:timers Completed in 0ms
+28 timing npm:load:configScope Completed in 0ms
+29 timing npm:load Completed in 38ms
+30 silly logfile done cleaning log files
+31 timing arborist:ctor Completed in 0ms
+32 timing arborist:ctor Completed in 0ms
+33 timing idealTree:init Completed in 300ms
+34 timing idealTree:userRequests Completed in 0ms
+35 silly idealTree buildDeps
+36 timing idealTree:#root Completed in 0ms
+37 timing idealTree:packages/api Completed in 6ms
+38 timing idealTree:apps/customer Completed in 2ms
+39 timing idealTree:apps/staff Completed in 0ms
+40 timing idealTree:apps/superadmin Completed in 1ms
+41 timing idealTree:packages/shared Completed in 0ms
+42 timing idealTree:buildDeps Completed in 11ms
+43 timing idealTree:fixDepFlags Completed in 5ms
+44 warn EBADENGINE Unsupported engine {
+44 warn EBADENGINE   package: 'dinesmart-os@1.0.0',
+44 warn EBADENGINE   required: { node: '>=20.0.0' },
+44 warn EBADENGINE   current: { node: 'v18.18.0', npm: '9.8.1' }
+44 warn EBADENGINE }
+45 warn EBADENGINE Unsupported engine {
+45 warn EBADENGINE   package: 'smob@1.6.1',
+45 warn EBADENGINE   required: { node: '>=20.0.0' },
+45 warn EBADENGINE   current: { node: 'v18.18.0', npm: '9.8.1' }
+45 warn EBADENGINE }
+46 warn EBADENGINE Unsupported engine {
+46 warn EBADENGINE   package: 'workbox-build@7.4.0',
+46 warn EBADENGINE   required: { node: '>=20.0.0' },
+46 warn EBADENGINE   current: { node: 'v18.18.0', npm: '9.8.1' }
+46 warn EBADENGINE }
+47 warn EBADENGINE Unsupported engine {
+47 warn EBADENGINE   package: 'glob@11.1.0',
+47 warn EBADENGINE   required: { node: '20 || >=22' },
+47 warn EBADENGINE   current: { node: 'v18.18.0', npm: '9.8.1' }
+47 warn EBADENGINE }
+48 warn EBADENGINE Unsupported engine {
+48 warn EBADENGINE   package: 'jackspeak@4.2.3',
+48 warn EBADENGINE   required: { node: '20 || >=22' },
+48 warn EBADENGINE   current: { node: 'v18.18.0', npm: '9.8.1' }
+48 warn EBADENGINE }
+49 warn EBADENGINE Unsupported engine {
+49 warn EBADENGINE   package: 'lru-cache@11.3.3',
+49 warn EBADENGINE   required: { node: '20 || >=22' },
+49 warn EBADENGINE   current: { node: 'v18.18.0', npm: '9.8.1' }
+49 warn EBADENGINE }
+50 timing idealTree Completed in 327ms
+51 timing reify:loadTrees Completed in 331ms
+52 timing reify:diffTrees Completed in 9ms
+53 silly reify mark retired [
+53 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@mapbox/node-pre-gyp',
+53 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.bin/node-pre-gyp'
+53 silly reify ]
+54 silly reify mark retired [
+54 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@types/bcrypt'
+54 silly reify ]
+55 silly reify mark retired [
+55 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/abbrev'
+55 silly reify ]
+56 silly reify mark retired [
+56 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/agent-base'
+56 silly reify ]
+57 silly reify mark retired [
+57 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/aproba'
+57 silly reify ]
+58 silly reify mark retired [
+58 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/are-we-there-yet'
+58 silly reify ]
+59 silly reify mark retired [
+59 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/bcrypt'
+59 silly reify ]
+60 silly reify mark retired [
+60 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/chownr'
+60 silly reify ]
+61 silly reify mark retired [
+61 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/color-support',
+61 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.bin/color-support'
+61 silly reify ]
+62 silly reify mark retired [
+62 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/concat-map'
+62 silly reify ]
+63 silly reify mark retired [
+63 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/console-control-strings'
+63 silly reify ]
+64 silly reify mark retired [
+64 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/delegates'
+64 silly reify ]
+65 silly reify mark retired [
+65 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/fs-minipass'
+65 silly reify ]
+66 silly reify mark retired [
+66 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/fs.realpath'
+66 silly reify ]
+67 silly reify mark retired [ '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/gauge' ]
+68 silly reify mark retired [
+68 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/has-unicode'
+68 silly reify ]
+69 silly reify mark retired [
+69 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/https-proxy-agent'
+69 silly reify ]
+70 silly reify mark retired [
+70 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/inflight'
+70 silly reify ]
+71 silly reify mark retired [
+71 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/make-dir'
+71 silly reify ]
+72 silly reify mark retired [
+72 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/minizlib'
+72 silly reify ]
+73 silly reify mark retired [
+73 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/node-addon-api'
+73 silly reify ]
+74 silly reify mark retired [
+74 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/node-fetch'
+74 silly reify ]
+75 silly reify mark retired [
+75 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/nopt',
+75 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.bin/nopt'
+75 silly reify ]
+76 silly reify mark retired [
+76 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/npmlog'
+76 silly reify ]
+77 silly reify mark retired [ '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/once' ]
+78 silly reify mark retired [
+78 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/path-is-absolute'
+78 silly reify ]
+79 silly reify mark retired [
+79 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/rimraf',
+79 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.bin/rimraf'
+79 silly reify ]
+80 silly reify mark retired [
+80 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/signal-exit'
+80 silly reify ]
+81 silly reify mark retired [ '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/tar' ]
+82 silly reify mark retired [ '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/tr46' ]
+83 silly reify mark retired [
+83 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/webidl-conversions'
+83 silly reify ]
+84 silly reify mark retired [
+84 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/whatwg-url'
+84 silly reify ]
+85 silly reify mark retired [
+85 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/wide-align'
+85 silly reify ]
+86 silly reify mark retired [
+86 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/wrappy'
+86 silly reify ]
+87 silly reify moves {
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@mapbox/node-pre-gyp': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@mapbox/.node-pre-gyp-kbwNRobc',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.bin/node-pre-gyp': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.bin/.node-pre-gyp-orhIeTFu',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@types/bcrypt': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@types/.bcrypt-IV7hNDD9',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/abbrev': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.abbrev-cFK7KaP0',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/agent-base': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.agent-base-cCmGEFb5',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/aproba': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.aproba-bESQ2rKd',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/are-we-there-yet': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.are-we-there-yet-2PQ4qK6D',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/bcrypt': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.bcrypt-fJxfYhGn',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/chownr': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.chownr-9eCthv0j',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/color-support': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.color-support-24ouPZMz',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.bin/color-support': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.bin/.color-support-wOK3Fnh8',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/concat-map': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.concat-map-szV0KCVz',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/console-control-strings': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.console-control-strings-mnEKfsyl',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/delegates': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.delegates-sGpElehE',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/fs-minipass': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.fs-minipass-3YVdRsdf',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/fs.realpath': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.fs.realpath-7r5S6VHI',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/gauge': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.gauge-JSMLnqox',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/has-unicode': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.has-unicode-px22oBsC',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/https-proxy-agent': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.https-proxy-agent-JdL33OCF',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/inflight': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.inflight-ZqxmvJdm',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/make-dir': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.make-dir-PDlYt2jf',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/minizlib': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.minizlib-2DKIVgIf',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/node-addon-api': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.node-addon-api-LRhAbUkF',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/node-fetch': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.node-fetch-rLGqkPSb',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/nopt': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.nopt-7qttxdZD',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.bin/nopt': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.bin/.nopt-PKLliqvY',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/npmlog': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.npmlog-Sp2isU04',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/once': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.once-sRRUW8lo',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/path-is-absolute': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.path-is-absolute-q2ysgsob',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/rimraf': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.rimraf-u8pN4IGs',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.bin/rimraf': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.bin/.rimraf-enH2jv03',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/signal-exit': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.signal-exit-8eQFa1mU',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/tar': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.tar-nwJdicsm',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/tr46': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.tr46-uNDvesGb',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/webidl-conversions': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.webidl-conversions-ApPP2i5A',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/whatwg-url': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.whatwg-url-7AnH8glh',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/wide-align': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.wide-align-39PRmGgC',
+87 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/wrappy': '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/.wrappy-e467oNqa'
+87 silly reify }
+88 timing reify:retireShallow Completed in 8ms
+89 timing reify:createSparse Completed in 2ms
+90 timing reify:loadBundles Completed in 0ms
+91 silly audit bulk request {
+91 silly audit   '@colors/colors': [ '1.6.0' ],
+91 silly audit   '@dabh/diagnostics': [ '2.0.8' ],
+91 silly audit   '@esbuild/aix-ppc64': [ '0.27.7' ],
+91 silly audit   '@esbuild/android-arm': [ '0.27.7' ],
+91 silly audit   '@esbuild/android-arm64': [ '0.27.7' ],
+91 silly audit   '@esbuild/android-x64': [ '0.27.7' ],
+91 silly audit   '@esbuild/darwin-arm64': [ '0.27.7' ],
+91 silly audit   '@esbuild/darwin-x64': [ '0.27.7' ],
+91 silly audit   '@esbuild/freebsd-arm64': [ '0.27.7' ],
+91 silly audit   '@esbuild/freebsd-x64': [ '0.27.7' ],
+91 silly audit   '@esbuild/linux-arm': [ '0.27.7' ],
+91 silly audit   '@esbuild/linux-arm64': [ '0.27.7' ],
+91 silly audit   '@esbuild/linux-ia32': [ '0.27.7' ],
+91 silly audit   '@esbuild/linux-loong64': [ '0.27.7' ],
+91 silly audit   '@esbuild/linux-mips64el': [ '0.27.7' ],
+91 silly audit   '@esbuild/linux-ppc64': [ '0.27.7' ],
+91 silly audit   '@esbuild/linux-riscv64': [ '0.27.7' ],
+91 silly audit   '@esbuild/linux-s390x': [ '0.27.7' ],
+91 silly audit   '@esbuild/linux-x64': [ '0.27.7' ],
+91 silly audit   '@esbuild/netbsd-arm64': [ '0.27.7' ],
+91 silly audit   '@esbuild/netbsd-x64': [ '0.27.7' ],
+91 silly audit   '@esbuild/openbsd-arm64': [ '0.27.7' ],
+91 silly audit   '@esbuild/openbsd-x64': [ '0.27.7' ],
+91 silly audit   '@esbuild/openharmony-arm64': [ '0.27.7' ],
+91 silly audit   '@esbuild/sunos-x64': [ '0.27.7' ],
+91 silly audit   '@esbuild/win32-arm64': [ '0.27.7' ],
+91 silly audit   '@esbuild/win32-ia32': [ '0.27.7' ],
+91 silly audit   '@esbuild/win32-x64': [ '0.27.7' ],
+91 silly audit   '@ioredis/commands': [ '1.5.1' ],
+91 silly audit   '@isaacs/cliui': [ '8.0.2' ],
+91 silly audit   'ansi-regex': [ '6.2.2', '5.0.1' ],
+91 silly audit   'emoji-regex': [ '9.2.2', '8.0.0' ],
+91 silly audit   'string-width': [ '5.1.2', '4.2.3' ],
+91 silly audit   'strip-ansi': [ '7.2.0', '6.0.1' ],
+91 silly audit   semver: [ '7.7.4' ],
+91 silly audit   '@msgpackr-extract/msgpackr-extract-darwin-arm64': [ '3.0.3' ],
+91 silly audit   '@msgpackr-extract/msgpackr-extract-darwin-x64': [ '3.0.3' ],
+91 silly audit   '@msgpackr-extract/msgpackr-extract-linux-arm': [ '3.0.3' ],
+91 silly audit   '@msgpackr-extract/msgpackr-extract-linux-arm64': [ '3.0.3' ],
+91 silly audit   '@msgpackr-extract/msgpackr-extract-linux-x64': [ '3.0.3' ],
+91 silly audit   '@msgpackr-extract/msgpackr-extract-win32-x64': [ '3.0.3' ],
+91 silly audit   '@one-ini/wasm': [ '0.1.1' ],
+91 silly audit   '@pkgjs/parseargs': [ '0.11.0' ],
+91 silly audit   '@prisma/client': [ '5.22.0' ],
+91 silly audit   '@prisma/debug': [ '5.22.0' ],
+91 silly audit   '@prisma/engines': [ '5.22.0' ],
+91 silly audit   '@prisma/engines-version': [ '5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2' ],
+91 silly audit   '@prisma/fetch-engine': [ '5.22.0' ],
+91 silly audit   '@prisma/get-platform': [ '5.22.0' ],
+91 silly audit   '@react-email/render': [ '0.0.16' ],
+91 silly audit   '@selderee/plugin-htmlparser2': [ '0.11.0' ],
+91 silly audit   '@so-ric/colorspace': [ '1.1.6' ],
+91 silly audit   '@socket.io/component-emitter': [ '3.1.2' ],
+91 silly audit   '@socket.io/redis-adapter': [ '8.3.0' ],
+91 silly audit   debug: [ '4.3.7', '2.6.9', '4.4.3' ],
+91 silly audit   '@swc/helpers': [ '0.3.17' ],
+91 silly audit   '@types/bcryptjs': [ '3.0.0' ],
+91 silly audit   '@types/body-parser': [ '1.19.6' ],
+91 silly audit   '@types/connect': [ '3.4.38' ],
+91 silly audit   '@types/cookie-parser': [ '1.4.10' ],
+91 silly audit   '@types/cors': [ '2.8.19' ],
+91 silly audit   '@types/express': [ '4.17.25' ],
+91 silly audit   '@types/express-serve-static-core': [ '4.19.8' ],
+91 silly audit   '@types/http-errors': [ '2.0.5' ],
+91 silly audit   '@types/jsonwebtoken': [ '9.0.10' ],
+91 silly audit   '@types/mime': [ '1.3.5' ],
+91 silly audit   '@types/ms': [ '2.1.0' ],
+91 silly audit   '@types/multer': [ '1.4.13' ],
+91 silly audit   '@types/node': [ '22.19.17' ],
+91 silly audit   '@types/nodemailer': [ '6.4.23' ],
+91 silly audit   '@types/qrcode': [ '1.5.6' ],
+91 silly audit   '@types/qs': [ '6.15.0' ],
+91 silly audit   '@types/range-parser': [ '1.2.7' ],
+91 silly audit   '@types/send': [ '1.2.1', '0.17.6' ],
+91 silly audit   '@types/serve-static': [ '1.15.10' ],
+91 silly audit   '@types/triple-beam': [ '1.3.5' ],
+91 silly audit   '@types/ws': [ '8.18.1' ],
+91 silly audit   abbrev: [ '2.0.0' ],
+91 silly audit   accepts: [ '1.3.8' ],
+91 silly audit   'fast-deep-equal': [ '2.0.1' ],
+91 silly audit   'ansi-styles': [ '6.2.3', '4.3.0' ],
+91 silly audit   'append-field': [ '1.0.0' ],
+91 silly audit   'readable-stream': [ '2.3.8', '3.6.2' ],
+91 silly audit   'array-buffer-byte-length': [ '1.0.2' ],
+91 silly audit   'array-flatten': [ '1.1.1' ],
+91 silly audit   async: [ '3.2.6' ],
+91 silly audit   asynckit: [ '0.4.0' ],
+91 silly audit   'available-typed-arrays': [ '1.0.7' ],
+91 silly audit   axios: [ '1.15.0' ],
+91 silly audit   'balanced-match': [ '1.0.2' ],
+91 silly audit   'base64-js': [ '1.5.1', '0.0.8' ],
+91 silly audit   base64id: [ '2.0.0' ],
+91 silly audit   bcryptjs: [ '3.0.3' ],
+91 silly audit   'body-parser': [ '1.20.4' ],
+91 silly audit   ms: [ '2.0.0', '2.1.3' ],
+91 silly audit   'brace-expansion': [ '2.1.0' ],
+91 silly audit   brotli: [ '1.3.3' ],
+91 silly audit   'buffer-equal-constant-time': [ '1.0.1' ],
+91 silly audit   'buffer-from': [ '1.1.2' ],
+91 silly audit   bullmq: [ '5.73.4' ],
+91 silly audit   busboy: [ '1.6.0' ],
+91 silly audit   bytes: [ '3.1.2' ],
+91 silly audit   'call-bind': [ '1.0.9' ],
+91 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+91 silly audit   'call-bound': [ '1.0.4' ],
+91 silly audit   camelcase: [ '5.3.1' ],
+91 silly audit   cliui: [ '6.0.0' ],
+91 silly audit   'color-convert': [ '2.0.1', '3.1.3' ],
+91 silly audit   'color-name': [ '1.1.4', '2.1.0' ],
+91 silly audit   'wrap-ansi': [ '6.2.0', '8.1.0', '7.0.0' ],
+91 silly audit   clone: [ '2.1.2' ],
+91 silly audit   cloudinary: [ '2.9.0' ],
+91 silly audit   'cluster-key-slot': [ '1.1.2' ],
+91 silly audit   color: [ '5.0.3' ],
+91 silly audit   'color-string': [ '2.1.4' ],
+91 silly audit   'combined-stream': [ '1.0.8' ],
+91 silly audit   commander: [ '10.0.1' ],
+91 silly audit   'concat-stream': [ '1.6.2' ],
+91 silly audit   'config-chain': [ '1.1.13' ],
+91 silly audit   'content-disposition': [ '0.5.4' ],
+91 silly audit   'content-type': [ '1.0.5' ],
+91 silly audit   cookie: [ '0.7.2' ],
+91 silly audit   'cookie-parser': [ '1.4.7' ],
+91 silly audit   'cookie-signature': [ '1.0.6' ],
+91 silly audit   'core-util-is': [ '1.0.3' ],
+91 silly audit   cors: [ '2.8.6' ],
+91 silly audit   'cron-parser': [ '4.9.0' ],
+91 silly audit   'cross-spawn': [ '7.0.6' ],
+91 silly audit   crypto: [ '1.0.1' ],
+91 silly audit   'crypto-js': [ '4.2.0' ],
+91 silly audit   decamelize: [ '1.2.0' ],
+91 silly audit   'deep-equal': [ '2.2.3' ],
+91 silly audit   deepmerge: [ '4.3.1' ],
+91 silly audit   'define-data-property': [ '1.1.4' ],
+91 silly audit   'define-properties': [ '1.2.1' ],
+91 silly audit   'delayed-stream': [ '1.0.0' ],
+91 silly audit   denque: [ '2.1.0' ],
+91 silly audit   depd: [ '2.0.0' ],
+91 silly audit   destroy: [ '1.2.0' ],
+91 silly audit   'detect-libc': [ '2.1.2' ],
+91 silly audit   dfa: [ '1.2.0' ],
+91 silly audit   dijkstrajs: [ '1.0.3' ],
+91 silly audit   'dom-serializer': [ '2.0.0' ],
+91 silly audit   domelementtype: [ '2.3.0' ],
+91 silly audit   domhandler: [ '5.0.3' ],
+91 silly audit   domutils: [ '3.2.2' ],
+91 silly audit   dotenv: [ '16.6.1' ],
+91 silly audit   'dunder-proto': [ '1.0.1' ],
+91 silly audit   eastasianwidth: [ '0.2.0' ],
+91 silly audit   'ecdsa-sig-formatter': [ '1.0.11' ],
+91 silly audit   editorconfig: [ '1.0.7' ],
+91 silly audit   'ee-first': [ '1.1.1' ],
+91 silly audit   enabled: [ '2.0.0' ],
+91 silly audit   encodeurl: [ '2.0.0' ],
+91 silly audit   'engine.io': [ '6.6.6' ],
+91 silly audit   'engine.io-parser': [ '5.2.3' ],
+91 silly audit   entities: [ '4.5.0' ],
+91 silly audit   'es-define-property': [ '1.0.1' ],
+91 silly audit   'es-errors': [ '1.3.0' ],
+91 silly audit   'es-get-iterator': [ '1.1.3' ],
+91 silly audit   'es-object-atoms': [ '1.1.1' ],
+91 silly audit   'es-set-tostringtag': [ '2.1.0' ],
+91 silly audit   esbuild: [ '0.27.7' ],
+91 silly audit   'escape-html': [ '1.0.3' ],
+91 silly audit   etag: [ '1.8.1' ],
+91 silly audit   express: [ '4.22.1' ],
+91 silly audit   'express-rate-limit': [ '7.5.1' ],
+91 silly audit   fecha: [ '4.2.3' ],
+91 silly audit   minimatch: [ '9.0.9' ],
+91 silly audit   finalhandler: [ '1.3.2' ],
+91 silly audit   'find-up': [ '4.1.0' ],
+91 silly audit   'fn.name': [ '1.1.0' ],
+91 silly audit   'follow-redirects': [ '1.15.11' ],
+91 silly audit   fontkit: [ '1.9.0' ],
+91 silly audit   'for-each': [ '0.3.5' ],
+91 silly audit   'foreground-child': [ '3.3.1' ],
+91 silly audit   'signal-exit': [ '4.1.0' ],
+91 silly audit   'form-data': [ '4.0.5' ],
+91 silly audit   forwarded: [ '0.2.0' ],
+91 silly audit   fresh: [ '0.5.2' ],
+91 silly audit   minipass: [ '7.1.3' ],
+91 silly audit   fsevents: [ '2.3.3' ],
+91 silly audit   'function-bind': [ '1.1.2' ],
+91 silly audit   'functions-have-names': [ '1.2.3' ],
+91 silly audit   'get-caller-file': [ '2.0.5' ],
+91 silly audit   'get-intrinsic': [ '1.3.0' ],
+91 silly audit   'get-proto': [ '1.0.1' ],
+91 silly audit   'get-tsconfig': [ '4.13.7' ],
+91 silly audit   glob: [ '10.5.0' ],
+91 silly audit   gopd: [ '1.2.0' ],
+91 silly audit   'has-bigints': [ '1.1.0' ],
+91 silly audit   'has-property-descriptors': [ '1.0.2' ],
+91 silly audit   'has-symbols': [ '1.1.0' ],
+91 silly audit   'has-tostringtag': [ '1.0.2' ],
+91 silly audit   hasown: [ '2.0.2' ],
+91 silly audit   helmet: [ '7.2.0' ],
+91 silly audit   'html-to-text': [ '9.0.5' ],
+91 silly audit   htmlparser2: [ '8.0.2' ],
+91 silly audit   'http-errors': [ '2.0.1' ],
+91 silly audit   'iconv-lite': [ '0.4.24' ],
+91 silly audit   inherits: [ '2.0.4' ],
+91 silly audit   ini: [ '1.3.8' ],
+91 silly audit   'internal-slot': [ '1.1.0' ],
+91 silly audit   ioredis: [ '5.10.1' ],
+91 silly audit   'ipaddr.js': [ '1.9.1' ],
+91 silly audit   'is-arguments': [ '1.2.0' ],
+91 silly audit   'is-array-buffer': [ '3.0.5' ],
+91 silly audit   'is-bigint': [ '1.1.0' ],
+91 silly audit   'is-boolean-object': [ '1.2.2' ],
+91 silly audit   'is-callable': [ '1.2.7' ],
+91 silly audit   'is-date-object': [ '1.1.0' ],
+91 silly audit   'is-fullwidth-code-point': [ '3.0.0' ],
+91 silly audit   'is-map': [ '2.0.3' ],
+91 silly audit   'is-number-object': [ '1.1.1' ],
+91 silly audit   'is-regex': [ '1.2.1' ],
+91 silly audit   'is-set': [ '2.0.3' ],
+91 silly audit   'is-shared-array-buffer': [ '1.0.4' ],
+91 silly audit   'is-stream': [ '2.0.1' ],
+91 silly audit   'is-string': [ '1.1.1' ],
+91 silly audit   'is-symbol': [ '1.1.1' ],
+91 silly audit   'is-weakmap': [ '2.0.2' ],
+91 silly audit   'is-weakset': [ '2.0.4' ],
+91 silly audit   isarray: [ '2.0.5', '1.0.0' ],
+91 silly audit   isexe: [ '2.0.0' ],
+91 silly audit   jackspeak: [ '3.4.3' ],
+91 silly audit   'jpeg-exif': [ '1.1.4' ],
+91 silly audit   'js-beautify': [ '1.15.4' ],
+91 silly audit   nopt: [ '7.2.1' ],
+91 silly audit   'js-cookie': [ '3.0.5' ],
+91 silly audit   'js-tokens': [ '4.0.0' ],
+91 silly audit   jsonwebtoken: [ '9.0.3' ],
+91 silly audit   jwa: [ '2.0.1' ],
+91 silly audit   jws: [ '4.0.1' ],
+91 silly audit   kuler: [ '2.0.0' ],
+91 silly audit   leac: [ '0.6.0' ],
+91 silly audit   linebreak: [ '1.1.0' ],
+91 silly audit   'locate-path': [ '5.0.0' ],
+91 silly audit   lodash: [ '4.18.1' ],
+91 silly audit   'lodash.defaults': [ '4.2.0' ],
+91 silly audit   'lodash.includes': [ '4.3.0' ],
+91 silly audit   'lodash.isarguments': [ '3.1.0' ],
+91 silly audit   'lodash.isboolean': [ '3.0.3' ],
+91 silly audit   'lodash.isinteger': [ '4.0.4' ],
+91 silly audit   'lodash.isnumber': [ '3.0.3' ],
+91 silly audit   'lodash.isplainobject': [ '4.0.6' ],
+91 silly audit   'lodash.isstring': [ '4.0.1' ],
+91 silly audit   'lodash.once': [ '4.1.1' ],
+91 silly audit   logform: [ '2.7.0' ],
+91 silly audit   'loose-envify': [ '1.4.0' ],
+91 silly audit   'lru-cache': [ '10.4.3' ],
+91 silly audit   luxon: [ '3.7.2' ],
+91 silly audit   'math-intrinsics': [ '1.1.0' ],
+91 silly audit   'media-typer': [ '0.3.0' ],
+91 silly audit   'merge-descriptors': [ '1.0.3' ],
+91 silly audit   methods: [ '1.1.2' ],
+91 silly audit   mime: [ '1.6.0' ],
+91 silly audit   'mime-db': [ '1.52.0' ],
+91 silly audit   'mime-types': [ '2.1.35' ],
+91 silly audit   minimist: [ '1.2.8' ],
+91 silly audit   mkdirp: [ '0.5.6' ],
+91 silly audit   msgpackr: [ '1.11.5' ],
+91 silly audit   'msgpackr-extract': [ '3.0.3' ],
+91 silly audit   multer: [ '1.4.5-lts.2' ],
+91 silly audit   negotiator: [ '0.6.3' ],
+91 silly audit   'node-abort-controller': [ '3.1.1' ],
+91 silly audit   'node-gyp-build-optional-packages': [ '5.2.2' ],
+91 silly audit   nodemailer: [ '6.10.1' ],
+91 silly audit   'notepack.io': [ '3.0.1' ],
+91 silly audit   'object-assign': [ '4.1.1' ],
+91 silly audit   'object-inspect': [ '1.13.4' ],
+91 silly audit   'object-is': [ '1.1.6' ],
+91 silly audit   'object-keys': [ '1.1.1' ],
+91 silly audit   'object.assign': [ '4.1.7' ],
+91 silly audit   'on-finished': [ '2.4.1' ],
+91 silly audit   'one-time': [ '1.0.0' ],
+91 silly audit   'p-limit': [ '2.3.0' ],
+91 silly audit   'p-locate': [ '4.1.0' ],
+91 silly audit   'p-try': [ '2.2.0' ],
+91 silly audit   'package-json-from-dist': [ '1.0.1' ],
+91 silly audit   pako: [ '0.2.9' ],
+91 silly audit   parseley: [ '0.12.1' ],
+91 silly audit   parseurl: [ '1.3.3' ],
+91 silly audit   'path-exists': [ '4.0.0' ],
+91 silly audit   'path-key': [ '3.1.1' ],
+91 silly audit   'path-scurry': [ '1.11.1' ],
+91 silly audit   'path-to-regexp': [ '0.1.13' ],
+91 silly audit   pdfkit: [ '0.15.2' ],
+91 silly audit   peberminta: [ '0.9.0' ],
+91 silly audit   'png-js': [ '1.0.0' ],
+91 silly audit   pngjs: [ '5.0.0' ],
+91 silly audit   'possible-typed-array-names': [ '1.1.0' ],
+91 silly audit   prisma: [ '5.22.0' ],
+91 silly audit   'process-nextick-args': [ '2.0.1' ],
+91 silly audit   'proto-list': [ '1.2.4' ],
+91 silly audit   'proxy-addr': [ '2.0.7' ],
+91 silly audit   'proxy-from-env': [ '2.1.0' ],
+91 silly audit   qrcode: [ '1.5.4' ],
+91 silly audit   qs: [ '6.14.2' ],
+91 silly audit   'range-parser': [ '1.2.1' ],
+91 silly audit   'raw-body': [ '2.5.3' ],
+91 silly audit   razorpay: [ '2.9.6' ],
+91 silly audit   react: [ '18.3.1' ],
+91 silly audit   'react-dom': [ '18.3.1' ],
+91 silly audit   'react-promise-suspense': [ '0.3.4' ],
+91 silly audit   'safe-buffer': [ '5.1.2', '5.2.1' ],
+91 silly audit   'redis-errors': [ '1.2.0' ],
+91 silly audit   'redis-parser': [ '3.0.0' ],
+91 silly audit   'regexp.prototype.flags': [ '1.5.4' ],
+91 silly audit   'require-directory': [ '2.1.1' ],
+91 silly audit   'require-main-filename': [ '2.0.0' ],
+91 silly audit   resend: [ '3.5.0' ],
+91 silly audit   'resolve-pkg-maps': [ '1.0.0' ],
+91 silly audit   restructure: [ '2.0.1' ],
+91 silly audit   'safe-regex-test': [ '1.1.0' ],
+91 silly audit   'safe-stable-stringify': [ '2.5.0' ],
+91 silly audit   'safer-buffer': [ '2.1.2' ],
+91 silly audit   scheduler: [ '0.23.2' ],
+91 silly audit   selderee: [ '0.11.0' ],
+91 silly audit   send: [ '0.19.2' ],
+91 silly audit   'serve-static': [ '1.16.3' ],
+91 silly audit   'set-blocking': [ '2.0.0' ],
+91 silly audit   'set-function-length': [ '1.2.2' ],
+91 silly audit   'set-function-name': [ '2.0.2' ],
+91 silly audit   setprototypeof: [ '1.2.0' ],
+91 silly audit   'shebang-command': [ '2.0.0' ],
+91 silly audit   'shebang-regex': [ '3.0.0' ],
+91 silly audit   'side-channel': [ '1.1.0' ],
+91 silly audit   'side-channel-list': [ '1.0.1' ],
+91 silly audit   'side-channel-map': [ '1.0.1' ],
+91 silly audit   'side-channel-weakmap': [ '1.0.2' ],
+91 silly audit   'socket.io': [ '4.8.3' ],
+91 silly audit   'socket.io-adapter': [ '2.5.6' ],
+91 silly audit   'socket.io-parser': [ '4.2.6' ],
+91 silly audit   'stack-trace': [ '0.0.10' ],
+91 silly audit   'standard-as-callback': [ '2.1.0' ],
+91 silly audit   statuses: [ '2.0.2' ],
+91 silly audit   'stop-iteration-iterator': [ '1.1.0' ],
+91 silly audit   streamsearch: [ '1.1.0' ],
+91 silly audit   string_decoder: [ '1.1.1' ],
+91 silly audit   'text-hex': [ '1.0.0' ],
+91 silly audit   'tiny-inflate': [ '1.0.3' ],
+91 silly audit   toidentifier: [ '1.0.1' ],
+91 silly audit   'triple-beam': [ '1.4.1' ],
+91 silly audit   tslib: [ '2.8.1' ],
+91 silly audit   tsx: [ '4.21.0' ],
+91 silly audit   'type-is': [ '1.6.18' ],
+91 silly audit   typedarray: [ '0.0.6' ],
+91 silly audit   typescript: [ '5.9.3' ],
+91 silly audit   uid2: [ '1.0.0' ],
+91 silly audit   'undici-types': [ '6.21.0' ],
+91 silly audit   'unicode-properties': [ '1.4.1' ],
+91 silly audit   'unicode-trie': [ '2.0.0' ],
+91 silly audit   unpipe: [ '1.0.0' ],
+91 silly audit   'util-deprecate': [ '1.0.2' ],
+91 silly audit   'utils-merge': [ '1.0.1' ],
+91 silly audit   uuid: [ '11.1.0' ],
+91 silly audit   vary: [ '1.1.2' ],
+91 silly audit   which: [ '2.0.2' ],
+91 silly audit   'which-boxed-primitive': [ '1.1.1' ],
+91 silly audit   'which-collection': [ '1.0.2' ],
+91 silly audit   'which-module': [ '2.0.1' ],
+91 silly audit   'which-typed-array': [ '1.1.20' ],
+91 silly audit   winston: [ '3.19.0' ],
+91 silly audit   'winston-transport': [ '4.9.0' ],
+91 silly audit   ws: [ '8.18.3' ],
+91 silly audit   xtend: [ '4.0.2' ],
+91 silly audit   y18n: [ '4.0.3' ],
+91 silly audit   yargs: [ '15.4.1' ],
+91 silly audit   'yargs-parser': [ '18.1.3' ],
+91 silly audit   zod: [ '3.25.76' ],
+91 silly audit   '@dinesmart/api': [ '1.0.0' ],
+91 silly audit   '@dinesmart/shared': [ '1.0.0' ]
+91 silly audit }
+92 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@msgpackr-extract/msgpackr-extract-linux-x64
+93 silly reify mark deleted [
+93 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@msgpackr-extract/msgpackr-extract-linux-x64'
+93 silly reify ]
+94 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@msgpackr-extract/msgpackr-extract-linux-arm
+95 silly reify mark deleted [
+95 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@msgpackr-extract/msgpackr-extract-linux-arm'
+95 silly reify ]
+96 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@msgpackr-extract/msgpackr-extract-darwin-x64
+97 silly reify mark deleted [
+97 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@msgpackr-extract/msgpackr-extract-darwin-x64'
+97 silly reify ]
+98 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/win32-ia32
+99 silly reify mark deleted [
+99 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/win32-ia32'
+99 silly reify ]
+100 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/win32-arm64
+101 silly reify mark deleted [
+101 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/win32-arm64'
+101 silly reify ]
+102 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/sunos-x64
+103 silly reify mark deleted [
+103 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/sunos-x64'
+103 silly reify ]
+104 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/openharmony-arm64
+105 silly reify mark deleted [
+105 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/openharmony-arm64'
+105 silly reify ]
+106 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/openbsd-x64
+107 silly reify mark deleted [
+107 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/openbsd-x64'
+107 silly reify ]
+108 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/openbsd-arm64
+109 silly reify mark deleted [
+109 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/openbsd-arm64'
+109 silly reify ]
+110 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/netbsd-x64
+111 silly reify mark deleted [
+111 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/netbsd-x64'
+111 silly reify ]
+112 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/netbsd-arm64
+113 silly reify mark deleted [
+113 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/netbsd-arm64'
+113 silly reify ]
+114 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-x64
+115 silly reify mark deleted [
+115 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-x64'
+115 silly reify ]
+116 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-s390x
+117 silly reify mark deleted [
+117 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-s390x'
+117 silly reify ]
+118 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-riscv64
+119 silly reify mark deleted [
+119 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-riscv64'
+119 silly reify ]
+120 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-ppc64
+121 silly reify mark deleted [
+121 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-ppc64'
+121 silly reify ]
+122 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-mips64el
+123 silly reify mark deleted [
+123 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-mips64el'
+123 silly reify ]
+124 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-loong64
+125 silly reify mark deleted [
+125 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-loong64'
+125 silly reify ]
+126 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-ia32
+127 silly reify mark deleted [
+127 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-ia32'
+127 silly reify ]
+128 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-arm
+129 silly reify mark deleted [
+129 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/linux-arm'
+129 silly reify ]
+130 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/freebsd-x64
+131 silly reify mark deleted [
+131 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/freebsd-x64'
+131 silly reify ]
+132 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/freebsd-arm64
+133 silly reify mark deleted [
+133 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/freebsd-arm64'
+133 silly reify ]
+134 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/darwin-x64
+135 silly reify mark deleted [
+135 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/darwin-x64'
+135 silly reify ]
+136 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/android-x64
+137 silly reify mark deleted [
+137 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/android-x64'
+137 silly reify ]
+138 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/android-arm64
+139 silly reify mark deleted [
+139 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/android-arm64'
+139 silly reify ]
+140 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/android-arm
+141 silly reify mark deleted [
+141 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/android-arm'
+141 silly reify ]
+142 verbose reify failed optional dependency /Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/aix-ppc64
+143 silly reify mark deleted [
+143 silly reify   '/Users/subhrakantabehera/Downloads/DineSmart 2/node_modules/@esbuild/aix-ppc64'
+143 silly reify ]
+144 timing reifyNode:node_modules/@msgpackr-extract/msgpackr-extract-linux-x64 Completed in 33ms
+145 timing reifyNode:node_modules/@msgpackr-extract/msgpackr-extract-linux-arm Completed in 33ms
+146 timing reifyNode:node_modules/@msgpackr-extract/msgpackr-extract-darwin-x64 Completed in 33ms
+147 timing reifyNode:node_modules/@esbuild/win32-ia32 Completed in 32ms
+148 timing reifyNode:node_modules/@esbuild/win32-arm64 Completed in 31ms
+149 timing reifyNode:node_modules/@esbuild/sunos-x64 Completed in 31ms
+150 timing reifyNode:node_modules/@esbuild/openharmony-arm64 Completed in 31ms
+151 timing reifyNode:node_modules/@esbuild/openbsd-x64 Completed in 31ms
+152 timing reifyNode:node_modules/@esbuild/openbsd-arm64 Completed in 31ms
+153 timing reifyNode:node_modules/@esbuild/netbsd-x64 Completed in 31ms
+154 timing reifyNode:node_modules/@esbuild/netbsd-arm64 Completed in 31ms
+155 timing reifyNode:node_modules/@esbuild/linux-x64 Completed in 30ms
+156 timing reifyNode:node_modules/@esbuild/linux-s390x Completed in 30ms
+157 timing reifyNode:node_modules/@esbuild/linux-riscv64 Completed in 30ms
+158 timing reifyNode:node_modules/@esbuild/linux-ppc64 Completed in 30ms
+159 timing reifyNode:node_modules/@esbuild/linux-mips64el Completed in 30ms
+160 timing reifyNode:node_modules/@esbuild/linux-loong64 Completed in 30ms
+161 timing reifyNode:node_modules/@esbuild/linux-ia32 Completed in 30ms
+162 timing reifyNode:node_modules/@esbuild/linux-arm Completed in 30ms
+163 timing reifyNode:node_modules/@esbuild/freebsd-x64 Completed in 30ms
+164 timing reifyNode:node_modules/@esbuild/freebsd-arm64 Completed in 30ms
+165 timing reifyNode:node_modules/@esbuild/darwin-x64 Completed in 30ms
+166 timing reifyNode:node_modules/@esbuild/android-x64 Completed in 30ms
+167 timing reifyNode:node_modules/@esbuild/android-arm64 Completed in 30ms
+168 timing reifyNode:node_modules/@esbuild/android-arm Completed in 30ms
+169 timing reifyNode:node_modules/@esbuild/aix-ppc64 Completed in 30ms
+170 timing reify:unpack Completed in 33ms
+171 timing reify:unretire Completed in 1ms
+172 timing build:queue Completed in 2ms
+173 timing build:deps Completed in 2ms
+174 timing build:queue Completed in 0ms
+175 timing build:links Completed in 0ms
+176 timing build Completed in 2ms
+177 timing reify:build Completed in 2ms
+178 timing reify:trash Completed in 42ms
+179 timing reify:save Completed in 183ms
+180 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 446ms
+181 timing auditReport:getReport Completed in 450ms
+182 silly audit report {
+182 silly audit report   nodemailer: [
+182 silly audit report     {
+182 silly audit report       id: 1109804,
+182 silly audit report       url: 'https://github.com/advisories/GHSA-mm7p-fcc7-pg87',
+182 silly audit report       title: 'Nodemailer: Email to an unintended domain can occur due to Interpretation Conflict',
+182 silly audit report       severity: 'moderate',
+182 silly audit report       vulnerable_versions: '<7.0.7',
+182 silly audit report       cwe: [Array],
+182 silly audit report       cvss: [Object]
+182 silly audit report     },
+182 silly audit report     {
+182 silly audit report       id: 1113165,
+182 silly audit report       url: 'https://github.com/advisories/GHSA-rcmh-qjqh-p98v',
+182 silly audit report       title: 'Nodemailer’s addressparser is vulnerable to DoS caused by recursive calls',
+182 silly audit report       severity: 'high',
+182 silly audit report       vulnerable_versions: '<=7.0.10',
+182 silly audit report       cwe: [Array],
+182 silly audit report       cvss: [Object]
+182 silly audit report     },
+182 silly audit report     {
+182 silly audit report       id: 1115470,
+182 silly audit report       url: 'https://github.com/advisories/GHSA-c7w3-x93f-qmm8',
+182 silly audit report       title: 'Nodemailer has SMTP command injection due to unsanitized `envelope.size` parameter',
+182 silly audit report       severity: 'low',
+182 silly audit report       vulnerable_versions: '<8.0.4',
+182 silly audit report       cwe: [Array],
+182 silly audit report       cvss: [Object]
+182 silly audit report     },
+182 silly audit report     {
+182 silly audit report       id: 1116270,
+182 silly audit report       url: 'https://github.com/advisories/GHSA-vvjj-xcjg-gr5g',
+182 silly audit report       title: 'Nodemailer Vulnerable to SMTP Command Injection via CRLF in Transport name Option (EHLO/HELO) ',
+182 silly audit report       severity: 'moderate',
+182 silly audit report       vulnerable_versions: '<=8.0.4',
+182 silly audit report       cwe: [Array],
+182 silly audit report       cvss: [Object]
+182 silly audit report     }
+182 silly audit report   ]
+182 silly audit report }
+183 timing metavuln:cache:get:security-advisory:nodemailer:2ROANmhD3m0IXphkSTUcaLNQqKolXHF7GP0hsQax8xiPPGpfe2aL4Rzps0P6bTa55sqxMoUWlIjeZjrvoY2QDQ== Completed in 4ms
+184 timing metavuln:cache:get:security-advisory:nodemailer:3ULLNjvoBxNGNC8u3orauF8BGh/YS0v5X9YClUWhcKsoOzz5ls4je5DO6OkLIH96r2wwxPiat4WkQpCJevqaCg== Completed in 6ms
+185 timing metavuln:cache:get:security-advisory:nodemailer:vfdl10OpL6SlquIpp/QJEMjbkuYS3I9a5siBm4lwhfmKI7BK83/J6CmdRO2lEkQBe57yPhvtQej+N2Ilyrgxfw== Completed in 4ms
+186 timing metavuln:cache:get:security-advisory:nodemailer:sSa92SiwIkGaDWb7f+4uLJBKzBpJ0W2wWyyGnJ3WYf6b+X9DoWcraKM3PNTiyqrvMDI8W0G1ZM6Hlc4ILtBaPg== Completed in 4ms
+187 http fetch GET 200 https://registry.npmjs.org/nodemailer 13ms (cache hit)
+188 timing metavuln:packument:nodemailer Completed in 16ms
+189 timing metavuln:load:security-advisory:nodemailer:1109804 Completed in 1ms
+190 timing metavuln:calculate:security-advisory:nodemailer:1109804 Completed in 18ms
+191 timing metavuln:load:security-advisory:nodemailer:1113165 Completed in 1ms
+192 timing metavuln:calculate:security-advisory:nodemailer:1113165 Completed in 17ms
+193 timing metavuln:load:security-advisory:nodemailer:1115470 Completed in 1ms
+194 timing metavuln:calculate:security-advisory:nodemailer:1115470 Completed in 18ms
+195 timing metavuln:load:security-advisory:nodemailer:1116270 Completed in 1ms
+196 timing metavuln:calculate:security-advisory:nodemailer:1116270 Completed in 20ms
+197 timing auditReport:init Completed in 26ms
+198 timing reify:audit Completed in 479ms
+199 timing reify Completed in 830ms
+200 silly ADD
+201 silly ADD
+202 silly ADD
+203 silly ADD
+204 silly ADD
+205 silly ADD
+206 silly ADD
+207 silly ADD
+208 silly ADD
+209 silly ADD
+210 silly ADD
+211 silly ADD
+212 silly ADD
+213 silly ADD
+214 silly ADD
+215 silly ADD
+216 silly ADD
+217 silly ADD
+218 silly ADD
+219 silly ADD
+220 silly ADD
+221 silly ADD
+222 silly ADD
+223 silly ADD
+224 silly ADD
+225 silly ADD
+226 silly REMOVE node_modules/wrappy
+227 silly REMOVE node_modules/wide-align
+228 silly REMOVE node_modules/whatwg-url
+229 silly REMOVE node_modules/webidl-conversions
+230 silly REMOVE node_modules/tr46
+231 silly REMOVE node_modules/tar
+232 silly REMOVE node_modules/tar/node_modules/yallist
+233 silly REMOVE node_modules/tar/node_modules/mkdirp
+234 silly REMOVE node_modules/tar/node_modules/minipass
+235 silly REMOVE node_modules/signal-exit
+236 silly REMOVE node_modules/rimraf
+237 silly REMOVE node_modules/rimraf/node_modules/minimatch
+238 silly REMOVE node_modules/rimraf/node_modules/glob
+239 silly REMOVE node_modules/rimraf/node_modules/brace-expansion
+240 silly REMOVE node_modules/path-is-absolute
+241 silly REMOVE node_modules/once
+242 silly REMOVE node_modules/npmlog
+243 silly REMOVE node_modules/nopt
+244 silly REMOVE node_modules/node-fetch
+245 silly REMOVE node_modules/node-addon-api
+246 silly REMOVE node_modules/minizlib
+247 silly REMOVE node_modules/minizlib/node_modules/yallist
+248 silly REMOVE node_modules/minizlib/node_modules/minipass
+249 silly REMOVE node_modules/make-dir
+250 silly REMOVE node_modules/inflight
+251 silly REMOVE node_modules/https-proxy-agent
+252 silly REMOVE node_modules/has-unicode
+253 silly REMOVE node_modules/gauge
+254 silly REMOVE node_modules/fs.realpath
+255 silly REMOVE node_modules/fs-minipass
+256 silly REMOVE node_modules/fs-minipass/node_modules/yallist
+257 silly REMOVE node_modules/fs-minipass/node_modules/minipass
+258 silly REMOVE node_modules/delegates
+259 silly REMOVE node_modules/console-control-strings
+260 silly REMOVE node_modules/concat-map
+261 silly REMOVE node_modules/color-support
+262 silly REMOVE node_modules/chownr
+263 silly REMOVE node_modules/bcrypt
+264 silly REMOVE node_modules/are-we-there-yet
+265 silly REMOVE node_modules/are-we-there-yet/node_modules/readable-stream
+266 silly REMOVE node_modules/aproba
+267 silly REMOVE node_modules/agent-base
+268 silly REMOVE node_modules/abbrev
+269 silly REMOVE node_modules/@types/bcrypt
+270 silly REMOVE node_modules/@mapbox/node-pre-gyp
+271 silly REMOVE node_modules/@mapbox/node-pre-gyp/node_modules/semver
+272 timing command:uninstall Completed in 848ms
+273 verbose exit 0
+274 timing npm Completed in 988ms
+275 info ok

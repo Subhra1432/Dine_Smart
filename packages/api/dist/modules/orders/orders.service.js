@@ -321,8 +321,8 @@ export async function initiatePayment(orderId) {
                 quantity: 1,
             }],
         mode: 'payment',
-        success_url: `${env.FRONTEND_CUSTOMER_URL}/order/${order.id}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${env.FRONTEND_CUSTOMER_URL}/order/${order.id}`,
+        success_url: `${process.env.FRONTEND_CUSTOMER_URL || ""}/order/${order.id}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${process.env.FRONTEND_CUSTOMER_URL || ""}/order/${order.id}`,
         metadata: {
             orderId: order.id,
             restaurantId: order.restaurantId,

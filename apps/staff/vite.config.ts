@@ -10,9 +10,9 @@ export default defineConfig({
       ignored: ['**/.git/**'],
     },
     proxy: { 
-      '/api': 'http://localhost:4000',
+      '/api': 'http://dinesmart-api:4000',
       '/socket.io': {
-        target: 'ws://localhost:4000',
+        target: 'ws://dinesmart-api:4000',
         ws: true
       }
     },

@@ -19,8 +19,8 @@ export function initSocketServer(httpServer: HttpServer): Server {
     cors: {
       origin: [
         env.FRONTEND_CUSTOMER_URL,
-        env.FRONTEND_STAFF_URL,
-        env.FRONTEND_SUPERADMIN_URL,
+        env.FRONTEND_URL,
+        env.FRONTEND_URL,
       ],
       credentials: true,
     },
@@ -43,7 +43,7 @@ export function initSocketServer(httpServer: HttpServer): Server {
 
     try {
       const decoded = jwt.verify(token, env.JWT_ACCESS_SECRET) as JwtAccessPayload;
-      (socket as Record<string, unknown>)['user'] = decoded;
+      (socket as any).user = decoded;
       next();
     } catch {
       next(new Error('Invalid token'));
@@ -51,7 +51,7 @@ export function initSocketServer(httpServer: HttpServer): Server {
   });
 
   restaurantNs.on('connection', (socket) => {
-    const user = (socket as Record<string, unknown>)['user'] as JwtAccessPayload | undefined;
+    const user = (socket as any).user as JwtAccessPayload | undefined;
 
     logger.info('Socket connected', { socketId: socket.id, userId: user?.userId });
 

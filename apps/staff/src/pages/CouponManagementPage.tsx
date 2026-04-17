@@ -157,7 +157,6 @@ export default function CouponManagementPage() {
           {(!coupons || coupons.length === 0) && (
             <div className="col-span-full py-20 flex flex-col items-center justify-center text-center bg-slate-50/50 dark:bg-slate-800/20 rounded-[32px] border-2 border-dashed border-slate-200 dark:border-slate-800">
               <div className="w-16 h-16 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center text-slate-300 dark:text-slate-600 shadow-sm mb-4">
-                <Gift size={32} />
               </div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">No coupons created yet</h3>
               <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xs mx-auto">

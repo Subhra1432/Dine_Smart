@@ -36,8 +36,7 @@ app.use(helmet({
 app.use(cors({
     origin: [
         env.FRONTEND_CUSTOMER_URL,
-        env.FRONTEND_STAFF_URL,
-        env.FRONTEND_SUPERADMIN_URL,
+        env.FRONTEND_URL,
         'http://localhost:5173',
         'http://localhost:5174',
         'http://localhost:5175',

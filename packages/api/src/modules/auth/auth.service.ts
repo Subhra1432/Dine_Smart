@@ -134,7 +134,7 @@ export async function login(email: string, password: string) {
 }
 
 export async function refreshAccessToken(refreshToken: string) {
-  const decoded = jwt.verify(refreshToken, env.JWT_REFRESH_SECRET) as JwtRefreshPayload;
+  const decoded = jwt.verify(refreshToken, String(env.JWT_REFRESH_SECRET)) as JwtRefreshPayload;
 
   const user = await prisma.user.findUnique({
     where: { id: decoded.userId },
@@ -229,12 +229,12 @@ function generateTokens(
     tokenVersion,
   };
 
-  const accessToken = jwt.sign(accessPayload, env.JWT_ACCESS_SECRET, {
-    expiresIn: env.JWT_ACCESS_EXPIRES_IN,
+  const accessToken = jwt.sign(accessPayload, String(env.JWT_ACCESS_SECRET), {
+    
   });
 
-  const refreshToken = jwt.sign(refreshPayload, env.JWT_REFRESH_SECRET, {
-    expiresIn: env.JWT_REFRESH_EXPIRES_IN,
+  const refreshToken = jwt.sign(refreshPayload, String(env.JWT_REFRESH_SECRET), {
+    
   });
 
   return { accessToken, refreshToken };

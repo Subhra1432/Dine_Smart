@@ -16,8 +16,8 @@ export declare function registerRestaurant(data: {
         slug: string;
     };
     tokens: {
-        accessToken: never;
-        refreshToken: never;
+        accessToken: string;
+        refreshToken: string;
     };
 }>;
 export declare function login(email: string, password: string): Promise<{
@@ -35,14 +35,14 @@ export declare function login(email: string, password: string): Promise<{
         plan: import(".prisma/client").$Enums.Plan;
     };
     tokens: {
-        accessToken: never;
-        refreshToken: never;
+        accessToken: string;
+        refreshToken: string;
     };
 }>;
 export declare function refreshAccessToken(refreshToken: string): Promise<{
     tokens: {
-        accessToken: never;
-        refreshToken: never;
+        accessToken: string;
+        refreshToken: string;
     };
 }>;
 export declare function forgotPassword(email: string): Promise<{

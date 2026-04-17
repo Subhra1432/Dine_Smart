@@ -101,7 +101,7 @@ export async function login(email, password) {
     };
 }
 export async function refreshAccessToken(refreshToken) {
-    const decoded = jwt.verify(refreshToken, env.JWT_REFRESH_SECRET);
+    const decoded = jwt.verify(refreshToken, String(env.JWT_REFRESH_SECRET));
     const user = await prisma.user.findUnique({
         where: { id: decoded.userId },
         include: { restaurant: true },
@@ -163,12 +163,8 @@ function generateTokens(userId, restaurantId, role, branchId, tokenVersion) {
         userId,
         tokenVersion,
     };
-    const accessToken = jwt.sign(accessPayload, env.JWT_ACCESS_SECRET, {
-        expiresIn: env.JWT_ACCESS_EXPIRES_IN,
-    });
-    const refreshToken = jwt.sign(refreshPayload, env.JWT_REFRESH_SECRET, {
-        expiresIn: env.JWT_REFRESH_EXPIRES_IN,
-    });
+    const accessToken = jwt.sign(accessPayload, String(env.JWT_ACCESS_SECRET), {});
+    const refreshToken = jwt.sign(refreshPayload, String(env.JWT_REFRESH_SECRET), {});
     return { accessToken, refreshToken };
 }
 // Super Admin auth

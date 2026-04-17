@@ -14,8 +14,8 @@ export function initSocketServer(httpServer) {
         cors: {
             origin: [
                 env.FRONTEND_CUSTOMER_URL,
-                env.FRONTEND_STAFF_URL,
-                env.FRONTEND_SUPERADMIN_URL,
+                env.FRONTEND_URL,
+                env.FRONTEND_URL,
             ],
             credentials: true,
         },
@@ -33,7 +33,7 @@ export function initSocketServer(httpServer) {
         }
         try {
             const decoded = jwt.verify(token, env.JWT_ACCESS_SECRET);
-            socket['user'] = decoded;
+            socket.user = decoded;
             next();
         }
         catch {
@@ -41,7 +41,7 @@ export function initSocketServer(httpServer) {
         }
     });
     restaurantNs.on('connection', (socket) => {
-        const user = socket['user'];
+        const user = socket.user;
         logger.info('Socket connected', { socketId: socket.id, userId: user?.userId });
         socket.on('join:table', (tableId) => {
             socket.join(SOCKET_ROOMS.table(tableId));

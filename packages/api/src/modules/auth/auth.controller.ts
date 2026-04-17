@@ -105,7 +105,7 @@ export async function getMe(req: Request, res: Response) {
   const { prisma } = await import('../../config/database.js');
   
   if (!req.user?.userId) {
-    throw new AppError(401, 'Invalid session');
+    throw new Error('Invalid session');
   }
 
   const [user, restaurant] = await Promise.all([
@@ -120,7 +120,7 @@ export async function getMe(req: Request, res: Response) {
   ]);
 
   if (!user || !user.isActive) {
-    throw new AppError(401, 'User no longer exists or is inactive');
+    throw new Error('User no longer exists or is inactive');
   }
 
   res.json({ success: true, data: { user, restaurant } });

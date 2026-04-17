@@ -2,7 +2,7 @@
 // DineSmart — Customer API Client
 // ═══════════════════════════════════════════
 
-const API_URL = import.meta.env.VITE_API_URL || '';
+const API_URL = (import.meta as any).env.VITE_API_URL || '';
 const API_BASE = `${API_URL}/api/v1`;
 
 async function fetchApi<T>(url: string, options?: RequestInit): Promise<T> {

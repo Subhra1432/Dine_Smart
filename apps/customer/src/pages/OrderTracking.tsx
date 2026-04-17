@@ -351,7 +351,7 @@ export default function OrderTracking() {
                 <div className="space-y-4 mb-8 text-left border-t border-white/5 pt-6">
                     <p className="text-xs font-bold text-slate-400 uppercase tracking-widest text-center mb-4">Rate Specific Items</p>
                     {order.items.map((item) => {
-                      const currentItemRating = itemRatings[item.menuItem.id] || 0;
+                      const currentItemRating = itemRatings[item.menuItem.name] || 0;
                       return (
                         <div key={item.id} className="flex items-center justify-between bg-black/20 rounded-2xl p-3 border border-white/5">
                             <span className="text-sm font-bold text-slate-300 truncate max-w-[60%]">{item.menuItem.name}</span>
@@ -359,7 +359,7 @@ export default function OrderTracking() {
                                 {[1, 2, 3, 4, 5].map(s => (
                                     <button 
                                         key={s} 
-                                        onClick={() => setItemRatings(prev => ({...prev, [item.menuItem.id]: s}))}
+                                        onClick={() => setItemRatings(prev => ({...prev, [item.menuItem.name]: s}))}
                                         className="p-1"
                                     >
                                         <Star size={16} strokeWidth={s <= currentItemRating ? 0 : 2} className={s <= currentItemRating ? 'text-amber-400 fill-amber-400' : 'text-slate-600'} />
@@ -408,7 +408,7 @@ export default function OrderTracking() {
                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.15em]">PRINT RECEIPT</span>
             </button>
             <Link 
-                to={`/menu?restaurant=${order.restaurant.slug}&table=${order.table.id}`}
+                to={`/menu?restaurant=${order.restaurant.slug}&table=${order.table.number}`}
                 className="p-6 bg-brand-500/10 border border-brand-500/20 rounded-[2rem] flex flex-col items-center justify-center gap-3 hover:bg-brand-500/20 transition-all active:scale-95"
             >
                 <div className="w-10 h-10 bg-brand-500/20 rounded-xl flex items-center justify-center">

@@ -307,7 +307,7 @@ export async function sendOtp(phone: string) {
 
   const data = await res.json() as any;
   if (!res.ok) {
-    logger.error('Twilio Send Error', { status: res.status, data });
+    console.error('Twilio Send Error', { status: res.status, data });
     if ([401, 403, 404].includes(res.status)) {
       throw new AppError(500, `Twilio configuration error: ${data.message || 'Check your SID and Token'} (${res.status})`);
     }
@@ -348,7 +348,7 @@ export async function verifyOtp(restaurantSlug: string, phone: string, code: str
 
   const data = await res.json() as any;
   if (!res.ok) {
-    logger.error('Twilio Verify Error', { status: res.status, data });
+    console.error('Twilio Verify Error', { status: res.status, data });
     if ([401, 403, 404].includes(res.status)) {
       throw new AppError(500, `Twilio configuration error: ${data.message || 'Verification session expired or not found'} (${res.status})`);
     }

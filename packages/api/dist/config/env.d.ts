@@ -1,0 +1,30 @@
+export declare const env: {
+    NODE_ENV: "development" | "production" | "test";
+    PORT: number;
+    DATABASE_URL: string;
+    REDIS_URL: string;
+    API_BASE_URL: string;
+    FRONTEND_CUSTOMER_URL: string;
+    FRONTEND_URL: string;
+    JWT_ACCESS_SECRET: string;
+    JWT_REFRESH_SECRET: string;
+    JWT_SUPERADMIN_SECRET: string;
+    JWT_ACCESS_EXPIRES_IN: string;
+    JWT_REFRESH_EXPIRES_IN: string;
+    CSRF_SECRET: string;
+    STRIPE_SECRET_KEY: string;
+    STRIPE_PUBLISHABLE_KEY: string;
+    STRIPE_WEBHOOK_SECRET: string;
+    CLOUDINARY_CLOUD_NAME: string;
+    CLOUDINARY_API_KEY: string;
+    CLOUDINARY_API_SECRET: string;
+    RESEND_API_KEY: string;
+    EMAIL_FROM: string;
+    SMTP_HOST: string;
+    SMTP_PORT: number;
+    SMTP_USER: string;
+    SMTP_PASS: string;
+    QR_BASE_URL: string;
+    LOG_LEVEL: string;
+};
+//# sourceMappingURL=env.d.ts.map

@@ -57,7 +57,7 @@ databases:
     databaseName: dinesmart
     user: dinesmart
 
-redis:
+redisInstances:
   - name: dinesmart-redis
     plan: free
     maxmemoryPolicy: allkeys-lru

@@ -15,6 +15,7 @@ const envSchema = z.object({
   API_BASE_URL: z.string().url().default('http://localhost:4000'),
   FRONTEND_CUSTOMER_URL: z.string().default('http://localhost:5173'),
   FRONTEND_URL: z.string().default('http://localhost:5174'),
+  FRONTEND_SUPERADMIN_URL: z.string().default('http://localhost:5175'),
   JWT_ACCESS_SECRET: z.string().min(32),
   JWT_REFRESH_SECRET: z.string().min(32),
   JWT_SUPERADMIN_SECRET: z.string().min(32),

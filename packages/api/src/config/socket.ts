@@ -20,7 +20,7 @@ export function initSocketServer(httpServer: HttpServer): Server {
       origin: [
         env.FRONTEND_CUSTOMER_URL,
         env.FRONTEND_URL,
-        env.FRONTEND_URL,
+        env.FRONTEND_SUPERADMIN_URL,
       ],
       credentials: true,
     },

@@ -107,7 +107,7 @@ export default function MenuManagementPage() {
           ...formData,
           price: parseFloat(formData.price),
           preparationTimeMinutes: parseInt(formData.preparationTimeMinutes),
-          imageUrl: formData.imageUrl || (isEditing ? undefined : null), // send undefined if editing and we don't want to nullify unexpectedly, wait actually we want to explicitly save the imageUrl state
+          imageUrl: formData.imageUrl === '' ? null : formData.imageUrl,
         })
       });
       const data = await res.json();

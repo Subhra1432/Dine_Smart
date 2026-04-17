@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="dark" storageKey="dinesmart-superadmin-theme">
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
           <App />
           <Toaster position="top-right" toastOptions={{ className: 'dark:bg-[#1e1b3a] dark:text-slate-100 bg-white text-slate-900 border dark:border-white/10 border-slate-200 shadow-lg' }} />
         </BrowserRouter>

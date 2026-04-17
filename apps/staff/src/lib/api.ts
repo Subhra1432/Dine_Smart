@@ -62,7 +62,7 @@ async function fetchApi<T>(url: string, options?: FetchOptions): Promise<T> {
     // Only redirect once — guard against multiple concurrent redirects
     if (!isRedirecting && typeof window !== 'undefined' && !window.location.pathname.includes('/login')) {
       isRedirecting = true;
-      window.location.href = '/login';
+      window.location.href = `${import.meta.env.BASE_URL}login`;
     }
   }
 

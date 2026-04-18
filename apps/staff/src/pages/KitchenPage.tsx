@@ -15,6 +15,7 @@ interface KitchenOrder {
   id: string;
   createdAt: string;
   table: { number: number };
+  branch: { name: string };
   items: Array<{
     id: string;
     menuItem: { name: string; preparationTimeMinutes: number };
@@ -30,8 +31,9 @@ export default function KitchenPage() {
   const navigate = useNavigate();
   const { clearAuth, user } = useAuthStore();
   const isKitchenStaff = user?.role === 'KITCHEN_STAFF';
+  const isOversight = user?.role === 'MANAGER' || user?.role === 'OWNER';
   const [audioEnabled, setAudioEnabled] = useState(true);
-  const [selectedBranchId, setSelectedBranchId] = useState<string>(user?.branchId || '');
+  const [selectedBranchId, setSelectedBranchId] = useState<string>(isOversight ? '' : (user?.branchId || ''));
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const { data: branches } = useQuery({
@@ -207,7 +209,7 @@ export default function KitchenPage() {
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <span className="text-xl font-bold text-slate-900 dark:text-white">#{order.table.number}</span>
-                    <span className="text-xs text-slate-500">#{order.id.slice(-4)}</span>
+                    <span className="text-[10px] font-bold text-brand-500 bg-brand-500/10 px-1.5 py-0.5 rounded uppercase tracking-wider">{order.branch.name}</span>
                   </div>
                   <div className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
                     isUrgent ? 'bg-red-500/20 text-red-400' : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400'

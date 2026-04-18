@@ -11,6 +11,7 @@ import { logger } from './logger.js';
 import jwt from 'jsonwebtoken';
 import type { JwtAccessPayload } from '@dinesmart/shared';
 import { SOCKET_ROOMS } from '@dinesmart/shared';
+import { prisma } from './database.js';
 
 let io: Server;
 
@@ -60,16 +61,32 @@ export function initSocketServer(httpServer: HttpServer): Server {
       logger.debug(`Socket ${socket.id} joined table:${tableId}`);
     });
 
-    socket.on('join:kitchen', () => {
-      if (user?.branchId) {
+    socket.on('join:kitchen', async () => {
+      if (!user) return;
+      if (user.role === 'MANAGER' || user.role === 'OWNER') {
+        const branches = await prisma.branch.findMany({ where: { restaurantId: user.restaurantId } });
+        branches.forEach(b => {
+          socket.join(SOCKET_ROOMS.kitchen(b.id));
+          socket.join(SOCKET_ROOMS.branch(b.id));
+        });
+        logger.debug(`Socket ${socket.id} joined ALL kitchen rooms for restaurant:${user.restaurantId}`);
+      } else if (user.branchId) {
         socket.join(SOCKET_ROOMS.kitchen(user.branchId));
         socket.join(SOCKET_ROOMS.branch(user.branchId));
         logger.debug(`Socket ${socket.id} joined kitchen:${user.branchId}`);
       }
     });
 
-    socket.on('join:billing', () => {
-      if (user?.branchId) {
+    socket.on('join:billing', async () => {
+      if (!user) return;
+      if (user.role === 'MANAGER' || user.role === 'OWNER') {
+        const branches = await prisma.branch.findMany({ where: { restaurantId: user.restaurantId } });
+        branches.forEach(b => {
+          socket.join(SOCKET_ROOMS.billing(b.id));
+          socket.join(SOCKET_ROOMS.branch(b.id));
+        });
+        logger.debug(`Socket ${socket.id} joined ALL billing rooms for restaurant:${user.restaurantId}`);
+      } else if (user.branchId) {
         socket.join(SOCKET_ROOMS.billing(user.branchId));
         socket.join(SOCKET_ROOMS.branch(user.branchId));
         logger.debug(`Socket ${socket.id} joined billing:${user.branchId}`);

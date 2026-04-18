@@ -17,16 +17,21 @@ router.use(requireRole(['KITCHEN_STAFF', 'MANAGER', 'OWNER']));
 
 // Get active orders for kitchen display
 router.get('/orders', asyncHandler(async (req: Request, res: Response) => {
-  const branchId = req.query['branchId'] as string || req.user!.branchId;
+  const isOversightRole = req.user!.role === 'MANAGER' || req.user!.role === 'OWNER';
+  const queryBranchId = req.query['branchId'] as string;
+  
   const where: Record<string, unknown> = {
     restaurantId: req.user!.restaurantId,
     status: { in: ['PENDING', 'CONFIRMED', 'PREPARING'] },
   };
   
-  // Apply branch filter if available. 
-  // Managers/Owners can view any branch; Staff defaults to their assigned branch unless overridden via query.
-  if (branchId) {
-    where['branchId'] = branchId;
+  // If a specific branch is requested, use it.
+  // Otherwise, only filter by branch if the user is regular staff (non-oversight).
+  // Managers/Owners see EVERYTHING by default.
+  if (queryBranchId) {
+    where['branchId'] = queryBranchId;
+  } else if (!isOversightRole && req.user!.branchId) {
+    where['branchId'] = req.user!.branchId;
   }
 
   const orders = await prisma.order.findMany({
@@ -37,6 +42,7 @@ router.get('/orders', asyncHandler(async (req: Request, res: Response) => {
         include: { menuItem: true, variant: true },
       },
       table: true,
+      branch: { select: { name: true } },
     },
     orderBy: { createdAt: 'asc' },
   });

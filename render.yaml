@@ -17,7 +17,7 @@ services:
       - key: REDIS_URL
         fromService:
           name: dinesmart-redis
-          type: redis
+          type: keyvalue
           property: connectionString
       - key: JWT_ACCESS_SECRET
         generateValue: true
@@ -50,14 +50,13 @@ services:
         sync: false
       - key: TWILIO_VERIFY_SERVICE_SID
         sync: false
+  - type: keyvalue
+    name: dinesmart-redis
+    plan: free
+    ipAllowList: []
 
 databases:
   - name: dinesmart-db
     plan: free
     databaseName: dinesmart
     user: dinesmart
-
-redisInstances:
-  - name: dinesmart-redis
-    plan: free
-    maxmemoryPolicy: allkeys-lru

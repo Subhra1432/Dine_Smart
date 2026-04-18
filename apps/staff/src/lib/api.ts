@@ -112,7 +112,7 @@ export const printCustomerSummary = (customerId: string) =>
   });
 
 // Kitchen
-export const getKitchenOrders = () => fetchApi('/kitchen/orders');
+export const getKitchenOrders = (branchId?: string) => fetchApi(`/kitchen/orders${branchId ? `?branchId=${branchId}` : ''}`);
 export const updateItemStatus = (itemId: string, status: string) =>
   fetchApi(`/kitchen/order-items/${itemId}/status`, { method: 'PUT', body: JSON.stringify({ status }) });
 

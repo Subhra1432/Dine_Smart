@@ -45,6 +45,7 @@ interface Order {
     totalPrice: number;
     status: string;
   }>;
+  estimatedMinutes?: number;
 }
 
 export default function OrderTracking() {
@@ -173,6 +174,17 @@ export default function OrderTracking() {
         <p className="text-sm text-slate-400 max-w-[240px] mx-auto leading-relaxed">
             Your meal is being prepared at <span className="text-white font-bold">DineSmart Kitchen</span>.
         </p>
+
+        {order.estimatedMinutes && order.estimatedMinutes > 0 && order.status !== 'READY' && order.status !== 'SERVED' && order.status !== 'COMPLETED' && (
+          <div className="mt-8 mx-auto max-w-[280px] bg-brand-500/10 border border-brand-500/20 rounded-3xl p-6 shadow-xl shadow-brand-500/5 animate-fade-in-up">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <Clock size={20} className="text-brand-500" strokeWidth={3} />
+              <p className="text-[10px] font-black text-brand-500 uppercase tracking-[0.2em]">ESTIMATED ARRIVAL</p>
+            </div>
+            <p className="text-4xl font-black text-white tracking-tighter">~{order.estimatedMinutes} Mins</p>
+            <p className="text-[10px] font-bold text-slate-500 mt-2 uppercase tracking-widest">Freshly cooked just for you</p>
+          </div>
+        )}
       </section>
 
       <main className="px-6 py-10 space-y-8">

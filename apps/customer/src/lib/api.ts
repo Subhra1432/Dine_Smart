@@ -89,6 +89,10 @@ export async function validateCoupon(restaurantSlug: string, code: string, order
   });
 }
 
+export async function getAvailableCoupons(restaurantSlug: string) {
+  return fetchApi(`/coupons/active-for-customer?restaurantSlug=${restaurantSlug}`);
+}
+
 export async function getRecommendations(restaurantSlug: string, itemIds: string[]) {
   return fetchApi(`/ai/recommendations?restaurantSlug=${restaurantSlug}&itemIds=${itemIds.join(',')}`);
 }

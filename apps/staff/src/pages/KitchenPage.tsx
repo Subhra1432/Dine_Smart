@@ -4,7 +4,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getKitchenOrders, updateItemStatus } from '../lib/api';
+import { getKitchenOrders, updateItemStatus, getBranches } from '../lib/api';
 import { useAuthStore } from '../store/auth';
 import toast from 'react-hot-toast';
 import { io } from 'socket.io-client';
@@ -31,11 +31,17 @@ export default function KitchenPage() {
   const { clearAuth, user } = useAuthStore();
   const isKitchenStaff = user?.role === 'KITCHEN_STAFF';
   const [audioEnabled, setAudioEnabled] = useState(true);
+  const [selectedBranchId, setSelectedBranchId] = useState<string>(user?.branchId || '');
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  const { data: branches } = useQuery({
+    queryKey: ['branches'],
+    queryFn: () => getBranches(),
+  });
+
   const { data: orders } = useQuery<KitchenOrder[]>({
-    queryKey: ['kitchenOrders'],
-    queryFn: () => getKitchenOrders() as Promise<KitchenOrder[]>,
+    queryKey: ['kitchenOrders', selectedBranchId],
+    queryFn: () => getKitchenOrders(selectedBranchId) as Promise<KitchenOrder[]>,
     refetchInterval: 15000,
   });
 
@@ -165,6 +171,18 @@ export default function KitchenPage() {
           >
             {audioEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
           </button>
+          {branches && (
+            <select
+              value={selectedBranchId}
+              onChange={(e) => setSelectedBranchId(e.target.value)}
+              className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs font-bold px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-brand-500"
+            >
+              <option value="">All Branches</option>
+              {branches.map((b: any) => (
+                <option key={b.id} value={b.id}>{b.name}</option>
+              ))}
+            </select>
+          )}
           <button onClick={handleLogout} className="p-2.5 rounded-xl bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-red-400">
             <LogOut size={18} />
           </button>

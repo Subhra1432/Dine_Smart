@@ -220,7 +220,28 @@ export async function getOrderBySession(sessionId: string) {
   });
 
   if (orders.length === 0) throw new AppError(404, 'Order not found');
-  return orders;
+
+  // Calculate Estimation for each order
+  const activeOrdersInBranch = await prisma.order.count({
+    where: { 
+      branchId: orders[0]!.branchId, 
+      status: { in: ['PENDING', 'CONFIRMED', 'PREPARING'] } 
+    }
+  });
+
+  const ordersWithEst = orders.map(order => {
+    // Max prep time of any item in the order
+    const maxPrep = Math.max(...order.items.map(i => i.menuItem.preparationTimeMinutes || 15));
+    // Load penalty: 5 mins per existing order in the same branch queue
+    const queuePenalty = Math.max(0, (activeOrdersInBranch - 1)) * 5;
+    
+    return {
+      ...order,
+      estimatedMinutes: maxPrep + queuePenalty
+    };
+  });
+
+  return ordersWithEst;
 }
 
 export async function getOrder(orderId: string, restaurantId?: string) {

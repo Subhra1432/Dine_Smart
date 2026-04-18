@@ -17,14 +17,15 @@ router.use(requireRole(['KITCHEN_STAFF', 'MANAGER', 'OWNER']));
 
 // Get active orders for kitchen display
 router.get('/orders', asyncHandler(async (req: Request, res: Response) => {
-  const branchId = req.user!.branchId;
+  const branchId = req.query['branchId'] as string || req.user!.branchId;
   const where: Record<string, unknown> = {
     restaurantId: req.user!.restaurantId,
     status: { in: ['PENDING', 'CONFIRMED', 'PREPARING'] },
   };
-  // Only restrict by branch for regular Kitchen Staff. 
-  // Owners and Managers have oversight across all branches.
-  if (branchId && req.user!.role === 'KITCHEN_STAFF') {
+  
+  // Apply branch filter if available. 
+  // Managers/Owners can view any branch; Staff defaults to their assigned branch unless overridden via query.
+  if (branchId) {
     where['branchId'] = branchId;
   }
 

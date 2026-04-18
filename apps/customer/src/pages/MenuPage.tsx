@@ -7,7 +7,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Search, ShoppingCart, Leaf, Flame, Star, Minus, Plus, X, ChevronRight, Tag, User, Clock, LogOut } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { getPublicMenu, placeOrder, validateCoupon, getRecommendations, getCustomerHistory } from '../lib/api';
+import { getPublicMenu, placeOrder, validateCoupon, getRecommendations, getCustomerHistory, getAvailableCoupons } from '../lib/api';
 import { useCartStore } from '../store/cart';
 import { CustomerAuthModal } from '../components/CustomerAuthModal';
 
@@ -88,9 +88,15 @@ export default function MenuPage() {
 
   // Fetch Order History
   const { data: history } = useQuery({
-    queryKey: ['history', slug, cart.customerPhone],
     queryFn: () => getCustomerHistory(slug, cart.customerPhone!) as Promise<Array<any>>,
     enabled: !!slug && !!cart.customerPhone && showHistory,
+  });
+  
+  // Fetch Available Coupons
+  const { data: availableCoupons } = useQuery({
+    queryKey: ['availableCoupons', slug],
+    queryFn: () => getAvailableCoupons(slug) as Promise<any[]>,
+    enabled: !!slug,
   });
 
   // Filter items
@@ -326,6 +332,38 @@ export default function MenuPage() {
           />
         </div>
       </div>
+
+      {/* Available Coupons Slider */}
+      {availableCoupons && availableCoupons.length > 0 && (
+        <div className="px-4 py-4 overflow-x-auto flex gap-4 scrollbar-hide mask-fade-right">
+          {availableCoupons.map((coupon: any) => (
+            <div 
+              key={coupon.id}
+              onClick={() => {
+                setCouponInput(coupon.code);
+                toast.success(`Coupon ${coupon.code} copied! Apply it in your cart.`);
+              }}
+              className="flex-shrink-0 w-64 p-4 bg-white/[0.03] border border-white/5 border-dashed rounded-[1.5rem] flex items-center justify-between group hover:bg-white/5 hover:border-brand-500/30 transition-all cursor-pointer"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-brand-500/10 rounded-xl flex items-center justify-center text-brand-500">
+                   <Tag size={18} />
+                </div>
+                <div>
+                  <p className="text-xs font-black text-white group-hover:text-brand-400 transition-colors">{coupon.code}</p>
+                  <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">
+                    {coupon.discountType === 'PERCENT' ? `${coupon.discountValue}% OFF` : `₹${coupon.discountValue} OFF`}
+                  </p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="text-[10px] font-black text-emerald-500 tracking-tighter">Min. ₹{coupon.minOrderValue}</p>
+                <div className="px-2 py-0.5 bg-brand-500 text-white text-[8px] font-black rounded-full mt-1 uppercase">TAP TO SELECT</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Category tabs */}
       <div className="flex items-center gap-2 overflow-x-auto pt-4 pb-4 scrollbar-hide px-4 mask-fade-right sticky top-[72px] z-30 bg-slate-950/80 backdrop-blur-md border-b border-white/5">

@@ -30,6 +30,29 @@ const validateCouponSchema = z.object({
 
 const router = Router();
 
+// Public: Get active coupons for a restaurant (for customers to view)
+router.get('/active-for-customer', publicRateLimiter, asyncHandler(async (req: Request, res: Response) => {
+  const restaurantSlug = req.query['restaurantSlug'] as string;
+  if (!restaurantSlug) throw new AppError(400, 'Restaurant slug is required');
+
+  const restaurant = await prisma.restaurant.findUnique({
+    where: { slug: restaurantSlug },
+    select: { id: true }
+  });
+  if (!restaurant) throw new AppError(404, 'Restaurant not found');
+
+  const coupons = await prisma.coupon.findMany({
+    where: {
+      restaurantId: restaurant.id,
+      isActive: true,
+      expiresAt: { gt: new Date() },
+    },
+    orderBy: { discountValue: 'desc' }
+  });
+
+  res.json({ success: true, data: coupons });
+}));
+
 // Public coupon validation
 router.post('/validate', publicRateLimiter, asyncHandler(async (req: Request, res: Response) => {
   const { code, orderTotal } = validateCouponSchema.parse(req.body);

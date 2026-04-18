@@ -4,7 +4,6 @@
 
 import type { Request, Response, NextFunction } from 'express';
 import { ZodError } from 'zod';
-import { Prisma } from '@prisma/client';
 import { logger } from '../config/logger.js';
 import { env } from '../config/env.js';
 
@@ -56,21 +55,20 @@ export function errorHandler(
     });
   }
 
-  // Prisma unique constraint violation
-  if (err instanceof Prisma.PrismaClientKnownRequestError) {
-    if (err.code === 'P2002') {
-      const target = (err.meta?.target as string[])?.join(', ') || 'field';
-      return void res.status(409).json({
-        success: false,
-        error: `A record with this ${target} already exists`,
-      });
-    }
-    if (err.code === 'P2025') {
-      return void res.status(404).json({
-        success: false,
-        error: 'Record not found',
-      });
-    }
+  // Prisma unique constraint violation (duck-typed for build compatibility)
+  const prismaErr = err as any;
+  if (prismaErr.code === 'P2002') {
+    const target = (prismaErr.meta?.target as string[])?.join(', ') || 'field';
+    return void res.status(409).json({
+      success: false,
+      error: `A record with this ${target} already exists`,
+    });
+  }
+  if (prismaErr.code === 'P2025') {
+    return void res.status(404).json({
+      success: false,
+      error: 'Record not found',
+    });
   }
 
   // App errors

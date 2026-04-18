@@ -32,7 +32,7 @@ export async function createOrder(data: CreateOrderInput) {
     include: { variants: true, menuItemAddons: { include: { addon: true } } },
   });
 
-  const menuItemMap = new Map(menuItems.map((m) => [m.id, m]));
+  const menuItemMap = new Map(menuItems.map((m: any) => [m.id, m])) as Map<string, any>;
 
   let subtotal = 0;
   const orderItemsData = data.items.map((item) => {

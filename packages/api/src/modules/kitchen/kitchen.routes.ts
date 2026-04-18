@@ -20,7 +20,7 @@ router.get('/orders', asyncHandler(async (req: Request, res: Response) => {
   const branchId = req.user!.branchId;
   const where: Record<string, unknown> = {
     restaurantId: req.user!.restaurantId,
-    status: { in: ['CONFIRMED', 'PREPARING'] },
+    status: { in: ['PENDING', 'CONFIRMED', 'PREPARING'] },
   };
   if (branchId) where['branchId'] = branchId;
 

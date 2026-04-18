@@ -87,7 +87,7 @@ router.post('/subscription/pay', requireRole(['OWNER', 'MANAGER']), asyncHandler
 
   // In production, integrate with Stripe Checkout.
   // This creates a session and returns the URL for the frontend to redirect.
-  const amount = plan === 'GROWTH' ? 2499 : plan === 'PREMIUM' ? 7499 : 0;
+  const amount = plan === 'STARTER' ? 999 : plan === 'GROWTH' ? 2499 : plan === 'PREMIUM' ? 7499 : 0;
   
   if (amount === 0) {
     res.status(400).json({ success: false, error: 'Invalid plan for payment' });

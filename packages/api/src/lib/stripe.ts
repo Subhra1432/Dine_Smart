@@ -14,16 +14,16 @@ try {
     throw new Error('Stripe package not found. Please ensure dependencies are installed inside the container.');
 }
 
-if (!env.STRIPE_SECRET_KEY) {
-  console.warn('⚠️ STRIPE_SECRET_KEY is missing in .env');
-}
+export const isDemoMode = !env.STRIPE_SECRET_KEY || env.STRIPE_SECRET_KEY === 'sk_test_placeholder';
 
-export const stripe = new (Stripe as any)(env.STRIPE_SECRET_KEY || 'sk_test_placeholder', {
-  apiVersion: '2024-06-20' as any,
-  typescript: true,
-});
+export const stripe = isDemoMode 
+  ? null 
+  : new (Stripe as any)(env.STRIPE_SECRET_KEY, {
+      apiVersion: '2024-06-20' as any,
+      typescript: true,
+    });
 
 export const STRIPE_CONFIG = {
-  successUrl: `${env.FRONTEND_URL}/payment/success?session_id={CHECKOUT_SESSION_ID}`,
-  cancelUrl: `${env.FRONTEND_URL}/payment/cancel`,
+  successUrl: `${env.FRONTEND_URL}/staff/admin/payment/success?session_id={CHECKOUT_SESSION_ID}`,
+  cancelUrl: `${env.FRONTEND_URL}/staff/admin/payment/cancel`,
 };

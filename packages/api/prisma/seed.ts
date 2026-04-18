@@ -268,102 +268,10 @@ async function seed() {
 
   console.log(`✅ 20 Menu Items created with variants and addons`);
 
-  // Create 5 Inventory Items
-  const inventoryItems = await Promise.all([
-    prisma.inventoryItem.create({
-      data: { restaurantId: restaurant.id, branchId: branches[0]!.id, name: 'Chicken', unit: 'kg', currentStock: 50, minThreshold: 10, costPrice: 200 }
-    }),
-    prisma.inventoryItem.create({
-      data: { restaurantId: restaurant.id, branchId: branches[0]!.id, name: 'Paneer', unit: 'kg', currentStock: 30, minThreshold: 5, costPrice: 300 }
-    }),
-    prisma.inventoryItem.create({
-      data: { restaurantId: restaurant.id, branchId: branches[0]!.id, name: 'Basmati Rice', unit: 'kg', currentStock: 100, minThreshold: 20, costPrice: 80 }
-    }),
-    prisma.inventoryItem.create({
-      data: { restaurantId: restaurant.id, branchId: branches[0]!.id, name: 'Butter', unit: 'kg', currentStock: 20, minThreshold: 5, costPrice: 500 }
-    }),
-    prisma.inventoryItem.create({
-      data: { restaurantId: restaurant.id, branchId: branches[0]!.id, name: 'Cream', unit: 'litre', currentStock: 15, minThreshold: 3, costPrice: 250 }
-    }),
-  ]);
+  console.log(`✅ 20 Menu Items created with variants and addons`);
 
-  // Link inventory to menu items
-  const butterChicken = createdItems.find(i => i.name === 'Butter Chicken');
-  if (butterChicken) {
-    await prisma.menuItemInventory.createMany({
-      data: [
-        { menuItemId: butterChicken.id, inventoryItemId: inventoryItems[0]!.id, quantityUsed: 0.3 },
-        { menuItemId: butterChicken.id, inventoryItemId: inventoryItems[3]!.id, quantityUsed: 0.05 },
-        { menuItemId: butterChicken.id, inventoryItemId: inventoryItems[4]!.id, quantityUsed: 0.1 },
-      ],
-    });
-  }
-
-  console.log(`✅ 5 Inventory Items created and linked`);
-
-  // Create Coupons
-  await Promise.all([
-    prisma.coupon.create({
-      data: {
-        restaurantId: restaurant.id,
-        code: 'WELCOME20',
-        discountType: 'PERCENT',
-        discountValue: 20,
-        minOrderValue: 200,
-        maxUses: 100,
-        expiresAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      },
-    }),
-    prisma.coupon.create({
-      data: {
-        restaurantId: restaurant.id,
-        code: 'FLAT100',
-        discountType: 'FLAT',
-        discountValue: 100,
-        minOrderValue: 500,
-        maxUses: 50,
-        expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
-      },
-    }),
-  ]);
-
-  console.log(`✅ 2 Coupons created: WELCOME20, FLAT100`);
-
-  // Create some sample orders
-  for (let i = 0; i < 5; i++) {
-    const table = tables[i]!;
-    const items = [createdItems[Math.floor(Math.random() * createdItems.length)]!];
-    const subtotal = items.reduce((sum, item) => sum + item.price, 0);
-    const tax = subtotal * 0.05;
-    const total = subtotal + tax;
-
-    await prisma.order.create({
-      data: {
-        restaurantId: restaurant.id,
-        branchId: table.branchId,
-        tableId: table.id,
-        status: ['COMPLETED', 'SERVED', 'PREPARING', 'CONFIRMED', 'PENDING'][i] as 'COMPLETED' | 'SERVED' | 'PREPARING' | 'CONFIRMED' | 'PENDING',
-        paymentStatus: i < 2 ? 'PAID' : 'UNPAID',
-        paymentMethod: i < 2 ? 'UPI' : null,
-        subtotal,
-        tax,
-        total,
-        items: {
-          create: items.map((item) => ({
-            menuItemId: item.id,
-            quantity: 1 + Math.floor(Math.random() * 2),
-            unitPrice: item.price,
-            totalPrice: item.price,
-            status: ['SERVED', 'READY', 'PREPARING', 'PENDING', 'PENDING'][i] as 'SERVED' | 'READY' | 'PREPARING' | 'PENDING',
-          })),
-        },
-      },
-    });
-  }
-
-  console.log(`✅ 5 Sample Orders created`);
   console.log('');
-  console.log('🎉 Database seeded successfully!');
+  console.log('🎉 Database seeded successfully with a clean environment (Menu Only)!');
   console.log('');
   console.log('Login Credentials:');
   console.log('─────────────────────────────────────');

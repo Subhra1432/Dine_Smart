@@ -94,10 +94,45 @@ router.post('/subscription/pay', requireRole(['OWNER', 'MANAGER']), asyncHandler
     return;
   }
 
-  const { stripe, STRIPE_CONFIG } = await import('../../lib/stripe.js');
+  const { stripe, STRIPE_CONFIG, isDemoMode } = await import('../../lib/stripe.js');
   
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'], // Add more like 'upi' if supported in this region
+  if (isDemoMode) {
+    // ── Demo Mode Path ─────────────────────
+    // If Stripe is not configured, we simulate a successful payment immediately.
+    const expiresAt = new Date();
+    expiresAt.setDate(expiresAt.getDate() + 30); // 30 day extension
+
+    await prisma.$transaction([
+      prisma.restaurant.update({
+        where: { id: req.user!.restaurantId },
+        data: {
+          plan: plan as 'STARTER' | 'GROWTH' | 'PREMIUM',
+          planExpiresAt: expiresAt,
+        },
+      }),
+      prisma.subscriptionPayment.create({
+        data: {
+          restaurantId: req.user!.restaurantId,
+          plan: plan as 'STARTER' | 'GROWTH' | 'PREMIUM',
+          amount: amount,
+          method: paymentMethod,
+          status: 'COMPLETED (DEMO)',
+        },
+      }),
+    ]);
+
+    return res.json({
+      success: true,
+      data: {
+        message: `Demo Mode: ${plan} plan activated successfully!`,
+        isDemo: true,
+      },
+    });
+  }
+
+  // ── Production Stripe Path ────────────────
+  const session = await stripe!.checkout.sessions.create({
+    payment_method_types: ['card'],
     line_items: [{
       price_data: {
         currency: 'inr',
@@ -105,7 +140,7 @@ router.post('/subscription/pay', requireRole(['OWNER', 'MANAGER']), asyncHandler
           name: `DineSmart ${plan} Plan`,
           description: `30-day subscription for ${plan} plan`,
         },
-        unit_amount: amount * 100, // Stripe expects amounts in cents/paise
+        unit_amount: amount * 100,
       },
       quantity: 1,
     }],
@@ -130,11 +165,10 @@ router.post('/subscription/pay', requireRole(['OWNER', 'MANAGER']), asyncHandler
 }));
 
 router.get('/subscription/payments', requireRole(['OWNER', 'MANAGER']), asyncHandler(async (req: Request, res: Response) => {
-  const payments = await prisma.$queryRaw`
-    SELECT * FROM "subscription_payments"
-    WHERE "restaurantId" = ${req.user!.restaurantId}
-    ORDER BY "createdAt" DESC
-  `;
+  const payments = await prisma.subscriptionPayment.findMany({
+    where: { restaurantId: req.user!.restaurantId },
+    orderBy: { createdAt: 'desc' },
+  });
   res.json({ success: true, data: payments });
 }));
 

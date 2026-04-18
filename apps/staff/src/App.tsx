@@ -16,9 +16,10 @@ import AnalyticsPage from './pages/AnalyticsPage';
 import InventoryPage from './pages/InventoryPage';
 import CouponManagementPage from './pages/CouponManagementPage';
 import SettingsPage from './pages/SettingsPage';
-import RegisterPage from './pages/RegisterPage';
 import SubscriptionPage from './pages/SubscriptionPage';
 import FeedbackPage from './pages/FeedbackPage';
+import PaymentSuccessPage from './pages/PaymentSuccessPage';
+import PaymentCancelPage from './pages/PaymentCancelPage';
 import { ThemeProvider } from './lib/ThemeProvider';
 
 function ProtectedRoute({ children, allowedRoles }: { children: React.ReactNode; allowedRoles?: string[] }) {
@@ -139,6 +140,8 @@ export default function App() {
               <SubscriptionPage />
             </ProtectedRoute>
           } />
+          <Route path="/admin/payment/success" element={<PaymentSuccessPage />} />
+          <Route path="/admin/payment/cancel" element={<PaymentCancelPage />} />
           <Route path="/admin/feedback" element={
             <ProtectedRoute allowedRoles={['OWNER', 'MANAGER']}>
               <FeedbackPage />

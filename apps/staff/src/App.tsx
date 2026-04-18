@@ -16,6 +16,7 @@ import AnalyticsPage from './pages/AnalyticsPage';
 import InventoryPage from './pages/InventoryPage';
 import CouponManagementPage from './pages/CouponManagementPage';
 import SettingsPage from './pages/SettingsPage';
+import RegisterPage from './pages/RegisterPage';
 import SubscriptionPage from './pages/SubscriptionPage';
 import FeedbackPage from './pages/FeedbackPage';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';

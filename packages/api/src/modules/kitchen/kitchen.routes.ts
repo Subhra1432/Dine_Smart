@@ -22,7 +22,11 @@ router.get('/orders', asyncHandler(async (req: Request, res: Response) => {
     restaurantId: req.user!.restaurantId,
     status: { in: ['PENDING', 'CONFIRMED', 'PREPARING'] },
   };
-  if (branchId) where['branchId'] = branchId;
+  // Only restrict by branch for regular Kitchen Staff. 
+  // Owners and Managers have oversight across all branches.
+  if (branchId && req.user!.role === 'KITCHEN_STAFF') {
+    where['branchId'] = branchId;
+  }
 
   const orders = await prisma.order.findMany({
     where,

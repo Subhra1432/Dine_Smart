@@ -103,6 +103,13 @@ export const updateOrderStatus = (id: string, status: string) =>
 export const updatePaymentStatus = (id: string, paymentStatus: string, paymentMethod?: string) =>
   fetchApi(`/billing/orders/${id}/payment`, { method: 'PUT', body: JSON.stringify({ paymentStatus, paymentMethod }) });
 export const printBill = (id: string) => fetch(`${API_BASE}/billing/orders/${id}/print-bill`, { method: 'POST', credentials: 'include' });
+export const printCustomerSummary = (customerId: string) => 
+  fetch(`${API_BASE}/billing/customer-summary-bill`, { 
+    method: 'POST', 
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ customerId }),
+    credentials: 'include' 
+  });
 
 // Kitchen
 export const getKitchenOrders = () => fetchApi('/kitchen/orders');

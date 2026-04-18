@@ -14,6 +14,13 @@ app_port: 7860
 
 Customer scans QR → orders digitally → system manages everything automatically.
 
+## Latest Features (v1.1)
+
+- **Automatic Kitchen Oversight**: Managers/Owners can now supervise all branches from a single unified Kitchen Display with real-time multi-branch socket updates.
+- **AI Order Estimation**: Smart calculation of "Time to Finish" for customers based on current kitchen load and average item preparation times.
+- **Cumulative Billing**: Cashiers can now generate a single "Daily Summary Bill" that aggregates all orders a customer placed throughout the day.
+- **Offer Discovery**: A dedicated "Special Offers" section in the digital menu allows customers to browse and apply active coupons instantly.
+
 ## Architecture
 
 ```
@@ -40,7 +47,7 @@ d:\DineSmart\
 | **Auth** | JWT (httpOnly cookies) + bcrypt |
 | **Validation** | Zod schemas (shared) |
 | **Job Queue** | BullMQ (inventory, notifications, reports) |
-| **Frontend** | React 18, Vite, TailwindCSS, Zustand |
+| **Frontend** | React 18, Vite, Vanilla CSS, Zustand |
 | **Charts** | Recharts |
 | **PWA** | vite-plugin-pwa + Workbox |
 
@@ -114,63 +121,24 @@ npm run dev --workspace=@dinesmart/superadmin
 | Cashier | cashier@spicegarden.com | cashier123 |
 | Kitchen | kitchen@spicegarden.com | kitchen123 |
 
-## API Endpoints
+## API Endpoints (v1.1 Highlights)
 
 ### Public (No Auth)
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/api/v1/menu/public/:slug` | Get restaurant menu |
+| GET | `/api/v1/coupons/active-for-customer` | **NEW:** Show active offers |
 | POST | `/api/v1/orders` | Place order |
-| GET | `/api/v1/orders/:sessionId` | Track order |
-| POST | `/api/v1/orders/:orderId/payment/initiate` | Initiate payment |
-| POST | `/api/v1/orders/payment/webhook` | Razorpay webhook |
+| GET | `/api/v1/orders/:sessionId` | Track order (with AI estimates) |
 | POST | `/api/v1/orders/reviews` | Submit review |
-| POST | `/api/v1/coupons/validate` | Validate coupon |
-| GET | `/api/v1/ai/recommendations` | AI recommendations |
 
-### Auth
+### Billing & Kitchen
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/v1/auth/register` | Register restaurant |
-| POST | `/api/v1/auth/login` | Staff login |
-| POST | `/api/v1/auth/refresh` | Refresh token |
-| POST | `/api/v1/auth/logout` | Logout |
-| GET | `/api/v1/auth/me` | Get current user |
-
-### Billing (OWNER, MANAGER, CASHIER)
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/v1/billing/tables` | Table overview |
-| GET | `/api/v1/billing/orders` | Filtered orders |
-| PUT | `/api/v1/billing/orders/:id/status` | Update status |
-| PUT | `/api/v1/billing/orders/:id/payment` | Record payment |
-| POST | `/api/v1/billing/orders/:id/print-bill` | Generate bill |
-| POST | `/api/v1/billing/orders/:id/refund` | Process refund |
-
-### Kitchen (KITCHEN_STAFF, MANAGER, OWNER)
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/v1/kitchen/orders` | Active orders |
+| POST | `/api/v1/billing/customer-summary-bill` | **NEW:** Consolidated daily bill |
+| POST | `/api/v1/billing/orders/:id/print-bill` | Single order bill |
+| GET | `/api/v1/kitchen/orders` | **HEAVILY UPDATED:** Automatic multi-branch oversight |
 | PUT | `/api/v1/kitchen/order-items/:id/status` | Update item status |
-
-### Analytics (OWNER, MANAGER)
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/v1/analytics/overview` | Dashboard |
-| GET | `/api/v1/analytics/revenue` | Revenue data |
-| GET | `/api/v1/analytics/menu-performance` | Best/slow sellers |
-| GET | `/api/v1/analytics/peak-hours` | Peak hours heatmap |
-| GET | `/api/v1/analytics/table-performance` | Table stats |
-| GET | `/api/v1/analytics/customers` | Customer analytics |
-
-### Super Admin
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/v1/superadmin/restaurants` | All restaurants |
-| PUT | `/api/v1/superadmin/restaurants/:id/plan` | Change plan |
-| PUT | `/api/v1/superadmin/restaurants/:id/suspend` | Toggle suspend |
-| GET | `/api/v1/superadmin/stats` | Platform stats |
-| POST | `/api/v1/superadmin/restaurants/:id/impersonate` | Impersonate |
 
 ## Socket Events
 
@@ -178,11 +146,8 @@ npm run dev --workspace=@dinesmart/superadmin
 |-------|-----------|-------------|
 | `order:new` | Server→Client | New order placed |
 | `order:status_updated` | Server→Client | Order status changed |
-| `order:item_status_updated` | Server→Client | Individual item status |
 | `payment:confirmed` | Server→Client | Payment received |
-| `inventory:low_stock` | Server→Client | Stock below threshold |
 | `table:occupied` | Server→Client | Table now occupied |
-| `table:freed` | Server→Client | Table freed |
 
 ## Subscription Plans
 
@@ -193,7 +158,6 @@ npm run dev --workspace=@dinesmart/superadmin
 | AI Features | ❌ | ✅ | ✅ |
 | Inventory   | ❌ | ❌ | ✅ |
 | Analytics   | ❌ | ✅ | ✅ |
-| White Label | ❌ | ❌ | ✅ |
 
 ## License
 

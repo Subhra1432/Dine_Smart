@@ -10,30 +10,39 @@ const prisma = new PrismaClient();
 async function seed() {
   console.log('🌱 Seeding database...');
 
-  // Clean existing data
-  await prisma.$transaction([
-    prisma.stockHistory.deleteMany(),
-    prisma.menuItemInventory.deleteMany(),
-    prisma.menuItemAddon.deleteMany(),
-    prisma.menuItemVariant.deleteMany(),
-    prisma.orderItem.deleteMany(),
-    prisma.payment.deleteMany(),
-    prisma.review.deleteMany(),
-    prisma.order.deleteMany(),
-    prisma.notification.deleteMany(),
-    prisma.loyaltyAccount.deleteMany(),
-    prisma.customer.deleteMany(),
-    prisma.coupon.deleteMany(),
-    prisma.inventoryItem.deleteMany(),
-    prisma.addon.deleteMany(),
-    prisma.menuItem.deleteMany(),
-    prisma.category.deleteMany(),
-    prisma.table.deleteMany(),
-    prisma.user.deleteMany(),
-    prisma.branch.deleteMany(),
-    prisma.restaurant.deleteMany(),
-    prisma.superAdmin.deleteMany(),
-  ]);
+  // Safety Check: On Render Free Tier, the app restarts frequently.
+  // We only want to wipe the DB if it's currently empty, or if you explicitly ask for a RESET.
+  const adminCount = await prisma.superAdmin.count();
+  const shouldReset = process.env.RESET_DB === 'true' || adminCount === 0;
+
+  if (shouldReset) {
+    console.log('⚠️ RESET_DB = true or empty DB detected. Cleaning existing data...');
+    await prisma.$transaction([
+      prisma.stockHistory.deleteMany(),
+      prisma.menuItemInventory.deleteMany(),
+      prisma.menuItemAddon.deleteMany(),
+      prisma.menuItemVariant.deleteMany(),
+      prisma.orderItem.deleteMany(),
+      prisma.payment.deleteMany(),
+      prisma.review.deleteMany(),
+      prisma.order.deleteMany(),
+      prisma.notification.deleteMany(),
+      prisma.loyaltyAccount.deleteMany(),
+      prisma.customer.deleteMany(),
+      prisma.coupon.deleteMany(),
+      prisma.inventoryItem.deleteMany(),
+      prisma.addon.deleteMany(),
+      prisma.menuItem.deleteMany(),
+      prisma.category.deleteMany(),
+      prisma.table.deleteMany(),
+      prisma.user.deleteMany(),
+      prisma.branch.deleteMany(),
+      prisma.restaurant.deleteMany(),
+      prisma.superAdmin.deleteMany(),
+    ]);
+  } else {
+    console.log('ℹ️ Database already contains data. Skipping cleanup. (Set RESET_DB=true to force cleanup)');
+  }
 
   // Create Super Admin
   const superAdminHash = await bcrypt.hash('superadmin123', 12);

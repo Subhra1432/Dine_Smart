@@ -20,6 +20,7 @@ import { authenticatedRateLimiter } from './middleware/rateLimiter.js';
 // Import route modules
 import authRoutes from './modules/auth/auth.routes.js';
 import restaurantRoutes from './modules/restaurant/restaurant.routes.js';
+import { handleStripeWebhook } from './modules/restaurant/subscription.controller.js';
 import menuRoutes from './modules/menu/menu.routes.js';
 import orderRoutes from './modules/orders/orders.routes.js';
 import billingRoutes from './modules/billing/billing.routes.js';
@@ -62,6 +63,9 @@ app.use(cors({
   origin: corsOrigins,
   credentials: true,
 }));
+
+// Stripe Webhook MUST be before express.json()
+app.post('/api/v1/webhooks/stripe', express.raw({ type: 'application/json' }), handleStripeWebhook);
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));

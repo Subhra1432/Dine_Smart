@@ -65,24 +65,24 @@ export default function BillingPlansPage() {
       <div className="grid grid-cols-3 gap-4">
         <div className="bg-surface-container-lowest dark:bg-inverse-surface rounded-2xl p-5 border border-outline-variant dark:border-primary/10">
           <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-3">
-            <IndianRupee size={20} className="text-emerald-400" />
+            <IndianRupee size={20} className="text-emerald-500 dark:text-emerald-400" />
           </div>
           <p className="text-2xl font-bold text-on-surface dark:text-inverse-on-surface">₹{totalMRR.toLocaleString()}</p>
-          <p className="text-xs text-on-surface-variant dark:text-primary/50">Monthly Recurring Revenue</p>
+          <p className="text-xs text-on-surface-variant dark:text-outline">Monthly Recurring Revenue</p>
         </div>
         <div className="bg-surface-container-lowest dark:bg-inverse-surface rounded-2xl p-5 border border-outline-variant dark:border-primary/10">
-          <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center mb-3">
-            <Building2 size={20} className="text-blue-400" />
+          <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center mb-3">
+            <Building2 size={20} className="text-secondary" />
           </div>
           <p className="text-2xl font-bold text-on-surface dark:text-inverse-on-surface">{restaurants?.items?.length || 0}</p>
-          <p className="text-xs text-on-surface-variant dark:text-primary/50">Total Subscribers</p>
+          <p className="text-xs text-on-surface-variant dark:text-outline">Total Subscribers</p>
         </div>
         <div className="bg-surface-container-lowest dark:bg-inverse-surface rounded-2xl p-5 border border-outline-variant dark:border-primary/10">
           <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
             <TrendingUp size={20} className="text-primary" />
           </div>
           <p className="text-2xl font-bold text-on-surface dark:text-inverse-on-surface">₹{(totalMRR * 12).toLocaleString()}</p>
-          <p className="text-xs text-on-surface-variant dark:text-primary/50">Projected ARR</p>
+          <p className="text-xs text-on-surface-variant dark:text-outline">Projected ARR</p>
         </div>
       </div>
 
@@ -114,7 +114,7 @@ export default function BillingPlansPage() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="text-xs font-semibold text-on-surface-variant dark:text-primary/40 border-b border-outline-variant dark:border-primary/10">
+              <tr className="text-xs font-semibold text-on-surface-variant dark:text-outline border-b border-outline-variant dark:border-outline">
                 <th className="text-left py-3 px-4">Restaurant</th>
                 <th className="text-center py-3 px-4">Current Plan</th>
                 <th className="text-center py-3 px-4">MRR Contribution</th>

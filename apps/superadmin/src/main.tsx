@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <ThemeProvider defaultTheme="dark" storageKey="dinesmart-superadmin-theme">
         <BrowserRouter basename={import.meta.env.BASE_URL}>
           <App />
-          <Toaster position="top-right" toastOptions={{ className: 'dark:bg-[#1e1b3a] dark:text-slate-100 bg-white text-slate-900 border dark:border-white/10 border-slate-200 shadow-lg' }} />
+          <Toaster position="top-right" toastOptions={{ className: 'dark:bg-inverse-surface dark:text-inverse-on-surface bg-surface-container-lowest text-on-surface border dark:border-outline/30 border-outline-variant shadow-xl rounded-xl font-medium' }} />
         </BrowserRouter>
       </ThemeProvider>
     </QueryClientProvider>

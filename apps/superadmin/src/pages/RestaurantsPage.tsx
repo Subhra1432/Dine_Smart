@@ -71,7 +71,7 @@ export default function RestaurantsPage() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="text-xs font-semibold text-on-surface-variant dark:text-primary/40 border-b border-outline-variant dark:border-primary/10 bg-surface-container-lowest/50 dark:bg-transparent">
+              <tr className="text-xs font-semibold text-on-surface-variant dark:text-outline border-b border-outline-variant dark:border-outline bg-surface-container-lowest dark:bg-inverse-surface">
                 <th className="text-left py-4 px-4">Restaurant</th>
                 <th className="text-center py-4 px-4">Plan</th>
                 <th className="text-center py-4 px-4">Branches</th>
@@ -137,22 +137,22 @@ export default function RestaurantsPage() {
             </div>
             <form onSubmit={handleCreate} className="p-4 space-y-4">
               <div>
-                <label className="block text-xs font-bold text-on-surface-variant dark:text-outline-variant mb-1">Company Name</label>
-                <input required value={newRest.name} onChange={e => setNewRest({...newRest, name: e.target.value})} className="w-full bg-surface-container-low dark:bg-inverse-surface border border-outline-variant dark:border-outline rounded-lg p-2 dark:text-inverse-on-surface" />
+                <label className="block text-xs font-bold text-on-surface-variant dark:text-outline mb-1">Company Name</label>
+                <input required value={newRest.name} onChange={e => setNewRest({...newRest, name: e.target.value})} className="w-full bg-surface-container-low dark:bg-surface-container-high/5 border border-outline-variant dark:border-outline rounded-lg p-2.5 text-sm text-on-surface dark:text-inverse-on-surface focus:outline-none focus:ring-1 focus:ring-primary/50" />
               </div>
               <div>
-                <label className="block text-xs font-bold text-on-surface-variant dark:text-outline-variant mb-1">Company Slug (URL)</label>
-                <input required value={newRest.slug} onChange={e => setNewRest({...newRest, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '-')})} className="w-full bg-surface-container-low dark:bg-inverse-surface border border-outline-variant dark:border-outline rounded-lg p-2 dark:text-inverse-on-surface" />
+                <label className="block text-xs font-bold text-on-surface-variant dark:text-outline mb-1">Company Slug (URL)</label>
+                <input required value={newRest.slug} onChange={e => setNewRest({...newRest, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '-')})} className="w-full bg-surface-container-low dark:bg-surface-container-high/5 border border-outline-variant dark:border-outline rounded-lg p-2.5 text-sm text-on-surface dark:text-inverse-on-surface focus:outline-none focus:ring-1 focus:ring-primary/50" />
               </div>
               <div>
-                <label className="block text-xs font-bold text-on-surface-variant dark:text-outline-variant mb-1">Owner Email</label>
-                <input type="email" required value={newRest.ownerEmail} onChange={e => setNewRest({...newRest, ownerEmail: e.target.value})} className="w-full bg-surface-container-low dark:bg-inverse-surface border border-outline-variant dark:border-outline rounded-lg p-2 dark:text-inverse-on-surface" />
+                <label className="block text-xs font-bold text-on-surface-variant dark:text-outline mb-1">Owner Email</label>
+                <input type="email" required value={newRest.ownerEmail} onChange={e => setNewRest({...newRest, ownerEmail: e.target.value})} className="w-full bg-surface-container-low dark:bg-surface-container-high/5 border border-outline-variant dark:border-outline rounded-lg p-2.5 text-sm text-on-surface dark:text-inverse-on-surface focus:outline-none focus:ring-1 focus:ring-primary/50" />
               </div>
               <div>
-                <label className="block text-xs font-bold text-on-surface-variant dark:text-outline-variant mb-1">Owner Password</label>
-                <input type="password" required value={newRest.ownerPassword} onChange={e => setNewRest({...newRest, ownerPassword: e.target.value})} className="w-full bg-surface-container-low dark:bg-inverse-surface border border-outline-variant dark:border-outline rounded-lg p-2 dark:text-inverse-on-surface" />
+                <label className="block text-xs font-bold text-on-surface-variant dark:text-outline mb-1">Owner Password</label>
+                <input type="password" required value={newRest.ownerPassword} onChange={e => setNewRest({...newRest, ownerPassword: e.target.value})} className="w-full bg-surface-container-low dark:bg-surface-container-high/5 border border-outline-variant dark:border-outline rounded-lg p-2.5 text-sm text-on-surface dark:text-inverse-on-surface focus:outline-none focus:ring-1 focus:ring-primary/50" />
               </div>
-              <button type="submit" className="w-full py-2.5 bg-primary text-white font-bold rounded-lg mt-4 hover:bg-primary/90">
+              <button type="submit" className="w-full py-3 bg-primary text-white font-bold rounded-xl mt-4 hover:bg-primary-container transition-all shadow-md active:scale-[0.98]">
                 Create Restaurant
               </button>
             </form>

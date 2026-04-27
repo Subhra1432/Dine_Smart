@@ -55,8 +55,8 @@ export default function AdminLayout({ setIsLoggedIn }: { setIsLoggedIn: (v: bool
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                     isActive
-                      ? 'bg-primary/10 text-primary-container border border-primary/20 dark:bg-primary/15 dark:text-primary dark:border-primary/20 shadow-sm'
-                      : 'text-on-surface-variant dark:text-outline hover:text-on-surface hover:bg-surface-container dark:hover:text-inverse-on-surface dark:hover:bg-inverse-surface'
+                      ? 'bg-primary/10 text-primary border border-primary/20 dark:bg-primary/20 dark:text-primary dark:border-primary/30 shadow-sm'
+                      : 'text-on-surface-variant dark:text-outline hover:text-on-surface hover:bg-surface-container dark:hover:text-inverse-on-surface dark:hover:bg-surface-container-high/10'
                   }`
                 }
               >

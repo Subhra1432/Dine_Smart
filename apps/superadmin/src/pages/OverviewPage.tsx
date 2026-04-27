@@ -34,10 +34,10 @@ const signupData = [
 ];
 
 const recentActivity = [
-  { id: 1, type: 'signup', message: 'New restaurant signed up: "Spicy Grill"', time: '2 hours ago', icon: Building2, color: 'text-purple-400', bg: 'bg-purple-500/10' },
-  { id: 2, type: 'payment', message: 'Subscription renewed by "Ocean Catch"', time: '5 hours ago', icon: IndianRupee, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
-  { id: 3, type: 'alert', message: 'High load detected on DB replica', time: '12 hours ago', icon: Activity, color: 'text-orange-400', bg: 'bg-orange-500/10' },
-  { id: 4, type: 'system', message: 'Automated platform backup completed', time: '1 day ago', icon: CheckCircle2, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+  { id: 1, type: 'signup', message: 'New restaurant signed up: "Spicy Grill"', time: '2 hours ago', icon: Building2, color: 'text-secondary', bg: 'bg-secondary/10' },
+  { id: 2, type: 'payment', message: 'Subscription renewed by "Ocean Catch"', time: '5 hours ago', icon: IndianRupee, color: 'text-emerald-500 dark:text-emerald-400', bg: 'bg-emerald-500/10' },
+  { id: 3, type: 'alert', message: 'High load detected on DB replica', time: '12 hours ago', icon: Activity, color: 'text-tertiary', bg: 'bg-tertiary/10' },
+  { id: 4, type: 'system', message: 'Automated platform backup completed', time: '1 day ago', icon: CheckCircle2, color: 'text-primary', bg: 'bg-primary/10' },
 ];
 
 export default function OverviewPage() {
@@ -45,11 +45,11 @@ export default function OverviewPage() {
   const { data: restaurants } = useQuery<any>({ queryKey: ['saRestaurants'], queryFn: () => fetchApi('/superadmin/restaurants') });
 
   const statCards = [
-    { label: 'MRR', value: `₹${(stats?.mrr || 0).toLocaleString()}`, icon: IndianRupee, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
-    { label: 'Total Restaurants', value: stats?.totalRestaurants || 0, icon: Building2, color: 'text-purple-400', bg: 'bg-purple-500/10' },
-    { label: 'Active', value: stats?.activeRestaurants || 0, icon: TrendingUp, color: 'text-blue-400', bg: 'bg-blue-500/10' },
-    { label: 'Orders Today', value: stats?.totalOrdersToday || 0, icon: ShoppingBag, color: 'text-primary', bg: 'bg-primary/10' },
-    { label: 'Churn Rate', value: `${stats?.churnRate || 0}%`, icon: Users, color: 'text-red-400', bg: 'bg-red-500/10' },
+    { label: 'MRR', value: `₹${(stats?.mrr || 0).toLocaleString()}`, icon: IndianRupee, color: 'text-emerald-500 dark:text-emerald-400', bg: 'bg-emerald-500/10' },
+    { label: 'Total Restaurants', value: stats?.totalRestaurants || 0, icon: Building2, color: 'text-secondary', bg: 'bg-secondary/10' },
+    { label: 'Active', value: stats?.activeRestaurants || 0, icon: TrendingUp, color: 'text-primary', bg: 'bg-primary/10' },
+    { label: 'Orders Today', value: stats?.totalOrdersToday || 0, icon: ShoppingBag, color: 'text-tertiary', bg: 'bg-tertiary/10' },
+    { label: 'Churn Rate', value: `${stats?.churnRate || 0}%`, icon: Users, color: 'text-error', bg: 'bg-error/10' },
   ];
 
   return (
@@ -92,11 +92,11 @@ export default function OverviewPage() {
                                     <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
                                 </linearGradient>
                             </defs>
-                            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" opacity={0.2} />
-                            <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} dy={10} />
-                            <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} tickFormatter={(value) => `₹${value}`} />
+                            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="currentColor" className="text-outline-variant/30" />
+                            <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fontSize: 12, className: 'fill-on-surface-variant' }} dy={10} />
+                            <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, className: 'fill-on-surface-variant' }} tickFormatter={(value) => `₹${value}`} />
                             <Tooltip 
-                                contentStyle={{ backgroundColor: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#fff' }}
+                                contentStyle={{ backgroundColor: 'var(--surface-container)', border: '1px solid var(--outline-variant)', borderRadius: '12px' }}
                                 itemStyle={{ color: '#10b981', fontWeight: 'bold' }}
                             />
                             <Area type="monotone" dataKey="revenue" stroke="#10b981" strokeWidth={3} fillOpacity={1} fill="url(#colorRevenue)" />
@@ -117,14 +117,14 @@ export default function OverviewPage() {
                 <div className="h-64 -ml-4">
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={signupData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
-                            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" opacity={0.2} />
-                            <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} dy={10} />
-                            <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} />
+                            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="currentColor" className="text-outline-variant/30" />
+                            <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fontSize: 12, className: 'fill-on-surface-variant' }} dy={10} />
+                            <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, className: 'fill-on-surface-variant' }} />
                             <Tooltip 
-                                cursor={{ fill: 'rgba(255,255,255,0.05)' }}
-                                contentStyle={{ backgroundColor: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#fff' }}
+                                cursor={{ fill: 'rgba(var(--primary-rgb), 0.05)' }}
+                                contentStyle={{ backgroundColor: 'var(--surface-container)', border: '1px solid var(--outline-variant)', borderRadius: '12px' }}
                             />
-                            <Bar dataKey="signups" fill="#6366f1" radius={[6, 6, 0, 0]} />
+                            <Bar dataKey="signups" fill="var(--primary)" radius={[6, 6, 0, 0]} />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>

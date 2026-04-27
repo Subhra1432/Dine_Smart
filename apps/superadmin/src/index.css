@@ -4,14 +4,14 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white font-sans antialiased transition-colors duration-200;
+    @apply bg-surface-container-lowest text-on-surface dark:bg-inverse-surface dark:text-inverse-on-surface font-sans antialiased transition-colors duration-200;
   }
 }
 
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { @apply bg-transparent dark:bg-slate-900; }
-::-webkit-scrollbar-thumb { @apply bg-slate-300 dark:bg-brand-600 rounded-full; }
+::-webkit-scrollbar-track { @apply bg-transparent dark:bg-inverse-surface; }
+::-webkit-scrollbar-thumb { @apply bg-outline-variant dark:bg-primary rounded-full; }
 
 .glass {
-  @apply bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border border-slate-200 dark:border-white/5;
+  @apply bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md border border-outline-variant dark:border-white/5;
 }

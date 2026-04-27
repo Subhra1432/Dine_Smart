@@ -34,22 +34,22 @@ export default function App() {
 
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-slate-100 to-indigo-50 dark:from-slate-950 dark:to-slate-950 dark:bg-slate-950">
+      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-surface-container-low to-surface-container-high dark:from-inverse-surface dark:to-inverse-surface dark:bg-inverse-surface">
         <div className="absolute top-4 right-4"><ThemeToggle /></div>
-        <form onSubmit={handleLogin} className="w-full max-w-sm bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-xl border border-slate-200 dark:border-brand-500/20">
+        <form onSubmit={handleLogin} className="w-full max-w-sm bg-surface-container-lowest dark:bg-inverse-surface p-6 rounded-2xl shadow-xl border border-outline-variant dark:border-primary/20">
           <div className="text-center mb-6">
-            <Shield size={40} className="text-brand-500 dark:text-brand-400 mx-auto mb-3" />
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Super Admin</h1>
-            <p className="text-sm text-slate-500 dark:text-brand-300/60">DineSmart Platform Control</p>
+            <Shield size={40} className="text-primary dark:text-primary mx-auto mb-3" />
+            <h1 className="text-2xl font-bold text-on-surface dark:text-inverse-on-surface">Super Admin</h1>
+            <p className="text-sm text-on-surface-variant dark:text-primary/60">DineSmart Platform Control</p>
           </div>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required
-            className="w-full mb-3 px-4 py-3 bg-slate-50 dark:bg-slate-950 rounded-xl text-slate-900 dark:text-white border border-slate-200 dark:border-brand-500/20 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none transition-all" />
+            className="w-full mb-3 px-4 py-3 bg-surface-container-low dark:bg-inverse-surface rounded-xl text-on-surface dark:text-inverse-on-surface border border-outline-variant dark:border-primary/20 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all" />
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required
-            className="w-full mb-4 px-4 py-3 bg-slate-50 dark:bg-slate-950 rounded-xl text-slate-900 dark:text-white border border-slate-200 dark:border-brand-500/20 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none transition-all" />
-          <button type="submit" className="w-full py-3 bg-brand-600 text-white rounded-xl font-semibold hover:bg-brand-700 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20">
+            className="w-full mb-4 px-4 py-3 bg-surface-container-low dark:bg-inverse-surface rounded-xl text-on-surface dark:text-inverse-on-surface border border-outline-variant dark:border-primary/20 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all" />
+          <button type="submit" className="w-full py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-container transition-colors flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
             <LogIn size={16} /> Sign In
           </button>
-          <p className="text-xs text-slate-400 dark:text-brand-300/40 text-center mt-4">admin@dinesmart.ai / superadmin123</p>
+          <p className="text-xs text-on-surface-variant dark:text-primary/40 text-center mt-4">admin@dinesmart.ai / superadmin123</p>
         </form>
       </div>
     );

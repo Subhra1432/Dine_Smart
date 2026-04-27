@@ -4,16 +4,16 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white font-sans antialiased transition-colors duration-200;
+    @apply bg-surface text-on-surface dark:bg-inverse-surface dark:text-inverse-on-surface font-sans antialiased transition-colors duration-200;
   }
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { @apply bg-transparent dark:bg-slate-900; }
-::-webkit-scrollbar-thumb { @apply bg-slate-300 dark:bg-slate-700 rounded-full; }
+::-webkit-scrollbar-track { @apply bg-transparent dark:bg-inverse-surface; }
+::-webkit-scrollbar-thumb { @apply bg-surface-dim dark:bg-outline-variant/30 rounded-full; }
 
 .glass {
-  @apply bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border border-slate-200 dark:border-white/5;
+  @apply bg-surface-container-lowest/90 dark:bg-inverse-surface/90 backdrop-blur-md border border-outline-variant/50 dark:border-inverse-on-surface/5;
 }
 
 @keyframes slideIn {

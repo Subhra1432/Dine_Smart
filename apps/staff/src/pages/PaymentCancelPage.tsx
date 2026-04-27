@@ -16,10 +16,10 @@ export default function PaymentCancelPage() {
         </div>
 
         <div className="space-y-2">
-          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white">
+          <h1 className="text-3xl font-extrabold text-on-surface dark:text-inverse-on-surface">
             Payment Cancelled
           </h1>
-          <p className="text-slate-500 dark:text-slate-400">
+          <p className="text-on-surface-variant dark:text-outline">
             No worries! You weren't charged anything. You can try again whenever you're ready.
           </p>
         </div>
@@ -27,14 +27,14 @@ export default function PaymentCancelPage() {
         <div className="pt-4 space-y-3">
           <button
             onClick={() => navigate('/admin/subscription')}
-            className="w-full py-4 bg-slate-900 dark:bg-white dark:text-slate-900 text-white font-bold rounded-2xl flex items-center justify-center gap-2 transition-all hover:opacity-90 active:scale-[0.98]"
+            className="w-full py-4 bg-inverse-surface dark:bg-surface-container-lowest text-inverse-on-surface dark:text-on-surface font-bold rounded-2xl flex items-center justify-center gap-2 transition-all hover:opacity-90 active:scale-[0.98]"
           >
             <RefreshCcw size={20} /> Try Again
           </button>
           
           <button
             onClick={() => navigate('/admin')}
-            className="w-full py-3 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 font-semibold flex items-center justify-center gap-2 transition-all"
+            className="w-full py-3 text-on-surface-variant dark:text-outline hover:text-on-surface dark:hover:text-inverse-on-surface font-semibold flex items-center justify-center gap-2 transition-all"
           >
             <ArrowLeft size={16} /> Back to Dashboard
           </button>

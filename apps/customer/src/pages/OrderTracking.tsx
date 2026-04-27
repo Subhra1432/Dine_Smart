@@ -85,10 +85,10 @@ export default function OrderTracking() {
         refetch();
         toast.success(`Order status: ${data.status}`, {
             style: {
-                background: '#0f172a',
-                color: '#fff',
+                background: '#3b2d28',
+                color: '#ffede7',
                 borderRadius: '1rem',
-                border: '1px solid rgba(255,255,255,0.1)'
+                border: '1px solid rgba(255,237,231,0.1)'
             }
         });
       }
@@ -100,10 +100,10 @@ export default function OrderTracking() {
         toast.success('Payment confirmed!', {
             icon: '✅',
             style: {
-                background: '#0f172a',
-                color: '#fff',
+                background: '#3b2d28',
+                color: '#ffede7',
                 borderRadius: '1rem',
-                border: '1px solid rgba(255,255,255,0.1)'
+                border: '1px solid rgba(255,237,231,0.1)'
             }
         });
       }
@@ -133,12 +133,12 @@ export default function OrderTracking() {
 
   if (!order) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-inverse-surface">
         <div className="relative">
-          <div className="w-16 h-16 border-4 border-slate-900 rounded-full" />
-          <div className="absolute inset-0 w-16 h-16 border-4 border-brand-500 border-t-transparent rounded-full animate-spin" />
+          <div className="w-16 h-16 border-4 border-outline/20 rounded-full" />
+          <div className="absolute inset-0 w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
         </div>
-        <p className="mt-6 text-slate-400 font-medium animate-pulse uppercase tracking-widest text-[10px]">Retrieving your order...</p>
+        <p className="mt-6 text-inverse-on-surface/70 font-medium animate-pulse uppercase tracking-widest text-[10px]">Retrieving your order...</p>
       </div>
     );
   }
@@ -147,15 +147,15 @@ export default function OrderTracking() {
   const isCompleted = currentStatus === 'COMPLETED' || currentStatus === 'SERVED';
 
   return (
-    <div className="min-h-screen bg-slate-950 font-sans selection:bg-brand-500/30 pb-12">
+    <div className="min-h-screen bg-inverse-surface font-sans selection:bg-primary/30 pb-12">
       {/* Top Navigation */}
       <nav className="p-6 flex items-center justify-between">
-        <Link to="/" className="w-10 h-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-white/10 transition-all">
-          <ChevronRight size={20} className="text-white rotate-180" />
+        <Link to="/" className="w-10 h-10 bg-inverse-on-surface/5 border border-inverse-on-surface/10 rounded-xl flex items-center justify-center hover:bg-inverse-on-surface/10 transition-all">
+          <ChevronRight size={20} className="text-inverse-on-surface rotate-180" />
         </Link>
         <div className="text-center">
-            <h1 className="text-sm font-black text-white tracking-widest uppercase">TRACKING</h1>
-            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">ORDER #{order.id.slice(-6).toUpperCase()}</p>
+            <h1 className="text-sm font-black text-inverse-on-surface tracking-widest uppercase">TRACKING</h1>
+            <p className="text-[10px] font-bold text-inverse-on-surface/50 uppercase tracking-widest">ORDER #{order.id.slice(-6).toUpperCase()}</p>
         </div>
         <div className="w-10 h-10 invisible" />
       </nav>
@@ -163,41 +163,41 @@ export default function OrderTracking() {
       {/* Hero Section */}
       <section className="px-6 py-4 text-center">
         <div className="relative inline-block mb-6">
-            <div className="w-24 h-24 bg-brand-500 rounded-[2.5rem] flex items-center justify-center shadow-[0_0_50px_rgba(239,68,68,0.3)] animate-pulse-slow">
-              <Check size={40} className="text-white" strokeWidth={3} />
+            <div className="w-24 h-24 bg-primary rounded-[2.5rem] flex items-center justify-center shadow-[0_0_50px_#a63b004d] animate-pulse-slow">
+              <Check size={40} className="text-on-primary" strokeWidth={3} />
             </div>
-            <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-slate-900 border-4 border-slate-950 rounded-full flex items-center justify-center">
+            <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-inverse-surface border-4 border-inverse-surface rounded-full flex items-center justify-center">
                 <span className="text-lg">🔥</span>
             </div>
         </div>
-        <h2 className="text-3xl font-black text-white tracking-tight mb-2">Order Confirmed</h2>
-        <p className="text-sm text-slate-400 max-w-[240px] mx-auto leading-relaxed">
-            Your meal is being prepared at <span className="text-white font-bold">DineSmart Kitchen</span>.
+        <h2 className="text-3xl font-black text-inverse-on-surface tracking-tight mb-2">Order Confirmed</h2>
+        <p className="text-sm text-inverse-on-surface/70 max-w-[240px] mx-auto leading-relaxed">
+            Your meal is being prepared at <span className="text-inverse-on-surface font-bold">DineSmart Kitchen</span>.
         </p>
 
         {order.estimatedMinutes && order.estimatedMinutes > 0 && order.status !== 'READY' && order.status !== 'SERVED' && order.status !== 'COMPLETED' && (
-          <div className="mt-8 mx-auto max-w-[280px] bg-brand-500/10 border border-brand-500/20 rounded-3xl p-6 shadow-xl shadow-brand-500/5 animate-fade-in-up">
+          <div className="mt-8 mx-auto max-w-[280px] bg-primary/10 border border-primary/20 rounded-3xl p-6 shadow-xl shadow-primary/5 animate-fade-in-up">
             <div className="flex items-center justify-center gap-3 mb-2">
-              <Clock size={20} className="text-brand-500" strokeWidth={3} />
-              <p className="text-[10px] font-black text-brand-500 uppercase tracking-[0.2em]">ESTIMATED ARRIVAL</p>
+              <Clock size={20} className="text-primary" strokeWidth={3} />
+              <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em]">ESTIMATED ARRIVAL</p>
             </div>
-            <p className="text-4xl font-black text-white tracking-tighter">~{order.estimatedMinutes} Mins</p>
-            <p className="text-[10px] font-bold text-slate-500 mt-2 uppercase tracking-widest">Freshly cooked just for you</p>
+            <p className="text-4xl font-black text-inverse-on-surface tracking-tighter">~{order.estimatedMinutes} Mins</p>
+            <p className="text-[10px] font-bold text-inverse-on-surface/50 mt-2 uppercase tracking-widest">Freshly cooked just for you</p>
           </div>
         )}
       </section>
 
       <main className="px-6 py-10 space-y-8">
         {/* Status Tracker */}
-        <div className="bg-white/[0.03] border border-white/5 rounded-[2.5rem] p-8">
+        <div className="bg-inverse-on-surface/[0.03] border border-inverse-on-surface/5 rounded-[2.5rem] p-8">
             <div className="flex items-center gap-3 mb-8">
-                <div className="w-1.5 h-6 bg-brand-500 rounded-full" />
-                <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">LIVE PROGRESS</h3>
+                <div className="w-1.5 h-6 bg-primary rounded-full" />
+                <h3 className="text-[10px] font-black text-inverse-on-surface/70 uppercase tracking-[0.2em]">LIVE PROGRESS</h3>
             </div>
             
             <div className="space-y-10 relative">
                 {/* Vertical Line Gap Filler */}
-                <div className="absolute left-[19px] top-2 bottom-2 w-px bg-white/5" />
+                <div className="absolute left-[19px] top-2 bottom-2 w-px bg-inverse-on-surface/5" />
                 
                 {STATUS_STEPS.map((step, idx) => {
                     const isActive = idx === statusIdx;
@@ -208,19 +208,19 @@ export default function OrderTracking() {
                         <div key={step.key} className="flex items-start gap-6 relative group">
                             <div className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-500 z-10 border-2 ${
                                 isComplete ? 'bg-green-500 border-green-500 shadow-[0_0_20px_rgba(34,197,94,0.3)]' :
-                                isActive ? 'bg-brand-500 border-brand-500 shadow-[0_0_20px_rgba(239,68,68,0.3)] scale-110' :
-                                'bg-slate-900 border-white/5 grayscale opacity-40'
+                                isActive ? 'bg-primary border-primary shadow-[0_0_20px_#a63b004d] scale-110' :
+                                'bg-inverse-surface border-inverse-on-surface/5 grayscale opacity-40'
                             }`}>
-                                <Icon size={18} className="text-white" strokeWidth={isComplete || isActive ? 3 : 2} />
+                                <Icon size={18} className={isComplete || isActive ? 'text-on-primary' : 'text-inverse-on-surface'} strokeWidth={isComplete || isActive ? 3 : 2} />
                             </div>
                             
                             <div className="flex-1 pt-1">
                                 <h4 className={`text-sm font-black tracking-tight mb-1 transition-colors ${
-                                    isActive ? 'text-white' : isComplete ? 'text-green-400' : 'text-slate-500'
+                                    isActive ? 'text-inverse-on-surface' : isComplete ? 'text-green-400' : 'text-inverse-on-surface/50'
                                 }`}>
                                     {step.label.toUpperCase()}
                                 </h4>
-                                <p className={`text-[10px] font-medium leading-relaxed ${isActive ? 'text-slate-400' : 'text-slate-600'}`}>
+                                <p className={`text-[10px] font-medium leading-relaxed ${isActive ? 'text-inverse-on-surface/70' : 'text-inverse-on-surface/30'}`}>
                                     {step.description}
                                 </p>
                             </div>
@@ -231,11 +231,11 @@ export default function OrderTracking() {
         </div>
 
         {/* Order Items Breakdown */}
-        <div className="bg-white/[0.03] border border-white/5 rounded-[2.5rem] overflow-hidden">
-            <div className="p-8 border-b border-white/5 bg-white/[0.01]">
+        <div className="bg-inverse-on-surface/[0.03] border border-inverse-on-surface/5 rounded-[2.5rem] overflow-hidden">
+            <div className="p-8 border-b border-inverse-on-surface/5 bg-inverse-on-surface/[0.01]">
                 <div className="flex items-center justify-between mb-1">
-                    <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">BILLING SUMMARY</h3>
-                    <span className="text-[10px] font-black text-brand-500 uppercase">Table #{order.table.number}</span>
+                    <h3 className="text-[10px] font-black text-inverse-on-surface/70 uppercase tracking-[0.2em]">BILLING SUMMARY</h3>
+                    <span className="text-[10px] font-black text-primary uppercase">Table #{order.table.number}</span>
                 </div>
             </div>
             
@@ -244,23 +244,23 @@ export default function OrderTracking() {
                     <div key={item.id} className="flex items-center justify-between group">
                         <div className="flex-1">
                             <div className="flex items-center gap-2 mb-0.5">
-                                <span className="text-xs font-black text-white">{item.quantity}x</span>
-                                <span className="text-sm font-bold text-slate-300 group-hover:text-white transition-colors">{item.menuItem.name}</span>
+                                <span className="text-xs font-black text-inverse-on-surface">{item.quantity}x</span>
+                                <span className="text-sm font-bold text-inverse-on-surface/90 group-hover:text-inverse-on-surface transition-colors">{item.menuItem.name}</span>
                             </div>
                             <span className={`text-[9px] font-black uppercase tracking-widest ${
                                 item.status === 'READY' ? 'text-green-400' :
-                                item.status === 'PREPARING' ? 'text-brand-400' :
-                                'text-slate-600'
+                                item.status === 'PREPARING' ? 'text-primary/80' :
+                                'text-inverse-on-surface/30'
                             }`}>{item.status}</span>
                         </div>
-                        <span className="text-sm font-black text-white">₹{item.totalPrice}</span>
+                        <span className="text-sm font-black text-inverse-on-surface">₹{item.totalPrice}</span>
                     </div>
                 ))}
 
-                <div className="pt-6 border-t border-white/5 space-y-4">
+                <div className="pt-6 border-t border-inverse-on-surface/5 space-y-4">
                     <div className="flex justify-between text-[11px] font-bold">
-                        <span className="text-slate-500">SUBTOTAL</span>
-                        <span className="text-slate-300">₹{order.subtotal}</span>
+                        <span className="text-inverse-on-surface/50">SUBTOTAL</span>
+                        <span className="text-inverse-on-surface/90">₹{order.subtotal}</span>
                     </div>
                     {order.discount > 0 && (
                         <div className="flex justify-between text-[11px] font-bold">
@@ -269,12 +269,12 @@ export default function OrderTracking() {
                         </div>
                     )}
                     <div className="flex justify-between text-[11px] font-bold">
-                        <span className="text-slate-500">GST (5%)</span>
-                        <span className="text-slate-300">₹{order.tax.toFixed(0)}</span>
+                        <span className="text-inverse-on-surface/50">GST (5%)</span>
+                        <span className="text-inverse-on-surface/90">₹{order.tax.toFixed(0)}</span>
                     </div>
                     <div className="flex justify-between items-center pt-2">
-                        <span className="text-xs font-black text-white uppercase tracking-widest">TOTAL AMOUNT</span>
-                        <span className="text-2xl font-black text-white tracking-tighter">₹{order.total.toFixed(0)}</span>
+                        <span className="text-xs font-black text-inverse-on-surface uppercase tracking-widest">TOTAL AMOUNT</span>
+                        <span className="text-2xl font-black text-inverse-on-surface tracking-tighter">₹{order.total.toFixed(0)}</span>
                     </div>
                 </div>
             </div>
@@ -284,13 +284,13 @@ export default function OrderTracking() {
         <div className={`p-8 rounded-[2.5rem] border-2 transition-all duration-500 ${
             order.paymentStatus === 'PAID'
             ? 'bg-green-500/10 border-green-500/20 shadow-[0_0_30px_rgba(34,197,94,0.1)]'
-            : 'bg-black border-slate-900 shadow-[0_0_30px_rgba(0,0,0,0.5)]'
+            : 'bg-inverse-surface border-inverse-on-surface/5 shadow-[0_0_30px_#ffede70d]'
         }`}>
             <div className="flex items-center justify-between">
                 <div>
-                    <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-2">PAYMENT STATUS</h4>
+                    <h4 className="text-[10px] font-black text-inverse-on-surface/50 uppercase tracking-[0.2em] mb-2">PAYMENT STATUS</h4>
                     <p className={`text-xl font-black tracking-tight ${
-                        order.paymentStatus === 'PAID' ? 'text-green-400' : 'text-brand-400'
+                        order.paymentStatus === 'PAID' ? 'text-green-400' : 'text-primary/80'
                     }`}>
                         {order.paymentStatus === 'PAID' ? 'SETTLED SECURELY' : (currentStatus === 'SERVED' ? 'PAYMENT REQUIRED' : 'AWAITING PAYMENT')}
                     </p>
@@ -298,7 +298,7 @@ export default function OrderTracking() {
                 {order.paymentStatus !== 'PAID' && (
                     <button
                         onClick={() => setShowPaymentGateway(true)}
-                        className="px-8 py-3 bg-brand-500 text-white font-black text-xs uppercase tracking-widest rounded-2xl shadow-xl shadow-brand-500/30 hover:bg-brand-400 active:scale-95 transition-all border-b-4 border-brand-700 active:border-b-0"
+                        className="px-8 py-3 bg-primary text-on-primary font-black text-xs uppercase tracking-widest rounded-2xl shadow-xl shadow-primary/30 hover:bg-primary/80 active:scale-95 transition-all border-b-4 border-primary-container active:border-b-0"
                     >
                         PAY NOW
                     </button>
@@ -312,10 +312,10 @@ export default function OrderTracking() {
                                 toast.success('Staff notified. Please wait at your table.', {
                                     icon: '🙌',
                                     style: {
-                                        background: '#0f172a',
-                                        color: '#fff',
+                                        background: '#3b2d28',
+                                        color: '#ffede7',
                                         borderRadius: '1rem',
-                                        border: '1px solid rgba(255,255,255,0.1)'
+                                        border: '1px solid rgba(255,237,231,0.1)'
                                     }
                                 });
                             } catch (e) {
@@ -325,8 +325,8 @@ export default function OrderTracking() {
                         disabled={requestedAttention}
                         className={`px-8 py-3 font-black text-xs uppercase tracking-widest rounded-2xl transition-all border-b-4 ${
                             requestedAttention 
-                            ? 'bg-slate-800 text-slate-500 border-slate-900 cursor-not-allowed' 
-                            : 'bg-white text-slate-900 border-slate-200 hover:bg-slate-100 active:border-b-0 active:translate-y-1'
+                            ? 'bg-inverse-on-surface/10 text-inverse-on-surface/50 border-inverse-on-surface/10 cursor-not-allowed' 
+                            : 'bg-inverse-on-surface text-inverse-surface border-inverse-on-surface hover:bg-inverse-on-surface/80 active:border-b-0 active:translate-y-1'
                         }`}
                     >
                         {requestedAttention ? 'NOTIFIED' : 'PAY AT TABLE'}
@@ -342,10 +342,10 @@ export default function OrderTracking() {
 
         {/* Review Section */}
         {(isCompleted || order.paymentStatus === 'PAID') && !reviewSubmitted && (
-            <div className="bg-white/[0.03] border border-white/5 rounded-[2.5rem] p-8 animate-fade-in">
+            <div className="bg-inverse-on-surface/[0.03] border border-inverse-on-surface/5 rounded-[2.5rem] p-8 animate-fade-in">
                 <div className="text-center mb-8">
-                    <h3 className="text-sm font-black text-white uppercase tracking-widest mb-2">HOW WAS YOUR MEAL?</h3>
-                    <p className="text-[10px] text-slate-500 font-bold">Your feedback helps us perfect the DineSmart experience</p>
+                    <h3 className="text-sm font-black text-inverse-on-surface uppercase tracking-widest mb-2">HOW WAS YOUR MEAL?</h3>
+                    <p className="text-[10px] text-inverse-on-surface/50 font-bold">Your feedback helps us perfect the DineSmart experience</p>
                 </div>
                 
                 <div className="flex items-center justify-center gap-4 mb-10">
@@ -354,19 +354,19 @@ export default function OrderTracking() {
                         <Star
                         size={40}
                         strokeWidth={s <= rating ? 0 : 2}
-                        className={`transition-all duration-300 ${s <= rating ? 'text-amber-400 fill-amber-400 scale-110 drop-shadow-[0_0_15px_rgba(251,191,36,0.5)]' : 'text-slate-700 group-hover/star:text-slate-500'}`}
+                        className={`transition-all duration-300 ${s <= rating ? 'text-amber-400 fill-amber-400 scale-110 drop-shadow-[0_0_15px_rgba(251,191,36,0.5)]' : 'text-inverse-on-surface/30 group-hover/star:text-inverse-on-surface/50'}`}
                         />
                     </button>
                     ))}
                 </div>
 
-                <div className="space-y-4 mb-8 text-left border-t border-white/5 pt-6">
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest text-center mb-4">Rate Specific Items</p>
+                <div className="space-y-4 mb-8 text-left border-t border-inverse-on-surface/5 pt-6">
+                    <p className="text-xs font-bold text-inverse-on-surface/70 uppercase tracking-widest text-center mb-4">Rate Specific Items</p>
                     {order.items.map((item) => {
                       const currentItemRating = itemRatings[item.menuItem.name] || 0;
                       return (
-                        <div key={item.id} className="flex items-center justify-between bg-black/20 rounded-2xl p-3 border border-white/5">
-                            <span className="text-sm font-bold text-slate-300 truncate max-w-[60%]">{item.menuItem.name}</span>
+                        <div key={item.id} className="flex items-center justify-between bg-black/20 rounded-2xl p-3 border border-inverse-on-surface/5">
+                            <span className="text-sm font-bold text-inverse-on-surface/90 truncate max-w-[60%]">{item.menuItem.name}</span>
                             <div className="flex gap-1">
                                 {[1, 2, 3, 4, 5].map(s => (
                                     <button 
@@ -374,7 +374,7 @@ export default function OrderTracking() {
                                         onClick={() => setItemRatings(prev => ({...prev, [item.menuItem.name]: s}))}
                                         className="p-1"
                                     >
-                                        <Star size={16} strokeWidth={s <= currentItemRating ? 0 : 2} className={s <= currentItemRating ? 'text-amber-400 fill-amber-400' : 'text-slate-600'} />
+                                        <Star size={16} strokeWidth={s <= currentItemRating ? 0 : 2} className={s <= currentItemRating ? 'text-amber-400 fill-amber-400' : 'text-inverse-on-surface/40'} />
                                     </button>
                                 ))}
                             </div>
@@ -387,13 +387,13 @@ export default function OrderTracking() {
                     placeholder="Tell us what you liked..."
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
-                    className="w-full bg-white/5 rounded-3xl p-5 text-sm font-bold text-white border border-white/10 focus:border-brand-500/50 focus:outline-none focus:bg-white/10 transition-all resize-none h-32 mb-6 placeholder:text-slate-600"
+                    className="w-full bg-inverse-on-surface/5 rounded-3xl p-5 text-sm font-bold text-inverse-on-surface border border-inverse-on-surface/10 focus:border-primary/50 focus:outline-none focus:bg-inverse-on-surface/10 transition-all resize-none h-32 mb-6 placeholder:text-inverse-on-surface/40"
                 />
                 
                 <button
                     onClick={handleSubmitReview}
                     disabled={rating === 0}
-                    className="w-full bg-white text-slate-950 text-xs font-black uppercase tracking-[0.2em] py-5 rounded-[2rem] disabled:opacity-20 hover:bg-slate-200 transition-all active:scale-[0.98] shadow-xl shadow-white/5"
+                    className="w-full bg-inverse-on-surface text-inverse-surface text-xs font-black uppercase tracking-[0.2em] py-5 rounded-[2rem] disabled:opacity-20 hover:bg-inverse-on-surface/80 transition-all active:scale-[0.98] shadow-xl shadow-inverse-on-surface/5"
                 >
                     SUBMIT FEEDBACK
                 </button>
@@ -412,21 +412,21 @@ export default function OrderTracking() {
         <div className="grid grid-cols-2 gap-4">
             <button 
                 onClick={() => window.print()}
-                className="p-6 bg-white/[0.03] border border-white/5 rounded-[2rem] flex flex-col items-center justify-center gap-3 hover:bg-white/5 transition-all active:scale-95"
+                className="p-6 bg-inverse-on-surface/[0.03] border border-inverse-on-surface/5 rounded-[2rem] flex flex-col items-center justify-center gap-3 hover:bg-inverse-on-surface/5 transition-all active:scale-95"
             >
-                <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center">
-                    <Printer size={20} className="text-slate-400" />
+                <div className="w-10 h-10 bg-inverse-on-surface/5 rounded-xl flex items-center justify-center">
+                    <Printer size={20} className="text-inverse-on-surface/70" />
                 </div>
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.15em]">PRINT RECEIPT</span>
+                <span className="text-[10px] font-black text-inverse-on-surface/70 uppercase tracking-[0.15em]">PRINT RECEIPT</span>
             </button>
             <Link 
                 to={`/menu?restaurant=${order.restaurant.slug}&table=${order.table.number}`}
-                className="p-6 bg-brand-500/10 border border-brand-500/20 rounded-[2rem] flex flex-col items-center justify-center gap-3 hover:bg-brand-500/20 transition-all active:scale-95"
+                className="p-6 bg-primary/10 border border-primary/20 rounded-[2rem] flex flex-col items-center justify-center gap-3 hover:bg-primary/20 transition-all active:scale-95"
             >
-                <div className="w-10 h-10 bg-brand-500/20 rounded-xl flex items-center justify-center">
-                    <UtensilsCrossed size={20} className="text-brand-500" />
+                <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
+                    <UtensilsCrossed size={20} className="text-primary" />
                 </div>
-                <span className="text-[10px] font-black text-brand-500 uppercase tracking-[0.15em]">ORDER MORE</span>
+                <span className="text-[10px] font-black text-primary uppercase tracking-[0.15em]">ORDER MORE</span>
             </Link>
         </div>
       </main>
@@ -434,28 +434,28 @@ export default function OrderTracking() {
       {/* Premium Payment Gateway Modal */}
       {showPaymentGateway && (
         <div className="fixed inset-0 z-[100] flex items-end justify-center p-0">
-          <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-xl animate-fade-in" onClick={() => setShowPaymentGateway(false)} />
-          <div className="relative w-full max-w-lg bg-slate-950 rounded-t-[3rem] p-10 animate-slide-up border-t border-white/10 shadow-[0_-20px_100px_rgba(0,0,0,0.5)]">
-            <div className="w-12 h-1.5 bg-slate-800 rounded-full mx-auto mb-10" />
+          <div className="absolute inset-0 bg-inverse-surface/90 backdrop-blur-xl animate-fade-in" onClick={() => setShowPaymentGateway(false)} />
+          <div className="relative w-full max-w-lg bg-inverse-surface rounded-t-[3rem] p-10 animate-slide-up border-t border-inverse-on-surface/10 shadow-[0_-20px_100px_rgba(0,0,0,0.5)]">
+            <div className="w-12 h-1.5 bg-inverse-on-surface/20 rounded-full mx-auto mb-10" />
             
             <header className="flex items-center justify-between mb-12">
                 <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 bg-brand-500 rounded-2xl flex items-center justify-center shadow-2xl shadow-brand-500/40">
-                        <CreditCard size={28} className="text-white" strokeWidth={2.5} />
+                    <div className="w-14 h-14 bg-primary rounded-2xl flex items-center justify-center shadow-2xl shadow-primary/40">
+                        <CreditCard size={28} className="text-on-primary" strokeWidth={2.5} />
                     </div>
                     <div>
-                        <h3 className="text-2xl font-black text-white tracking-tight">DineSmart Pay</h3>
-                        <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">SECURE TRANSACTION</p>
+                        <h3 className="text-2xl font-black text-inverse-on-surface tracking-tight">DineSmart Pay</h3>
+                        <p className="text-[10px] font-black text-inverse-on-surface/50 uppercase tracking-widest">SECURE TRANSACTION</p>
                     </div>
                 </div>
-                <button onClick={() => setShowPaymentGateway(false)} className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
-                    <X size={24} className="text-slate-400" />
+                <button onClick={() => setShowPaymentGateway(false)} className="w-12 h-12 bg-inverse-on-surface/5 rounded-full flex items-center justify-center hover:bg-inverse-on-surface/10 transition-colors">
+                    <X size={24} className="text-inverse-on-surface/70" />
                 </button>
             </header>
             
-            <div className="text-center mb-12 py-10 bg-white/[0.02] rounded-[2.5rem] border border-white/5 shadow-inner">
-                <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-4">TOTAL PAYABLE AMOUNT</p>
-                <p className="text-6xl font-black text-white tracking-tighter">₹{order.total.toFixed(0)}</p>
+            <div className="text-center mb-12 py-10 bg-inverse-on-surface/[0.02] rounded-[2.5rem] border border-inverse-on-surface/5 shadow-inner">
+                <p className="text-[10px] font-black text-inverse-on-surface/50 uppercase tracking-[0.3em] mb-4">TOTAL PAYABLE AMOUNT</p>
+                <p className="text-6xl font-black text-inverse-on-surface tracking-tighter">₹{order.total.toFixed(0)}</p>
             </div>
 
             <div className="space-y-4 mb-10">
@@ -481,7 +481,7 @@ export default function OrderTracking() {
                     }
                   }}
                   disabled={processingPayment}
-                  className="w-full flex items-center justify-between p-6 rounded-[2rem] bg-white text-slate-950 font-black text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-2xl shadow-white/5 disabled:opacity-50"
+                  className="w-full flex items-center justify-between p-6 rounded-[2rem] bg-inverse-on-surface text-inverse-surface font-black text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-2xl shadow-inverse-on-surface/5 disabled:opacity-50"
                 >
                   <div className="flex items-center gap-4">
                     <CreditCard size={20} />
@@ -492,7 +492,7 @@ export default function OrderTracking() {
                 
                 <button 
                   disabled
-                  className="w-full flex items-center justify-between p-6 rounded-[2rem] bg-white/5 text-slate-600 font-bold text-xs uppercase tracking-widest cursor-not-allowed"
+                  className="w-full flex items-center justify-between p-6 rounded-[2rem] bg-inverse-on-surface/5 text-inverse-on-surface/30 font-bold text-xs uppercase tracking-widest cursor-not-allowed"
                 >
                    <div className="flex items-center gap-4">
                     <CreditCard size={20} />
@@ -502,16 +502,16 @@ export default function OrderTracking() {
             </div>
 
             {processingPayment && (
-              <div className="fixed inset-0 z-[110] bg-slate-950/80 backdrop-blur-md flex flex-col items-center justify-center text-center p-10 animate-fade-in">
-                <div className="w-20 h-20 border-4 border-slate-900 border-t-brand-500 rounded-full animate-spin mb-8" />
-                <h3 className="text-2xl font-black text-white tracking-tight mb-2">Authenticating...</h3>
-                <p className="text-sm text-slate-500 font-medium">Please do not refresh or close the browser.</p>
+              <div className="fixed inset-0 z-[110] bg-inverse-surface/80 backdrop-blur-md flex flex-col items-center justify-center text-center p-10 animate-fade-in">
+                <div className="w-20 h-20 border-4 border-outline-variant/30 border-t-primary rounded-full animate-spin mb-8" />
+                <h3 className="text-2xl font-black text-inverse-on-surface tracking-tight mb-2">Authenticating...</h3>
+                <p className="text-sm text-inverse-on-surface/50 font-medium">Please do not refresh or close the browser.</p>
               </div>
             )}
             
             <div className="flex items-center justify-center gap-3 py-6 grayscale opacity-30">
-                <ShieldCheck size={16} />
-                <span className="text-[9px] font-black uppercase tracking-widest">256-Bit Encrypted High-Security Gateway</span>
+                <ShieldCheck size={16} className="text-inverse-on-surface" />
+                <span className="text-[9px] font-black text-inverse-on-surface uppercase tracking-widest">256-Bit Encrypted High-Security Gateway</span>
             </div>
           </div>
         </div>

@@ -49,45 +49,45 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-surface-container-lowest dark:bg-inverse-surface flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-brand-500/20">
-            <UtensilsCrossed size={32} className="text-slate-900 dark:text-white" />
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center mx-auto mb-4 shadow-lg shadow-primary/20">
+            <UtensilsCrossed size={32} className="text-on-surface dark:text-inverse-on-surface" />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-brand-400 to-brand-600 bg-clip-text text-transparent">DineSmart OS</h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Staff Portal</p>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary-container bg-clip-text text-transparent">DineSmart OS</h1>
+          <p className="text-on-surface-variant dark:text-outline text-sm mt-1">Staff Portal</p>
         </div>
 
         {/* Login Form */}
-        <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50 shadow-xl">
+        <form onSubmit={handleSubmit} className="bg-surface-container-lowest dark:bg-inverse-surface/50 rounded-2xl p-6 border border-outline-variant dark:border-outline shadow-xl">
           <div className="space-y-4">
             <div>
-              <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5">Email</label>
+              <label className="block text-xs font-medium text-on-surface-variant dark:text-outline mb-1.5">Email</label>
               <div className="relative">
-                <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400" />
+                <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant dark:text-outline" />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   required
-                  className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-900 rounded-xl text-slate-900 dark:text-white border border-slate-600 focus:border-brand-500 focus:outline-none transition-colors"
+                  className="w-full pl-10 pr-4 py-3 bg-surface-container-lowest dark:bg-inverse-surface/50 rounded-xl text-on-surface dark:text-inverse-on-surface border border-outline-variant focus:border-primary focus:outline-none transition-colors"
                 />
               </div>
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5">Password</label>
+              <label className="block text-xs font-medium text-on-surface-variant dark:text-outline mb-1.5">Password</label>
               <div className="relative">
-                <Lock size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400" />
+                <Lock size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant dark:text-outline" />
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
                   required
-                  className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-900 rounded-xl text-slate-900 dark:text-white border border-slate-600 focus:border-brand-500 focus:outline-none transition-colors"
+                  className="w-full pl-10 pr-4 py-3 bg-surface-container-lowest dark:bg-inverse-surface/50 rounded-xl text-on-surface dark:text-inverse-on-surface border border-outline-variant focus:border-primary focus:outline-none transition-colors"
                 />
               </div>
             </div>
@@ -96,7 +96,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-6 bg-gradient-to-r from-brand-500 to-brand-600 text-slate-900 dark:text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2 hover:from-brand-600 hover:to-brand-700 transition-all disabled:opacity-50 shadow-lg shadow-brand-500/20"
+            className="w-full mt-6 bg-gradient-to-r from-primary to-primary-container text-on-surface dark:text-inverse-on-surface font-semibold py-3 rounded-xl flex items-center justify-center gap-2 hover:from-primary-container hover:to-tertiary-container transition-all disabled:opacity-50 shadow-lg shadow-primary/20"
           >
             {loading ? (
               <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -110,9 +110,9 @@ export default function LoginPage() {
         </form>
 
         {/* Demo credentials */}
-        <div className="mt-6 bg-white dark:bg-slate-800/30 rounded-xl p-4 border border-slate-200 dark:border-slate-700/30">
-          <p className="text-xs text-slate-500 font-semibold mb-2">Demo Credentials:</p>
-          <div className="space-y-1 text-xs text-slate-500">
+        <div className="mt-6 bg-surface-container-lowest dark:bg-inverse-surface/30 rounded-xl p-4 border border-outline-variant dark:border-outline">
+          <p className="text-xs text-on-surface-variant font-semibold mb-2">Demo Credentials:</p>
+          <div className="space-y-1 text-xs text-on-surface-variant">
             <p>Owner: owner@spicegarden.com / owner123</p>
             <p>Manager: manager@spicegarden.com / manager123</p>
             <p>Cashier: cashier@spicegarden.com / cashier123</p>
@@ -122,9 +122,9 @@ export default function LoginPage() {
 
         {/* Register Link */}
         <div className="mt-8 text-center">
-          <p className="text-sm text-slate-500 dark:text-slate-400">
+          <p className="text-sm text-on-surface-variant dark:text-outline">
             New Restaurant?{' '}
-            <a href="/register" className="text-brand-500 font-semibold hover:text-brand-400 hover:underline">
+            <a href="/register" className="text-primary font-semibold hover:text-primary hover:underline">
               Register here
             </a>
           </p>

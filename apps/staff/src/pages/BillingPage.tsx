@@ -167,20 +167,20 @@ export default function BillingPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Billing Desk</h1>
-          <div className="bg-slate-200 dark:bg-slate-800 p-1 rounded-xl flex gap-1">
+          <h1 className="text-2xl font-bold text-on-surface dark:text-inverse-on-surface">Billing Desk</h1>
+          <div className="bg-surface-container-low dark:bg-inverse-surface p-1 rounded-xl flex gap-1">
              {['ALL', 'PENDING', 'UNPAID', 'HISTORY'].map(f => (
                 <button
                    key={f}
                    onClick={() => setTableFilter(f as any)}
-                   className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${tableFilter === f ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}
+                   className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${tableFilter === f ? 'bg-surface-container-lowest dark:bg-inverse-surface/80 text-on-surface dark:text-inverse-on-surface shadow-sm' : 'text-on-surface-variant hover:text-on-surface dark:hover:text-outline-variant'}`}
                 >
                    {f}
                 </button>
              ))}
           </div>
         </div>
-        <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+        <div className="flex items-center gap-4 text-xs text-on-surface-variant dark:text-outline">
           <span className="flex items-center gap-1"><Circle size={8} className="fill-emerald-500 text-emerald-500" /> Free</span>
           <span className="flex items-center gap-1"><Circle size={8} className="fill-amber-500 text-amber-500" /> Occupied</span>
           <span className="flex items-center gap-1"><Circle size={8} className="fill-red-500 text-red-500" /> Delayed</span>
@@ -189,9 +189,9 @@ export default function BillingPage() {
 
       {/* Content Area */}
       {tableFilter === 'HISTORY' ? (
-        <div className="bg-white dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700/50 overflow-hidden shadow-sm">
+        <div className="bg-surface-container-lowest dark:bg-inverse-surface/50 rounded-2xl border border-outline-variant dark:border-outline overflow-hidden shadow-sm">
           <table className="w-full text-left text-sm whitespace-nowrap">
-            <thead className="bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 font-bold text-slate-500 uppercase tracking-widest text-[10px]">
+            <thead className="bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline font-bold text-on-surface-variant uppercase tracking-widest text-[10px]">
               <tr>
                 <th className="px-4 py-3">Order ID</th>
                 <th className="px-4 py-3">Table</th>
@@ -204,30 +204,30 @@ export default function BillingPage() {
             </thead>
             <tbody>
               {historyOrders?.items?.map(o => (
-                <tr key={o.id} className="border-b border-slate-100 dark:border-slate-800 last:border-0 hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                  <td className="px-4 py-3 text-slate-500">#{o.id.slice(-6)}</td>
-                  <td className="px-4 py-3 font-bold text-slate-900 dark:text-white">#{o.table?.number || '-'}</td>
+                <tr key={o.id} className="border-b border-outline-variant dark:border-outline last:border-0 hover:bg-surface-container-low dark:hover:bg-inverse-surface/50">
+                  <td className="px-4 py-3 text-on-surface-variant">#{o.id.slice(-6)}</td>
+                  <td className="px-4 py-3 font-bold text-on-surface dark:text-inverse-on-surface">#{o.table?.number || '-'}</td>
                   <td className="px-4 py-3">
                     {o.customer ? (
                         <div className="flex flex-col">
-                           <span className="font-semibold text-slate-900 dark:text-slate-300">{o.customer.name || 'Guest'}</span>
-                           <span className="text-xs text-brand-400">{o.customer.phone}</span>
+                           <span className="font-semibold text-on-surface dark:text-inverse-on-surface">{o.customer.name || 'Guest'}</span>
+                           <span className="text-xs text-primary">{o.customer.phone}</span>
                         </div>
                     ) : '-'}
                   </td>
-                  <td className="px-4 py-3 text-xs text-slate-500 truncate max-w-[200px]">
+                  <td className="px-4 py-3 text-xs text-on-surface-variant truncate max-w-[200px]">
                     {o.items.map((i: any) => `${i.quantity}x ${i.menuItem?.name || 'Item'}`).join(', ')}
                   </td>
-                  <td className="px-4 py-3 font-bold text-slate-900 dark:text-white">₹{(o.total || 0).toFixed(2)}</td>
+                  <td className="px-4 py-3 font-bold text-on-surface dark:text-inverse-on-surface">₹{(o.total || 0).toFixed(2)}</td>
                   <td className="px-4 py-3">
                     <span className="px-2 py-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 rounded font-bold text-[10px] uppercase">{o.paymentMethod || 'UNKNOWN'}</span>
                   </td>
-                  <td className="px-4 py-3 text-xs text-slate-500">{new Date(o.createdAt).toLocaleString()}</td>
+                  <td className="px-4 py-3 text-xs text-on-surface-variant">{new Date(o.createdAt).toLocaleString()}</td>
                 </tr>
               ))}
               {!historyOrders?.items?.length && (
                  <tr>
-                   <td colSpan={7} className="px-4 py-10 text-center text-slate-500 font-medium">No payment history found.</td>
+                   <td colSpan={7} className="px-4 py-10 text-center text-on-surface-variant font-medium">No payment history found.</td>
                  </tr>
               )}
             </tbody>
@@ -248,14 +248,14 @@ export default function BillingPage() {
             >
               <div className="flex justify-between w-full items-start">
                   <div>
-                      <p className="text-2xl font-bold text-slate-900 dark:text-white leading-none">#{table.number}</p>
-                      <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 truncate max-w-[80px]">{table.branch.name}</p>
+                      <p className="text-2xl font-bold text-on-surface dark:text-inverse-on-surface leading-none">#{table.number}</p>
+                      <p className="text-[10px] text-on-surface-variant dark:text-outline mt-1 truncate max-w-[80px]">{table.branch.name}</p>
                   </div>
                   {table.activeOrder && (
                       <div className="flex flex-col items-end gap-1">
-                          <div className="px-2 py-1 rounded-lg bg-white/50 dark:bg-slate-950/50 border border-slate-200/50 dark:border-slate-700/50 flex flex-col items-end">
-                              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{table.activeOrder.status}</span>
-                              <p className="text-sm text-brand-400 font-bold leading-tight">₹{table.activeOrder.total.toFixed(2)}</p>
+                          <div className="px-2 py-1 rounded-lg bg-surface-container-lowest dark:bg-inverse-surface/50 border border-outline-variant dark:border-outline/50 flex flex-col items-end">
+                              <span className="text-[10px] font-bold text-outline uppercase tracking-widest">{table.activeOrder.status}</span>
+                              <p className="text-sm text-primary font-bold leading-tight">₹{table.activeOrder.total.toFixed(2)}</p>
                           </div>
                           {table.activeOrder.paymentStatus === 'PAID' && (
                               <div className="px-2 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 text-[9px] font-black uppercase tracking-widest animate-pulse">
@@ -267,24 +267,24 @@ export default function BillingPage() {
               </div>
               
               {table.activeOrder ? (
-                <div className="mt-auto w-full pt-3 border-t border-slate-200/50 dark:border-slate-700/50">
+                <div className="mt-auto w-full pt-3 border-t border-outline-variant dark:border-outline/50">
                     <div className="flex flex-col gap-1 overflow-hidden h-12 mask-fade-bottom">
                         {groupItems(table.activeOrder.items).slice(0, 3).map((item, idx) => (
-                            <p key={idx} className="text-xs text-slate-600 dark:text-slate-300 truncate">
-                                <span className="font-bold text-slate-400 mr-1">{item.quantity}x</span> 
+                            <p key={idx} className="text-xs text-on-surface-variant dark:text-inverse-on-surface truncate">
+                                <span className="font-bold text-outline mr-1">{item.quantity}x</span> 
                                 {item.menuItem.name}
                             </p>
                         ))}
                         {groupItems(table.activeOrder.items).length > 3 && (
-                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                            <p className="text-[10px] font-bold text-outline uppercase tracking-widest mt-0.5">
                                 +{groupItems(table.activeOrder.items).length - 3} more items
                             </p>
                         )}
                     </div>
                 </div>
               ) : (
-                  <div className="mt-auto w-full pt-3 border-t border-slate-200/50 dark:border-slate-700/50 flex items-center justify-center h-12">
-                       <p className="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-500/50">TABLE FREE</p>
+                  <div className="mt-auto w-full pt-3 border-t border-outline-variant dark:border-outline/50 flex items-center justify-center h-12">
+                       <p className="text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant/50">TABLE FREE</p>
                   </div>
               )}
             </button>
@@ -294,10 +294,10 @@ export default function BillingPage() {
 
       {/* Table Detail Panel */}
       {selectedTable && (
-        <div className="fixed inset-y-0 right-0 w-96 bg-slate-50 dark:bg-slate-900 border-l border-slate-200 dark:border-slate-700 z-50 overflow-y-auto animate-slide-in shadow-2xl">
-          <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between sticky top-0 bg-slate-50 dark:bg-slate-900 z-10">
+        <div className="fixed inset-y-0 right-0 w-96 bg-surface-container-lowest dark:bg-inverse-surface border-l border-outline-variant dark:border-outline z-50 overflow-y-auto animate-slide-in shadow-2xl">
+          <div className="p-4 border-b border-outline-variant dark:border-outline flex items-center justify-between sticky top-0 bg-surface-container-lowest dark:bg-inverse-surface z-10">
             <h2 className="text-lg font-bold">Table #{selectedTable.number}</h2>
-            <button onClick={() => setSelectedTableId(null)} className="p-1 rounded-lg hover:bg-white dark:bg-slate-800">
+            <button onClick={() => setSelectedTableId(null)} className="p-1 rounded-lg hover:bg-surface-container-low dark:hover:bg-inverse-surface/50">
               <X size={18} />
             </button>
           </div>
@@ -305,53 +305,53 @@ export default function BillingPage() {
           {selectedTable.activeOrder ? (
             <div className="p-4 space-y-4">
               {/* Order Info */}
-              <div className="bg-white dark:bg-slate-800/50 rounded-xl p-3">
+              <div className="bg-surface-container-lowest dark:bg-inverse-surface/50 rounded-xl p-3">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs text-slate-500 dark:text-slate-400">Order #{selectedTable.activeOrder.id.slice(-6)}</span>
+                  <span className="text-xs text-on-surface-variant dark:text-outline">Order #{selectedTable.activeOrder.id.slice(-6)}</span>
                   <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${
                     selectedTable.activeOrder.status === 'READY' ? 'bg-emerald-500/20 text-emerald-400' :
                     selectedTable.activeOrder.status === 'PREPARING' ? 'bg-amber-500/20 text-amber-400' :
                     'bg-blue-500/20 text-blue-400'
                   }`}>{selectedTable.activeOrder.status}</span>
                 </div>
-                <p className="text-xs text-slate-500">{new Date(selectedTable.activeOrder.createdAt).toLocaleString()}</p>
+                <p className="text-xs text-on-surface-variant">{new Date(selectedTable.activeOrder.createdAt).toLocaleString()}</p>
                 
                 {selectedTable.activeOrder.customer ? (
-                  <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-700/50">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5 flex items-center gap-1.5">
+                  <div className="mt-3 pt-3 border-t border-outline-variant dark:border-outline/50">
+                    <p className="text-[10px] font-bold text-outline uppercase tracking-widest mb-1.5 flex items-center gap-1.5">
                        Customer Details
                     </p>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-brand-500/10 flex items-center justify-center">
-                          <User size={14} className="text-brand-500" />
+                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                          <User size={14} className="text-primary" />
                         </div>
                         <div className="flex-1">
-                          <p className="text-sm font-bold text-slate-900 dark:text-white leading-none mb-1">
+                          <p className="text-sm font-bold text-on-surface dark:text-inverse-on-surface leading-none mb-1">
                             {selectedTable.activeOrder.customer.name || 'Guest'}
                           </p>
-                          <p className="text-xs font-semibold text-brand-400 flex items-center gap-1 leading-none mt-1">
+                          <p className="text-xs font-semibold text-primary flex items-center gap-1 leading-none mt-1">
                             {selectedTable.activeOrder.customer.phone}
                           </p>
                         </div>
                       </div>
-                      <a href={`tel:${selectedTable.activeOrder.customer.phone}`} className="p-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl transition-colors">
-                        <Phone size={14} className="text-brand-500" />
+                      <a href={`tel:${selectedTable.activeOrder.customer.phone}`} className="p-2 bg-surface-container-low dark:bg-inverse-surface hover:bg-surface-container-high dark:hover:bg-inverse-surface/80 rounded-xl transition-colors">
+                        <Phone size={14} className="text-primary" />
                       </a>
                     </div>
                   </div>
                 ) : (
-                  <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-700/50">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                  <div className="mt-3 pt-3 border-t border-outline-variant dark:border-outline/50">
+                    <p className="text-[10px] font-bold text-outline uppercase tracking-widest mb-1.5">
                        Customer Details
                     </p>
                     <div className="flex items-center gap-2">
-                       <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
-                         <User size={14} className="text-slate-400" />
+                       <div className="w-8 h-8 rounded-full bg-surface-container-low dark:bg-inverse-surface flex items-center justify-center">
+                         <User size={14} className="text-outline" />
                        </div>
                        <div>
-                         <p className="text-sm font-bold text-slate-500 dark:text-slate-400 leading-none">Guest Walk-in</p>
-                         <p className="text-xs text-slate-400 mt-0.5">Details unavailable</p>
+                         <p className="text-sm font-bold text-on-surface-variant dark:text-outline leading-none">Guest Walk-in</p>
+                         <p className="text-xs text-outline mt-0.5">Details unavailable</p>
                        </div>
                     </div>
                   </div>
@@ -360,29 +360,29 @@ export default function BillingPage() {
 
               {/* Items */}
               <div>
-                <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold mb-2">ITEMS</p>
+                <p className="text-xs text-on-surface-variant dark:text-outline font-semibold mb-2">ITEMS</p>
                 {groupItems(selectedTable.activeOrder.items).map((item, idx) => (
-                  <div key={idx} className="flex items-center justify-between py-2 border-b border-slate-200 dark:border-slate-800/50 last:border-0">
+                  <div key={idx} className="flex items-center justify-between py-2 border-b border-outline-variant dark:border-outline/50 last:border-0">
                     <div className="flex items-center gap-2">
                       <span className={`w-2 h-2 rounded-full ${
                         item.status === 'READY' ? 'bg-emerald-500' :
                         item.status === 'PREPARING' ? 'bg-amber-500' :
-                        'bg-slate-500'
+                        'bg-surface-container-lowest dark:bg-inverse-surface0'
                       }`} />
                       <span className="text-sm">{item.quantity}x {item.menuItem.name}</span>
                     </div>
-                    <span className="text-[10px] text-slate-500">{item.status}</span>
+                    <span className="text-[10px] text-on-surface-variant">{item.status}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="text-right text-lg font-bold text-brand-400">
+              <div className="text-right text-lg font-bold text-primary">
                 Total: ₹{selectedTable.activeOrder.total.toFixed(2)}
               </div>
 
               {/* Actions */}
               <div className="space-y-2">
-                <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold">STATUS</p>
+                <p className="text-xs text-on-surface-variant dark:text-outline font-semibold">STATUS</p>
                 <div className="grid grid-cols-2 gap-2">
                   {['CONFIRMED', 'READY', 'SERVED', 'COMPLETED'].map((s) => (
                     <button
@@ -391,8 +391,8 @@ export default function BillingPage() {
                       disabled={isReadOnly}
                       className={`px-3 py-2 rounded-xl text-xs font-medium transition-all ${
                         selectedTable.activeOrder?.status === s
-                          ? 'bg-brand-500 text-slate-900 dark:text-white'
-                          : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:bg-slate-700'
+                          ? 'bg-primary text-on-surface dark:text-inverse-on-surface'
+                          : 'bg-surface-container-lowest dark:bg-inverse-surface text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-inverse-surface/80'
                       } ${isReadOnly ? 'opacity-50 cursor-not-allowed' : ''}`}
                     >{s}</button>
                   ))}
@@ -403,7 +403,7 @@ export default function BillingPage() {
               {selectedTable.activeOrder.paymentStatus !== 'PAID' && (
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold">PAYMENT METHOD</p>
+                    <p className="text-xs text-on-surface-variant dark:text-outline font-semibold">PAYMENT METHOD</p>
                     <span className="text-[10px] font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full">UNPAID</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
@@ -429,15 +429,15 @@ export default function BillingPage() {
                     <CheckCircle size={14} className="text-emerald-400" />
                     <span className="text-xs font-bold text-emerald-400">Payment Collected</span>
                   </div>
-                  <p className="text-xs text-slate-500 mt-2">Edit Payment Method</p>
+                  <p className="text-xs text-on-surface-variant mt-2">Edit Payment Method</p>
                   <div className="grid grid-cols-3 gap-2">
                      {['CASH', 'UPI', 'CARD', 'FREE'].map((m) => (
                       <button
                         key={m}
                         onClick={() => !isReadOnly && handlePayment(selectedTable.activeOrder!.id, m)}
                         disabled={isReadOnly}
-                        className={`px-3 py-2 bg-slate-800 text-slate-400 rounded-xl text-xs font-bold border border-slate-700 ${
-                          isReadOnly ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-700 hover:text-white'
+                        className={`px-3 py-2 bg-inverse-surface text-outline rounded-xl text-xs font-bold border border-outline ${
+                          isReadOnly ? 'opacity-50 cursor-not-allowed' : 'hover:bg-inverse-surface/80 hover:text-inverse-on-surface'
                         } transition-colors`}
                       >
                         {m}
@@ -450,14 +450,14 @@ export default function BillingPage() {
               <div className="grid grid-cols-2 gap-2">
                 <button
                   onClick={() => handlePrintBill(selectedTable.activeOrder!.id)}
-                  className="flex items-center justify-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl text-xs font-bold hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700"
+                  className="flex items-center justify-center gap-2 px-4 py-2.5 bg-surface-container-lowest dark:bg-inverse-surface text-on-surface dark:text-inverse-on-surface rounded-xl text-xs font-bold hover:bg-surface-container-high dark:hover:bg-inverse-surface/80 transition-colors border border-outline-variant dark:border-outline"
                 >
                   <Printer size={16} /> Bill
                 </button>
                 {selectedTable.activeOrder.customer && (
                   <button
                     onClick={() => handlePrintSummary(selectedTable.activeOrder!.customer!.id)}
-                    className="flex items-center justify-center gap-2 px-4 py-2.5 bg-brand-500 text-slate-900 dark:text-white rounded-xl text-xs font-bold hover:bg-brand-600 transition-colors"
+                    className="flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-on-surface dark:text-inverse-on-surface rounded-xl text-xs font-bold hover:bg-primary-container hover:text-on-primary-container transition-colors"
                   >
                     <CheckCircle size={16} /> Day Summary
                   </button>
@@ -467,7 +467,7 @@ export default function BillingPage() {
           ) : (
             <div className="p-4 text-center py-12">
               <CheckCircle size={40} className="text-emerald-500 mx-auto mb-3" />
-              <p className="text-slate-500 dark:text-slate-400">Table is free</p>
+              <p className="text-on-surface-variant dark:text-outline">Table is free</p>
             </div>
           )}
         </div>
@@ -476,14 +476,14 @@ export default function BillingPage() {
       {/* Payment Confirmation Modal — pops up after key status changes */}
       {pendingStatus && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[100] p-4">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-700">
-            <div className="p-6 text-center border-b border-slate-100 dark:border-slate-800">
+          <div className="bg-surface-container-lowest dark:bg-inverse-surface rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl border border-outline-variant dark:border-outline">
+            <div className="p-6 text-center border-b border-outline-variant dark:border-outline">
               <div className="w-16 h-16 bg-amber-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <CreditCard size={28} className="text-amber-500" />
               </div>
-              <h3 className="text-xl font-black text-slate-900 dark:text-white mb-1">Select Payment Method</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
-                Order status changed to <span className="font-bold text-brand-400">{pendingStatus.status}</span>.
+              <h3 className="text-xl font-black text-on-surface dark:text-inverse-on-surface mb-1">Select Payment Method</h3>
+              <p className="text-sm text-on-surface-variant dark:text-outline">
+                Order status changed to <span className="font-bold text-primary">{pendingStatus.status}</span>.
                 <br />How did the customer pay?
               </p>
             </div>
@@ -497,18 +497,18 @@ export default function BillingPage() {
                 <button
                   key={method}
                   onClick={() => handlePayment(pendingStatus.orderId, method)}
-                  className="w-full flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800 hover:bg-brand-50 dark:hover:bg-brand-500/10 border border-slate-200 dark:border-slate-700 hover:border-brand-500/40 rounded-2xl transition-all text-left group"
+                  className="w-full flex items-center gap-4 p-4 bg-surface-container-lowest dark:bg-inverse-surface hover:bg-primary/5 dark:hover:bg-primary/10 border border-outline-variant dark:border-outline hover:border-primary/40 rounded-2xl transition-all text-left group"
                 >
                   <span className="text-2xl">{icon}</span>
                   <div className="flex-1">
-                    <p className="font-bold text-slate-900 dark:text-white text-sm group-hover:text-brand-500 transition-colors">{label}</p>
-                    <p className="text-xs text-slate-400">{desc}</p>
+                    <p className="font-bold text-on-surface dark:text-inverse-on-surface text-sm group-hover:text-primary transition-colors">{label}</p>
+                    <p className="text-xs text-outline">{desc}</p>
                   </div>
                 </button>
               ))}
               <button
                 onClick={() => setPendingStatus(null)}
-                className="w-full py-2.5 text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors mt-2"
+                className="w-full py-2.5 text-xs text-outline hover:text-on-surface-variant dark:hover:text-outline-variant transition-colors mt-2"
               >
                 Skip for now (mark payment later)
               </button>

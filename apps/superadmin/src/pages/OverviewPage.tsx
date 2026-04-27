@@ -48,25 +48,25 @@ export default function OverviewPage() {
     { label: 'MRR', value: `₹${(stats?.mrr || 0).toLocaleString()}`, icon: IndianRupee, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
     { label: 'Total Restaurants', value: stats?.totalRestaurants || 0, icon: Building2, color: 'text-purple-400', bg: 'bg-purple-500/10' },
     { label: 'Active', value: stats?.activeRestaurants || 0, icon: TrendingUp, color: 'text-blue-400', bg: 'bg-blue-500/10' },
-    { label: 'Orders Today', value: stats?.totalOrdersToday || 0, icon: ShoppingBag, color: 'text-brand-400', bg: 'bg-brand-500/10' },
+    { label: 'Orders Today', value: stats?.totalOrdersToday || 0, icon: ShoppingBag, color: 'text-primary', bg: 'bg-primary/10' },
     { label: 'Churn Rate', value: `${stats?.churnRate || 0}%`, icon: Users, color: 'text-red-400', bg: 'bg-red-500/10' },
   ];
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-10">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Platform Overview</h1>
-        <p className="text-sm text-slate-500 dark:text-brand-300/60 mt-1">DineSmart network statistics and health</p>
+        <h1 className="text-2xl font-bold text-on-surface dark:text-inverse-on-surface">Platform Overview</h1>
+        <p className="text-sm text-on-surface-variant dark:text-primary/60 mt-1">DineSmart network statistics and health</p>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         {statCards.map((stat) => (
-          <div key={stat.label} className="bg-white dark:bg-slate-900 rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-brand-500/10 hover:border-brand-500/30 transition-colors group">
+          <div key={stat.label} className="bg-surface-container-lowest dark:bg-inverse-surface rounded-2xl p-4 shadow-sm border border-outline-variant dark:border-primary/10 hover:border-primary/30 transition-colors group">
             <div className={`w-9 h-9 rounded-xl ${stat.bg} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
               <stat.icon size={18} className={stat.color} />
             </div>
-            <p className="text-2xl font-bold text-slate-900 dark:text-white mb-1">{stat.value}</p>
-            <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-brand-300/50">{stat.label}</p>
+            <p className="text-2xl font-bold text-on-surface dark:text-inverse-on-surface mb-1">{stat.value}</p>
+            <p className="text-[10px] font-black uppercase tracking-widest text-on-surface-variant dark:text-primary/50">{stat.label}</p>
           </div>
         ))}
       </div>
@@ -74,13 +74,13 @@ export default function OverviewPage() {
       <div className="grid lg:grid-cols-3 gap-6 mt-8">
         {/* Left Column: Charts */}
         <div className="lg:col-span-2 space-y-6">
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-brand-500/10 shadow-sm relative overflow-hidden">
+            <div className="bg-surface-container-lowest dark:bg-inverse-surface rounded-2xl p-6 border border-outline-variant dark:border-primary/10 shadow-sm relative overflow-hidden">
                 <div className="flex items-center justify-between mb-6">
                     <div>
-                        <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <h3 className="text-lg font-bold text-on-surface dark:text-inverse-on-surface flex items-center gap-2">
                         <TrendingUp size={18} className="text-emerald-500" /> MRR Growth
                         </h3>
-                        <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mt-1">Monthly Recurring Revenue projection</p>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-on-surface-variant mt-1">Monthly Recurring Revenue projection</p>
                     </div>
                 </div>
                 <div className="h-64 -ml-4">
@@ -105,13 +105,13 @@ export default function OverviewPage() {
                 </div>
             </div>
 
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-brand-500/10 shadow-sm relative overflow-hidden">
+            <div className="bg-surface-container-lowest dark:bg-inverse-surface rounded-2xl p-6 border border-outline-variant dark:border-primary/10 shadow-sm relative overflow-hidden">
                 <div className="flex items-center justify-between mb-6">
                     <div>
-                        <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                        <Users size={18} className="text-brand-500" /> Platform Sign-ups
+                        <h3 className="text-lg font-bold text-on-surface dark:text-inverse-on-surface flex items-center gap-2">
+                        <Users size={18} className="text-primary" /> Platform Sign-ups
                         </h3>
-                        <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mt-1">New restaurant instances deployed</p>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-on-surface-variant mt-1">New restaurant instances deployed</p>
                     </div>
                 </div>
                 <div className="h-64 -ml-4">
@@ -133,30 +133,30 @@ export default function OverviewPage() {
 
         {/* Right Column: Lists & Feeds */}
         <div className="space-y-6">
-            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-brand-500/10 shadow-sm overflow-hidden flex flex-col h-[351px]">
-                <div className="p-5 border-b border-slate-200 dark:border-slate-800">
-                    <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <div className="bg-surface-container-lowest dark:bg-inverse-surface rounded-2xl border border-outline-variant dark:border-primary/10 shadow-sm overflow-hidden flex flex-col h-[351px]">
+                <div className="p-5 border-b border-outline-variant dark:border-outline">
+                    <h3 className="font-bold text-on-surface dark:text-inverse-on-surface flex items-center gap-2">
                         <Zap size={18} className="text-yellow-500" /> Top Performers
                     </h3>
                 </div>
-                <div className="divide-y divide-slate-100 dark:divide-slate-800/50 flex-1 overflow-y-auto">
+                <div className="divide-y divide-outline-variant dark:divide-outline flex-1 overflow-y-auto">
                     {!restaurants?.items || restaurants.items.length === 0 ? (
-                        <div className="p-8 text-center text-slate-500 text-sm">No active restaurants yet</div>
+                        <div className="p-8 text-center text-on-surface-variant text-sm">No active restaurants yet</div>
                     ) : (
                         restaurants.items.slice(0, 5).map((r: any, idx: number) => (
-                            <div key={r.id} className="p-4 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                            <div key={r.id} className="p-4 flex items-center justify-between hover:bg-surface-container-low dark:hover:bg-inverse-surface/30 transition-colors">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold text-xs text-slate-500 border border-slate-200 dark:border-slate-700">
+                                    <div className="w-8 h-8 rounded-full bg-surface-container-low dark:bg-inverse-surface flex items-center justify-center font-bold text-xs text-on-surface-variant border border-outline-variant dark:border-outline-variant/20">
                                         #{idx + 1}
                                     </div>
                                     <div className="overflow-hidden max-w-[120px]">
-                                        <p className="text-sm font-bold text-slate-900 dark:text-white truncate">{r.name}</p>
-                                        <p className="text-[10px] font-black uppercase text-slate-500 tracking-wider">Plan: {r.plan}</p>
+                                        <p className="text-sm font-bold text-on-surface dark:text-inverse-on-surface truncate">{r.name}</p>
+                                        <p className="text-[10px] font-black uppercase text-on-surface-variant tracking-wider">Plan: {r.plan}</p>
                                     </div>
                                 </div>
                                 <div className="text-right flex-shrink-0">
                                     <p className="text-sm font-bold text-emerald-500">₹{r.monthlyRevenue?.toLocaleString() || 0}</p>
-                                    <p className="text-[10px] text-slate-500 uppercase tracking-wider font-black">{r._count.orders} Orders</p>
+                                    <p className="text-[10px] text-on-surface-variant uppercase tracking-wider font-black">{r._count.orders} Orders</p>
                                 </div>
                             </div>
                         ))
@@ -164,22 +164,22 @@ export default function OverviewPage() {
                 </div>
             </div>
 
-            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-brand-500/10 shadow-sm overflow-hidden">
-                <div className="p-5 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
-                    <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                        <BellRing size={18} className="text-brand-500" /> Recent Activity
+            <div className="bg-surface-container-lowest dark:bg-inverse-surface rounded-2xl border border-outline-variant dark:border-primary/10 shadow-sm overflow-hidden">
+                <div className="p-5 border-b border-outline-variant dark:border-outline flex justify-between items-center">
+                    <h3 className="font-bold text-on-surface dark:text-inverse-on-surface flex items-center gap-2">
+                        <BellRing size={18} className="text-primary" /> Recent Activity
                     </h3>
-                    <button className="text-xs text-brand-500 hover:text-brand-400 font-bold uppercase tracking-wider">View All</button>
+                    <button className="text-xs text-primary hover:text-primary-container font-bold uppercase tracking-wider">View All</button>
                 </div>
                 <div className="p-2 space-y-1">
                     {recentActivity.map((activity) => (
-                        <div key={activity.id} className="p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors flex items-start gap-3">
+                        <div key={activity.id} className="p-3 rounded-xl hover:bg-surface-container-low dark:hover:bg-inverse-surface/50 transition-colors flex items-start gap-3">
                             <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${activity.bg}`}>
                                 <activity.icon size={16} className={activity.color} />
                             </div>
                             <div>
-                                <p className="text-sm font-medium text-slate-700 dark:text-white line-clamp-2 leading-snug">{activity.message}</p>
-                                <p className="text-[10px] font-bold tracking-wider uppercase text-slate-500 mt-1">{activity.time}</p>
+                                <p className="text-sm font-medium text-on-surface-variant dark:text-inverse-on-surface line-clamp-2 leading-snug">{activity.message}</p>
+                                <p className="text-[10px] font-bold tracking-wider uppercase text-on-surface-variant mt-1">{activity.time}</p>
                             </div>
                         </div>
                     ))}

@@ -127,8 +127,8 @@ export default function MenuManagementPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Menu Management</h1>
-          <div className="flex gap-2 text-xs text-slate-500 dark:text-slate-400 mt-1">
+          <h1 className="text-2xl font-bold text-on-surface dark:text-inverse-on-surface">Menu Management</h1>
+          <div className="flex gap-2 text-xs text-on-surface-variant dark:text-outline mt-1">
             <span>{categories?.length || 0} categories</span>
             <span>•</span>
             <span>{items?.length || 0} items</span>
@@ -141,7 +141,7 @@ export default function MenuManagementPage() {
                 setImagePreview(null);
                 setIsCreating(true);
             }} 
-            className="bg-brand-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg shadow-brand-500/20 hover:bg-brand-600 transition-colors"
+            className="bg-primary text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg shadow-primary/20 hover:bg-primary-container hover:text-on-primary-container transition-colors"
         >
           + Add Item
         </button>
@@ -152,7 +152,7 @@ export default function MenuManagementPage() {
         <button
           onClick={() => setCategoryFilter('all')}
           className={`px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-all ${
-            categoryFilter === 'all' ? 'bg-brand-500 text-slate-900 dark:text-white' : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:bg-slate-700'
+            categoryFilter === 'all' ? 'bg-primary text-on-surface dark:text-inverse-on-surface' : 'bg-surface-container-lowest dark:bg-inverse-surface text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-inverse-surface/50'
           }`}
         >All ({items?.length || 0})</button>
         {categories?.map((cat) => (
@@ -160,7 +160,7 @@ export default function MenuManagementPage() {
             key={cat.id}
             onClick={() => setCategoryFilter(cat.name)}
             className={`px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-all ${
-              categoryFilter === cat.name ? 'bg-brand-500 text-slate-900 dark:text-white' : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:bg-slate-700'
+              categoryFilter === cat.name ? 'bg-primary text-on-surface dark:text-inverse-on-surface' : 'bg-surface-container-lowest dark:bg-inverse-surface text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-inverse-surface/50'
             }`}
           >{cat.name} ({cat._count.menuItems})</button>
         ))}
@@ -168,21 +168,21 @@ export default function MenuManagementPage() {
 
       {/* Search */}
       <div className="relative">
-        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400" />
+        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant dark:text-outline" />
         <input
           type="text"
           placeholder="Search items..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-800 rounded-xl text-sm text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 focus:border-brand-500 focus:outline-none"
+          className="w-full pl-10 pr-4 py-2.5 bg-surface-container-lowest dark:bg-inverse-surface rounded-xl text-sm text-on-surface dark:text-inverse-on-surface border border-outline-variant dark:border-outline focus:border-primary focus:outline-none"
         />
       </div>
 
       {/* Items Table */}
-      <div className="bg-white dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700/50 overflow-hidden">
+      <div className="bg-surface-container-lowest dark:bg-inverse-surface/50 rounded-2xl border border-outline-variant dark:border-outline/50 overflow-hidden">
         <table className="w-full">
           <thead>
-            <tr className="text-xs text-slate-500 border-b border-slate-200 dark:border-slate-700">
+            <tr className="text-xs text-on-surface-variant border-b border-outline-variant dark:border-outline">
               <th className="text-left py-3 px-4">Item</th>
               <th className="text-left py-3 px-4">Category</th>
               <th className="text-center py-3 px-4">Price</th>
@@ -194,10 +194,10 @@ export default function MenuManagementPage() {
           </thead>
           <tbody>
             {filteredItems?.map((item) => (
-              <tr key={item.id} className="border-b border-slate-200 dark:border-slate-700/30 hover:bg-slate-100 dark:bg-slate-700/10 transition-colors">
+              <tr key={item.id} className="border-b border-outline-variant dark:border-outline/30 hover:bg-surface-container-high dark:hover:bg-inverse-surface/50 transition-colors">
                 <td className="py-3 px-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-lg flex-shrink-0 overflow-hidden">
+                    <div className="w-10 h-10 rounded-lg bg-surface-container-low dark:bg-inverse-surface flex items-center justify-center text-lg flex-shrink-0 overflow-hidden">
                       {item.imageUrl ? (
                         <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
                       ) : (
@@ -209,16 +209,16 @@ export default function MenuManagementPage() {
                         <span className={`w-2.5 h-2.5 rounded-sm border ${item.isVeg ? 'border-green-500' : 'border-red-500'}`}>
                           <span className={`block w-1 h-1 rounded-full m-[1.5px] ${item.isVeg ? 'bg-green-500' : 'bg-red-500'}`} />
                         </span>
-                        <span className="text-sm font-medium text-slate-900 dark:text-white">{item.name}</span>
+                        <span className="text-sm font-medium text-on-surface dark:text-inverse-on-surface">{item.name}</span>
                       </div>
-                      <p className="text-xs text-slate-500 truncate max-w-[200px]">{item.description}</p>
+                      <p className="text-xs text-on-surface-variant truncate max-w-[200px]">{item.description}</p>
                     </div>
                   </div>
                 </td>
-                <td className="py-3 px-4 text-xs text-slate-500 dark:text-slate-400">{item.category.name}</td>
+                <td className="py-3 px-4 text-xs text-on-surface-variant dark:text-outline">{item.category.name}</td>
                 <td className="py-3 px-4 text-sm font-semibold text-center">₹{item.price}</td>
-                <td className="py-3 px-4 text-sm text-center text-slate-500 dark:text-slate-400">{item.orderCount}</td>
-                <td className="py-3 px-4 text-xs text-center text-slate-500">{item.preparationTimeMinutes}m</td>
+                <td className="py-3 px-4 text-sm text-center text-on-surface-variant dark:text-outline">{item.orderCount}</td>
+                <td className="py-3 px-4 text-xs text-center text-on-surface-variant">{item.preparationTimeMinutes}m</td>
                 <td className="py-3 px-4 text-center">
                   <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${
                     item.isAvailable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'
@@ -228,7 +228,7 @@ export default function MenuManagementPage() {
                   <div className="flex items-center justify-center gap-1">
                       <button
                         onClick={() => handleToggle(item.id)}
-                        className="p-1.5 rounded-lg hover:bg-slate-100 dark:bg-slate-700 transition-colors"
+                        className="p-1.5 rounded-lg hover:bg-surface-container-high dark:hover:bg-inverse-surface/50 transition-colors"
                         title={item.isAvailable ? 'Mark unavailable' : 'Mark available'}
                       >
                         {item.isAvailable ? <Eye size={16} className="text-emerald-400" /> : <EyeOff size={16} className="text-red-400" />}
@@ -248,10 +248,10 @@ export default function MenuManagementPage() {
                             setImagePreview(item.imageUrl);
                             setIsCreating(true);
                         }}
-                        className="p-1.5 rounded-lg hover:bg-brand-50 dark:hover:bg-brand-500/10 transition-colors group"
+                        className="p-1.5 rounded-lg hover:bg-primary/10 transition-colors group"
                         title="Edit Item"
                       >
-                          <Pencil size={14} className="text-slate-400 group-hover:text-brand-500" />
+                          <Pencil size={14} className="text-outline group-hover:text-primary" />
                       </button>
                   </div>
                 </td>
@@ -263,38 +263,38 @@ export default function MenuManagementPage() {
 
       {isCreating && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
-          <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 w-full max-w-md border border-slate-200 dark:border-slate-800 max-h-[90vh] overflow-y-auto">
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
+          <div className="bg-surface-container-lowest dark:bg-inverse-surface rounded-2xl p-6 w-full max-w-md border border-outline-variant dark:border-outline max-h-[90vh] overflow-y-auto">
+            <h3 className="text-lg font-bold text-on-surface dark:text-inverse-on-surface mb-4">
                 {editItemId ? 'Edit Menu Item' : 'Add Menu Item'}
             </h3>
             <form onSubmit={handleSave} className="space-y-4">
               <div>
-                <label className="block text-xs font-medium text-slate-500 mb-1">Item Name</label>
-                <input required type="text" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} className="w-full px-4 py-2 bg-slate-50 dark:bg-slate-800 rounded-xl text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700" />
+                <label className="block text-xs font-medium text-on-surface-variant mb-1">Item Name</label>
+                <input required type="text" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} className="w-full px-4 py-2 bg-surface-container-lowest dark:bg-inverse-surface rounded-xl text-on-surface dark:text-inverse-on-surface border border-outline-variant dark:border-outline" />
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-500 mb-1">Description</label>
-                <textarea value={formData.description} onChange={e => setFormData({ ...formData, description: e.target.value })} className="w-full px-4 py-2 bg-slate-50 dark:bg-slate-800 rounded-xl text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700" rows={2} />
+                <label className="block text-xs font-medium text-on-surface-variant mb-1">Description</label>
+                <textarea value={formData.description} onChange={e => setFormData({ ...formData, description: e.target.value })} className="w-full px-4 py-2 bg-surface-container-lowest dark:bg-inverse-surface rounded-xl text-on-surface dark:text-inverse-on-surface border border-outline-variant dark:border-outline" rows={2} />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-500 mb-1">Price (₹)</label>
-                  <input required type="number" min="0" step="0.01" value={formData.price} onChange={e => setFormData({ ...formData, price: e.target.value })} className="w-full px-4 py-2 bg-slate-50 dark:bg-slate-800 rounded-xl text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700" />
+                  <label className="block text-xs font-medium text-on-surface-variant mb-1">Price (₹)</label>
+                  <input required type="number" min="0" step="0.01" value={formData.price} onChange={e => setFormData({ ...formData, price: e.target.value })} className="w-full px-4 py-2 bg-surface-container-lowest dark:bg-inverse-surface rounded-xl text-on-surface dark:text-inverse-on-surface border border-outline-variant dark:border-outline" />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-500 mb-1">Prep Time (mins)</label>
-                  <input required type="number" min="0" value={formData.preparationTimeMinutes} onChange={e => setFormData({ ...formData, preparationTimeMinutes: e.target.value })} className="w-full px-4 py-2 bg-slate-50 dark:bg-slate-800 rounded-xl text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700" />
+                  <label className="block text-xs font-medium text-on-surface-variant mb-1">Prep Time (mins)</label>
+                  <input required type="number" min="0" value={formData.preparationTimeMinutes} onChange={e => setFormData({ ...formData, preparationTimeMinutes: e.target.value })} className="w-full px-4 py-2 bg-surface-container-lowest dark:bg-inverse-surface rounded-xl text-on-surface dark:text-inverse-on-surface border border-outline-variant dark:border-outline" />
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-500 mb-1">Category</label>
-                <select required value={formData.categoryId} onChange={e => setFormData({ ...formData, categoryId: e.target.value })} className="w-full px-4 py-2 bg-slate-50 dark:bg-slate-800 rounded-xl text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700">
+                <label className="block text-xs font-medium text-on-surface-variant mb-1">Category</label>
+                <select required value={formData.categoryId} onChange={e => setFormData({ ...formData, categoryId: e.target.value })} className="w-full px-4 py-2 bg-surface-container-lowest dark:bg-inverse-surface rounded-xl text-on-surface dark:text-inverse-on-surface border border-outline-variant dark:border-outline">
                   <option value="" disabled>Select Category</option>
                   {categories?.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-500 mb-1">Item Image (optional)</label>
+                <label className="block text-xs font-medium text-on-surface-variant mb-1">Item Image (optional)</label>
                 <input
                   ref={fileInputRef}
                   type="file"
@@ -303,7 +303,7 @@ export default function MenuManagementPage() {
                   onChange={e => e.target.files?.[0] && handleImageSelect(e.target.files[0])}
                 />
                 {imagePreview ? (
-                  <div className="relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                  <div className="relative rounded-xl overflow-hidden border border-outline-variant dark:border-outline">
                     <img src={imagePreview} alt="Preview" className="w-full h-32 object-cover" />
                     {uploadingImage && (
                       <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -322,7 +322,7 @@ export default function MenuManagementPage() {
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="w-full h-24 border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-xl flex flex-col items-center justify-center gap-2 text-slate-400 hover:border-brand-400 hover:text-brand-400 transition-colors"
+                    className="w-full h-24 border-2 border-dashed border-outline-variant dark:border-outline rounded-xl flex flex-col items-center justify-center gap-2 text-outline hover:border-primary-container hover:text-primary transition-colors"
                   >
                     <ImagePlus size={24} />
                     <span className="text-xs font-medium">Click to upload image</span>
@@ -330,13 +330,13 @@ export default function MenuManagementPage() {
                 )}
               </div>
               <div className="flex items-center gap-2 mt-2">
-                <input type="checkbox" id="isVeg" checked={formData.isVeg} onChange={e => setFormData({ ...formData, isVeg: e.target.checked })} className="w-4 h-4 rounded text-brand-500 focus:ring-brand-500" />
-                <label htmlFor="isVeg" className="text-sm font-medium text-slate-700 dark:text-slate-300">Vegetarian 🟢</label>
+                <input type="checkbox" id="isVeg" checked={formData.isVeg} onChange={e => setFormData({ ...formData, isVeg: e.target.checked })} className="w-4 h-4 rounded text-primary focus:ring-primary" />
+                <label htmlFor="isVeg" className="text-sm font-medium text-on-surface-variant dark:text-inverse-on-surface">Vegetarian 🟢</label>
               </div>
               
-              <div className="flex gap-2 mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
-                <button type="button" onClick={() => setIsCreating(false)} className="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm font-semibold">Cancel</button>
-                <button type="submit" disabled={isSubmitting} className="flex-1 py-2.5 bg-brand-500 text-white rounded-xl text-sm font-semibold hover:bg-brand-600">Save Item</button>
+              <div className="flex gap-2 mt-6 pt-4 border-t border-outline-variant dark:border-outline">
+                <button type="button" onClick={() => setIsCreating(false)} className="flex-1 py-2.5 bg-surface-container-low dark:bg-inverse-surface rounded-xl text-sm font-semibold">Cancel</button>
+                <button type="submit" disabled={isSubmitting} className="flex-1 py-2.5 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary-container hover:text-on-primary-container">Save Item</button>
               </div>
             </form>
           </div>

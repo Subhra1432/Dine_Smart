@@ -36,13 +36,13 @@ export function TableQRCode({ tableNumber, qrCodeUrl, baseUrlOverride }: TableQR
   };
 
   return (
-    <div className="flex flex-col items-center bg-white p-6 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 hover:scale-[1.02] transition-transform duration-300">
+    <div className="flex flex-col items-center bg-surface-container-lowest dark:bg-inverse-surface p-6 rounded-3xl border border-outline-variant dark:border-outline shadow-xl hover:scale-[1.02] transition-transform duration-300">
       <div className="mb-4 text-center">
-        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-600 mb-1">DineSmart Online</h4>
-        <div className="h-0.5 w-8 bg-brand-500 mx-auto rounded-full" />
+        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-1">DineSmart Online</h4>
+        <div className="h-0.5 w-8 bg-primary mx-auto rounded-full" />
       </div>
       
-      <div className="relative p-3 bg-slate-50 rounded-2xl border border-slate-100 mb-4">
+      <div className="relative p-3 bg-surface-container-low dark:bg-surface-container-high rounded-2xl border border-outline-variant mb-4">
         <QRCodeCanvas
           id={`qr-table-${tableNumber}`}
           value={finalQrUrl}
@@ -58,18 +58,18 @@ export function TableQRCode({ tableNumber, qrCodeUrl, baseUrlOverride }: TableQR
 
       <div className="w-full text-center space-y-3">
         <div>
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Table Number</p>
-          <p className="text-3xl font-black text-slate-900 leading-none">{tableNumber}</p>
+          <p className="text-[10px] font-bold text-outline uppercase tracking-wider mb-0.5">Table Number</p>
+          <p className="text-3xl font-black text-on-surface dark:text-inverse-on-surface leading-none">{tableNumber}</p>
         </div>
         
-        <p className="text-[9px] font-medium text-slate-400 max-w-[180px] break-all border-t border-slate-100 pt-3" title={finalQrUrl}>
+        <p className="text-[9px] font-medium text-outline max-w-[180px] break-all border-t border-outline-variant dark:border-outline pt-3" title={finalQrUrl}>
           {finalQrUrl}
         </p>
 
         <div className="flex gap-2 pt-2">
           <button 
             onClick={downloadQR}
-            className="flex-1 py-3 bg-slate-900 text-white rounded-2xl text-[11px] font-bold hover:bg-black transition-all active:scale-95 shadow-lg shadow-black/10"
+            className="flex-1 py-3 bg-primary text-on-primary rounded-2xl text-[11px] font-bold hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-95 shadow-lg"
           >
             Download Print
           </button>
@@ -78,7 +78,7 @@ export function TableQRCode({ tableNumber, qrCodeUrl, baseUrlOverride }: TableQR
               navigator.clipboard.writeText(finalQrUrl);
               alert('Link copied to clipboard!');
             }}
-            className="p-3 bg-slate-100 text-slate-600 rounded-2xl hover:bg-slate-200 transition-all active:scale-95"
+            className="p-3 bg-surface-container-low dark:bg-inverse-surface text-on-surface-variant dark:text-inverse-on-surface rounded-2xl hover:bg-surface-container-high dark:hover:bg-outline-variant/20 transition-all active:scale-95"
             title="Copy URL"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>

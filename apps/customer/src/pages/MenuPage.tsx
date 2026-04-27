@@ -209,13 +209,13 @@ export default function MenuPage() {
 
   if (!slug || !tableId) {
     return (
-      <div className="flex items-center justify-center min-h-screen p-6 text-center bg-slate-950">
+      <div className="flex items-center justify-center min-h-screen p-6 text-center bg-surface">
         <div className="max-w-xs">
-          <div className="w-20 h-20 bg-brand-500/10 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-brand-500/20">
+          <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-primary/20">
             <span className="text-4xl">📱</span>
           </div>
-          <h1 className="text-3xl font-black text-white mb-3 tracking-tight">DineSmart</h1>
-          <p className="text-slate-400 text-sm leading-relaxed">
+          <h1 className="text-3xl font-black text-on-surface mb-3 tracking-tight font-serif">DineSmart</h1>
+          <p className="text-on-surface-variant text-sm leading-relaxed">
             Please scan the QR code located at your table to view the menu and place your order.
           </p>
         </div>
@@ -225,30 +225,30 @@ export default function MenuPage() {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-surface">
         <div className="relative">
-          <div className="w-16 h-16 border-4 border-slate-800 rounded-full" />
-          <div className="absolute inset-0 w-16 h-16 border-4 border-brand-500 border-t-transparent rounded-full animate-spin" />
+          <div className="w-16 h-16 border-4 border-surface-container-highest rounded-full" />
+          <div className="absolute inset-0 w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
         </div>
-        <p className="mt-6 text-slate-400 font-medium animate-pulse">Preparing your menu...</p>
+        <p className="mt-6 text-on-surface-variant font-medium animate-pulse">Preparing your menu...</p>
       </div>
     );
   }
 
   if (error || !menuData) {
     return (
-      <div className="flex items-center justify-center min-h-screen p-6 text-center bg-slate-950">
+      <div className="flex items-center justify-center min-h-screen p-6 text-center bg-surface">
         <div className="max-w-xs">
-          <div className="w-20 h-20 bg-red-500/10 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-red-500/20">
+          <div className="w-20 h-20 bg-error-container/50 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-error-container">
             <span className="text-4xl">⚠️</span>
           </div>
-          <h1 className="text-2xl font-bold text-white mb-2">Menu Unavailable</h1>
-          <p className="text-slate-400 text-sm mb-8">
+          <h1 className="text-2xl font-bold text-on-surface mb-2 font-serif">Menu Unavailable</h1>
+          <p className="text-on-surface-variant text-sm mb-8">
             We couldn't load the menu for this table. This might be due to a technical glitch or the restaurant being closed.
           </p>
           <button 
             onClick={() => window.location.reload()}
-            className="w-full py-3 bg-brand-500 text-white font-bold rounded-2xl hover:bg-brand-600 transition-all active:scale-95 shadow-lg shadow-brand-500/20"
+            className="w-full py-3 bg-primary text-on-primary font-bold rounded-2xl hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-95 shadow-lg shadow-primary-container/20"
           >
             Try Refreshing
           </button>
@@ -258,23 +258,23 @@ export default function MenuPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 pb-24 font-sans">
+    <div className="min-h-screen bg-surface pb-24 font-sans text-on-surface">
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-2xl border-b border-white/5 py-3 px-4 transition-all">
+      <header className="sticky top-0 z-40 bg-surface-bright/90 backdrop-blur-2xl border-b border-outline-variant py-3 px-4 transition-all">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             {menuData.restaurant.logoUrl ? (
-              <img src={menuData.restaurant.logoUrl} alt={menuData.restaurant.name} className="w-10 h-10 rounded-xl object-cover border border-white/10" />
+              <img src={menuData.restaurant.logoUrl} alt={menuData.restaurant.name} className="w-10 h-10 rounded-xl object-cover border border-outline-variant" />
             ) : (
-              <div className="w-10 h-10 bg-brand-500/10 rounded-xl flex items-center justify-center border border-brand-500/20 text-brand-500 font-black text-xl">
+              <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center border border-primary/20 text-primary font-black text-xl">
                 {menuData.restaurant.name.charAt(0)}
               </div>
             )}
             <div>
-              <h1 className="text-xl font-black text-white tracking-tight leading-none mb-1">{menuData.restaurant.name}</h1>
+              <h1 className="text-xl font-black text-on-surface tracking-tight leading-none mb-1 font-serif">{menuData.restaurant.name}</h1>
               <div className="flex items-center gap-1.5">
-                <span className="flex h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Table {menuData.table.number}</p>
+                <span className="flex h-1.5 w-1.5 rounded-full bg-secondary animate-pulse" />
+                <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Table {menuData.table.number}</p>
               </div>
             </div>
           </div>
@@ -283,29 +283,29 @@ export default function MenuPage() {
               <>
                 <button
                   onClick={() => setShowHistory(true)}
-                  className="relative w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center hover:bg-white/10 transition-all active:scale-90"
+                  className="relative w-12 h-12 bg-surface-container border border-outline-variant rounded-2xl flex items-center justify-center hover:bg-surface-container-high transition-all active:scale-90"
                 >
-                  <User size={20} className="text-white" />
+                  <User size={20} className="text-on-surface" />
                 </button>
                 <button
                   onClick={() => {
                     cart.clearCustomerInfo();
                     toast.success('Signed out successfully');
                   }}
-                  className="relative w-12 h-12 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-center justify-center hover:bg-red-500/20 transition-all active:scale-90"
+                  className="relative w-12 h-12 bg-error-container border border-error-container rounded-2xl flex items-center justify-center hover:opacity-80 transition-all active:scale-90"
                 >
-                  <LogOut size={20} className="text-red-400" />
+                  <LogOut size={20} className="text-on-error-container" />
                 </button>
               </>
             )}
             <button
               onClick={() => setShowCart(true)}
-              className="relative w-12 h-12 bg-brand-500 rounded-2xl flex items-center justify-center hover:bg-brand-600 transition-all active:scale-90 shadow-lg shadow-brand-500/20"
+              className="relative w-12 h-12 bg-primary rounded-2xl flex items-center justify-center hover:bg-primary-container transition-all active:scale-90 shadow-lg shadow-primary-container/20"
               id="cart-button"
             >
-              <ShoppingCart size={20} className="text-white" />
+              <ShoppingCart size={20} className="text-on-primary" />
               {cart.getItemCount() > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-white text-brand-600 text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow-lg">
+                <span className="absolute -top-1.5 -right-1.5 bg-on-primary text-primary text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow-lg">
                   {cart.getItemCount()}
                 </span>
               )}
@@ -315,19 +315,19 @@ export default function MenuPage() {
       </header>
 
       {/* Hero Section */}
-      <div className="pt-6 px-4 pb-2 bg-gradient-to-b from-slate-900 to-slate-950">
-        <h2 className="text-2xl font-black text-white mb-1">Hungry?</h2>
-        <p className="text-sm text-slate-400 mb-5">Order now and skip the wait!</p>
+      <div className="pt-6 px-4 pb-2 bg-surface-container-lowest">
+        <h2 className="text-2xl font-black text-on-surface mb-1 font-serif">Hungry?</h2>
+        <p className="text-sm text-on-surface-variant mb-5">Order now and skip the wait!</p>
 
         {/* Search */}
-        <div className="relative group shadow-2xl shadow-brand-500/5">
-          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-brand-500 transition-colors" />
+        <div className="relative group shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
+          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors" />
           <input
             type="text"
             placeholder="Search our delicious menu..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-12 pr-4 py-4 bg-white/5 rounded-[1.5rem] text-sm text-white placeholder:text-slate-500 border border-white/10 focus:border-brand-500/50 focus:bg-white/10 focus:outline-none transition-all"
+            className="w-full pl-12 pr-4 py-4 bg-surface-container rounded-[1.5rem] text-sm text-on-surface placeholder:text-on-surface-variant/70 border border-outline-variant focus:border-primary/50 focus:bg-surface-container-high focus:outline-none transition-all"
             id="search-input"
           />
         </div>
@@ -335,7 +335,7 @@ export default function MenuPage() {
 
       {/* Available Coupons Slider */}
       {availableCoupons && availableCoupons.length > 0 && (
-        <div className="px-4 py-4 overflow-x-auto flex gap-4 scrollbar-hide mask-fade-right">
+        <div className="px-4 py-4 overflow-x-auto flex gap-4 scrollbar-hide mask-fade-right bg-surface-container-lowest">
           {availableCoupons.map((coupon: any) => (
             <div 
               key={coupon.id}
@@ -343,22 +343,22 @@ export default function MenuPage() {
                 setCouponInput(coupon.code);
                 toast.success(`Coupon ${coupon.code} copied! Apply it in your cart.`);
               }}
-              className="flex-shrink-0 w-64 p-4 bg-white/[0.03] border border-white/5 border-dashed rounded-[1.5rem] flex items-center justify-between group hover:bg-white/5 hover:border-brand-500/30 transition-all cursor-pointer"
+              className="flex-shrink-0 w-64 p-4 bg-surface-container-low border border-outline-variant border-dashed rounded-[1.5rem] flex items-center justify-between group hover:bg-surface-container hover:border-primary/30 transition-all cursor-pointer shadow-sm"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-brand-500/10 rounded-xl flex items-center justify-center text-brand-500">
+                <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
                    <Tag size={18} />
                 </div>
                 <div>
-                  <p className="text-xs font-black text-white group-hover:text-brand-400 transition-colors">{coupon.code}</p>
-                  <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">
+                  <p className="text-xs font-black text-on-surface group-hover:text-primary transition-colors">{coupon.code}</p>
+                  <p className="text-[9px] font-bold text-on-surface-variant uppercase tracking-widest">
                     {coupon.discountType === 'PERCENT' ? `${coupon.discountValue}% OFF` : `₹${coupon.discountValue} OFF`}
                   </p>
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-[10px] font-black text-emerald-500 tracking-tighter">Min. ₹{coupon.minOrderValue}</p>
-                <div className="px-2 py-0.5 bg-brand-500 text-white text-[8px] font-black rounded-full mt-1 uppercase">TAP TO SELECT</div>
+                <p className="text-[10px] font-black text-secondary tracking-tighter">Min. ₹{coupon.minOrderValue}</p>
+                <div className="px-2 py-0.5 bg-primary text-on-primary text-[8px] font-black rounded-full mt-1 uppercase">TAP TO SELECT</div>
               </div>
             </div>
           ))}
@@ -366,17 +366,17 @@ export default function MenuPage() {
       )}
 
       {/* Category tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto pt-4 pb-4 scrollbar-hide px-4 mask-fade-right sticky top-[72px] z-30 bg-slate-950/80 backdrop-blur-md border-b border-white/5">
+      <div className="flex items-center gap-2 overflow-x-auto pt-4 pb-4 scrollbar-hide px-4 mask-fade-right sticky top-[72px] z-30 bg-surface-bright/90 backdrop-blur-md border-b border-outline-variant">
         <button
           onClick={() => {
             setVegOnly(!vegOnly);
             if (!vegOnly) setNonVegOnly(false);
           }}
           className={`flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl text-[11px] font-bold transition-all border ${
-            vegOnly ? 'bg-green-500/10 text-green-400 border-green-500/30' : 'bg-white/5 text-slate-500 border-transparent hover:text-slate-300'
+            vegOnly ? 'bg-secondary-container text-on-secondary-container border-secondary/30' : 'bg-surface-container text-on-surface-variant border-transparent hover:bg-surface-container-high'
           }`}
         >
-          <div className={`w-2 h-2 rounded-full ${vegOnly ? 'bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.5)]' : 'bg-slate-600'}`} />
+          <div className={`w-2 h-2 rounded-full ${vegOnly ? 'bg-secondary shadow-[0_0_8px_#d9e3ca]' : 'bg-outline'}`} />
           VEG
         </button>
         <button
@@ -385,18 +385,18 @@ export default function MenuPage() {
             if (!nonVegOnly) setVegOnly(false);
           }}
           className={`flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl text-[11px] font-bold transition-all border ${
-            nonVegOnly ? 'bg-red-500/10 text-red-400 border-red-500/30' : 'bg-white/5 text-slate-500 border-transparent hover:text-slate-300'
+            nonVegOnly ? 'bg-tertiary-container text-on-tertiary-container border-tertiary/30' : 'bg-surface-container text-on-surface-variant border-transparent hover:bg-surface-container-high'
           }`}
         >
-          <div className={`w-2 h-2 rounded-full ${nonVegOnly ? 'bg-red-400 shadow-[0_0_8px_rgba(239,68,68,0.5)]' : 'bg-slate-600'}`} />
+          <div className={`w-2 h-2 rounded-full ${nonVegOnly ? 'bg-tertiary shadow-[0_0_8px_#c8503e]' : 'bg-outline'}`} />
           NON-VEG
         </button>
 
-        <div className="ml-auto flex border-l border-white/10 pl-2">
+        <div className="ml-auto flex border-l border-outline-variant pl-2">
           <select 
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value as any)}
-            className="flex-shrink-0 bg-white/5 text-slate-300 px-3 py-2 rounded-xl text-[11px] font-bold border border-transparent focus:border-brand-500/30 outline-none hover:bg-white/10 transition-colors"
+            className="flex-shrink-0 bg-surface-container text-on-surface-variant px-3 py-2 rounded-xl text-[11px] font-bold border border-transparent focus:border-primary/30 outline-none hover:bg-surface-container-high transition-colors"
           >
             <option value="NONE">Sort: Recommended</option>
             <option value="PRICE_ASC">Price: Low to High</option>
@@ -404,11 +404,11 @@ export default function MenuPage() {
           </select>
         </div>
 
-        <div className="w-px h-4 bg-white/10 mx-1 flex-shrink-0" />
+        <div className="w-px h-4 bg-outline-variant mx-1 flex-shrink-0" />
         <button
           onClick={() => setActiveCategory('all')}
           className={`flex-shrink-0 px-5 py-2 rounded-xl text-[11px] font-black tracking-widest uppercase transition-all ${
-            activeCategory === 'all' ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/20' : 'bg-white/5 text-slate-500 hover:text-slate-300'
+            activeCategory === 'all' ? 'bg-primary text-on-primary shadow-lg shadow-primary-container/20' : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high'
           }`}
         >
           ALL DISHES
@@ -418,7 +418,7 @@ export default function MenuPage() {
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
             className={`flex-shrink-0 px-5 py-2 rounded-xl text-[11px] font-black tracking-widest uppercase transition-all whitespace-nowrap ${
-              activeCategory === cat.id ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/20' : 'bg-white/5 text-slate-500 hover:text-slate-300'
+              activeCategory === cat.id ? 'bg-primary text-on-primary shadow-lg shadow-primary-container/20' : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high'
             }`}
           >
             {cat.name}
@@ -432,8 +432,8 @@ export default function MenuPage() {
           (activeCategory === 'all' || activeCategory === cat.id) && cat.items.length > 0 && (
             <section key={cat.id} id={`cat-${cat.id}`} className="animate-fade-in-up">
               <div className="flex items-baseline gap-3 mb-6">
-                <h2 className="text-xl font-black text-white tracking-tight">{cat.name}</h2>
-                <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">{cat.items.length} items</span>
+                <h2 className="text-xl font-black text-on-surface tracking-tight">{cat.name}</h2>
+                <span className="text-[10px] font-black text-on-surface-variant uppercase tracking-widest">{cat.items.length} items</span>
               </div>
               
               <div className="grid grid-cols-1 gap-5">
@@ -446,9 +446,9 @@ export default function MenuPage() {
         ))}
 
         {filteredCategories.length === 0 && (
-          <div className="text-center py-20 bg-white/[0.02] rounded-[3rem] border border-dashed border-white/5">
-            <Search size={40} className="text-slate-800 mx-auto mb-4" />
-            <p className="text-slate-500 font-medium">No masterpieces match your search</p>
+          <div className="text-center py-20 bg-surface-container/50 rounded-[3rem] border border-dashed border-outline-variant/50">
+            <Search size={40} className="text-on-surface-variant mx-auto mb-4" />
+            <p className="text-on-surface-variant font-medium">No masterpieces match your search</p>
           </div>
         )}
       </main>
@@ -458,24 +458,24 @@ export default function MenuPage() {
         <div className="fixed bottom-8 left-4 right-4 z-[45] animate-slide-up">
           <button
             onClick={() => setShowCart(true)}
-            className="w-full bg-brand-500 hover:bg-brand-600 text-white font-black py-4 rounded-[2rem] flex items-center justify-between px-8 shadow-[0_20px_50px_rgba(239,68,68,0.3)] transition-all active:scale-[0.98] border-b-4 border-brand-700 group/cart"
+            className="w-full bg-primary hover:bg-primary-container text-on-primary hover:text-on-primary-container font-black py-4 rounded-[2rem] flex items-center justify-between px-8 shadow-[0_20px_50px_rgba(166,59,0,0.3)] transition-all active:scale-[0.98] border-b-4 border-surface-tint group/cart"
             id="view-cart-button"
           >
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-white/20 rounded-2xl flex items-center justify-center group-hover/cart:scale-110 transition-transform">
+              <div className="w-10 h-10 bg-on-primary/20 rounded-2xl flex items-center justify-center group-hover/cart:scale-110 transition-transform">
                 <ShoppingCart size={18} strokeWidth={2.5} />
               </div>
               <div className="text-left">
-                <p className="text-[10px] font-black text-brand-200 uppercase tracking-widest leading-none mb-1">In Your Bag</p>
+                <p className="text-[10px] font-black text-primary-fixed uppercase tracking-widest leading-none mb-1">In Your Bag</p>
                 <p className="text-sm leading-none font-black">{cart.getItemCount()} {cart.getItemCount() > 1 ? 'Selections' : 'Selection'}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <div className="text-right">
-                <p className="text-[10px] font-black text-brand-200 uppercase tracking-widest leading-none mb-1 text-right">Total Bill</p>
+                <p className="text-[10px] font-black text-primary-fixed uppercase tracking-widest leading-none mb-1 text-right">Total Bill</p>
                 <p className="text-xl leading-none font-black">₹{cart.getTotal().toFixed(0)}</p>
               </div>
-              <ChevronRight size={24} strokeWidth={3} className="text-brand-300" />
+              <ChevronRight size={24} strokeWidth={3} className="text-primary-fixed-dim" />
             </div>
           </button>
         </div>
@@ -484,34 +484,34 @@ export default function MenuPage() {
       {/* Cart Drawer */}
       {showCart && (
         <div className="fixed inset-0 z-50 flex flex-col">
-          <div className="absolute inset-0 bg-black/60" onClick={() => setShowCart(false)} />
-          <div className="relative mt-auto bg-slate-900 rounded-t-3xl max-h-[85vh] flex flex-col animate-slide-up border-t border-slate-700">
-            <div className="flex items-center justify-between p-4 border-b border-slate-800">
+          <div className="absolute inset-0 bg-inverse-surface/60 backdrop-blur-sm" onClick={() => setShowCart(false)} />
+          <div className="relative mt-auto bg-surface-container-lowest rounded-t-3xl max-h-[85vh] flex flex-col animate-slide-up border-t border-outline-variant text-on-surface">
+            <div className="flex items-center justify-between p-4 border-b border-outline-variant">
               <h2 className="text-lg font-bold">Your Order</h2>
-              <button onClick={() => setShowCart(false)} className="p-1 rounded-full hover:bg-slate-800">
+              <button onClick={() => setShowCart(false)} className="p-1 rounded-full hover:bg-surface-container">
                 <X size={20} />
               </button>
             </div>
 
             <div className="flex-1 overflow-y-auto p-4 space-y-3">
               {cart.items.map((item) => (
-                <div key={`${item.menuItemId}-${item.variantId}`} className="bg-slate-800 rounded-xl p-3">
+                <div key={`${item.menuItemId}-${item.variantId}`} className="bg-surface-container rounded-xl p-3">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <span className={`w-3 h-3 rounded-sm border-2 ${item.isVeg ? 'border-green-500' : 'border-red-500'}`}>
-                          <span className={`block w-1.5 h-1.5 rounded-full m-[1px] ${item.isVeg ? 'bg-green-500' : 'bg-red-500'}`} />
+                        <span className={`w-3 h-3 rounded-sm border-2 ${item.isVeg ? 'border-green-600' : 'border-red-600'}`}>
+                          <span className={`block w-1.5 h-1.5 rounded-full m-[1px] ${item.isVeg ? 'bg-green-600' : 'bg-red-600'}`} />
                         </span>
-                        <span className="font-medium text-sm">{item.name}</span>
+                        <span className="font-medium text-sm text-on-surface">{item.name}</span>
                       </div>
                       {item.variantName && (
-                        <span className="text-xs text-slate-400 ml-5">{item.variantName}</span>
+                        <span className="text-xs text-on-surface-variant ml-5">{item.variantName}</span>
                       )}
                       {item.addonNames.length > 0 && (
-                        <p className="text-xs text-slate-400 ml-5">+ {item.addonNames.join(', ')}</p>
+                        <p className="text-xs text-on-surface-variant ml-5">+ {item.addonNames.join(', ')}</p>
                       )}
                     </div>
-                    <span className="text-sm font-semibold">
+                    <span className="text-sm font-semibold text-on-surface">
                       ₹{((item.price + item.addonPrices.reduce((a, b) => a + b, 0)) * item.quantity).toFixed(0)}
                     </span>
                   </div>
@@ -521,19 +521,19 @@ export default function MenuPage() {
                       placeholder="Special instructions..."
                       value={item.specialInstructions}
                       onChange={(e) => cart.updateSpecialInstructions(item.menuItemId, e.target.value, item.variantId)}
-                      className="text-xs bg-slate-700 rounded-lg px-2 py-1.5 flex-1 mr-3 text-slate-300 placeholder:text-slate-500 border-none focus:outline-none focus:ring-1 focus:ring-brand-500"
+                      className="text-xs bg-surface-container-high rounded-lg px-2 py-1.5 flex-1 mr-3 text-on-surface placeholder:text-on-surface-variant/70 border-none focus:outline-none focus:ring-1 focus:ring-primary"
                     />
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => cart.updateQuantity(item.menuItemId, item.quantity - 1, item.variantId)}
-                        className="w-7 h-7 rounded-lg bg-slate-700 flex items-center justify-center hover:bg-slate-600 transition-colors"
+                        className="w-7 h-7 rounded-lg bg-surface-container-high flex items-center justify-center hover:bg-surface-container-highest transition-colors text-on-surface"
                       >
                         <Minus size={14} />
                       </button>
-                      <span className="text-sm font-semibold w-6 text-center">{item.quantity}</span>
+                      <span className="text-sm font-semibold w-6 text-center text-on-surface">{item.quantity}</span>
                       <button
                         onClick={() => cart.updateQuantity(item.menuItemId, item.quantity + 1, item.variantId)}
-                        className="w-7 h-7 rounded-lg bg-brand-500 flex items-center justify-center hover:bg-brand-600 transition-colors"
+                        className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center hover:bg-primary-container transition-colors text-on-primary hover:text-on-primary-container"
                       >
                         <Plus size={14} />
                       </button>
@@ -544,12 +544,12 @@ export default function MenuPage() {
 
               {/* Recommendations */}
               {recommendations && (recommendations as Array<{id: string; name: string; price: number; confidence: number}>).length > 0 && (
-                <div className="mt-4 p-3 bg-brand-500/10 rounded-xl border border-brand-500/20">
-                  <p className="text-xs text-brand-400 font-semibold mb-2">🤖 Often ordered together</p>
+                <div className="mt-4 p-3 bg-primary/10 rounded-xl border border-primary/20">
+                  <p className="text-xs text-primary font-semibold mb-2">🤖 Often ordered together</p>
                   {(recommendations as Array<{id: string; name: string; price: number; confidence: number}>).map((rec) => (
                     <div key={rec.id} className="flex items-center justify-between py-1">
-                      <span className="text-sm text-slate-300">{rec.name}</span>
-                      <span className="text-xs text-brand-400">₹{rec.price}</span>
+                      <span className="text-sm text-on-surface">{rec.name}</span>
+                      <span className="text-xs text-primary">₹{rec.price}</span>
                     </div>
                   ))}
                 </div>
@@ -559,50 +559,50 @@ export default function MenuPage() {
               <div className="mt-3">
                 <div className="flex gap-2">
                   <div className="relative flex-1">
-                    <Tag size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                    <Tag size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" />
                     <input
                       type="text"
                       placeholder="Coupon code"
                       value={couponInput}
                       onChange={(e) => setCouponInput(e.target.value)}
-                      className="w-full pl-9 pr-3 py-2.5 bg-slate-800 rounded-xl text-sm border border-slate-700 focus:border-brand-500 focus:outline-none text-white"
+                      className="w-full pl-9 pr-3 py-2.5 bg-surface-container rounded-xl text-sm border border-outline-variant focus:border-primary focus:outline-none text-on-surface"
                     />
                   </div>
                   <button
                     onClick={handleApplyCoupon}
                     disabled={couponLoading}
-                    className="px-4 py-2.5 bg-slate-700 text-brand-400 text-sm font-medium rounded-xl hover:bg-slate-600 transition-colors disabled:opacity-50"
+                    className="px-4 py-2.5 bg-surface-container-high text-primary text-sm font-medium rounded-xl hover:bg-surface-container-highest transition-colors disabled:opacity-50"
                   >
                     {couponLoading ? '...' : 'Apply'}
                   </button>
                 </div>
                 {cart.couponCode && (
                   <div className="flex items-center justify-between mt-2 px-2">
-                    <span className="text-xs text-green-400">✓ {cart.couponCode} applied — ₹{cart.discount.toFixed(0)} off</span>
-                    <button onClick={() => cart.clearCoupon()} className="text-xs text-red-400">Remove</button>
+                    <span className="text-xs text-secondary">✓ {cart.couponCode} applied — ₹{cart.discount.toFixed(0)} off</span>
+                    <button onClick={() => cart.clearCoupon()} className="text-xs text-error">Remove</button>
                   </div>
                 )}
               </div>
             </div>
 
             {/* Order Summary */}
-            <div className="p-4 border-t border-slate-800 bg-slate-900">
+            <div className="p-4 border-t border-outline-variant bg-surface-container-lowest">
               <div className="space-y-1 mb-3">
-                <div className="flex justify-between text-sm text-slate-400">
+                <div className="flex justify-between text-sm text-on-surface-variant">
                   <span>Subtotal</span>
                   <span>₹{cart.getSubtotal().toFixed(0)}</span>
                 </div>
                 {cart.discount > 0 && (
-                  <div className="flex justify-between text-sm text-green-400">
+                  <div className="flex justify-between text-sm text-secondary">
                     <span>Discount</span>
                     <span>-₹{cart.discount.toFixed(0)}</span>
                   </div>
                 )}
-                <div className="flex justify-between text-sm text-slate-400">
+                <div className="flex justify-between text-sm text-on-surface-variant">
                   <span>Tax (5%)</span>
                   <span>₹{cart.getTax().toFixed(0)}</span>
                 </div>
-                <div className="flex justify-between text-base font-bold text-white pt-1 border-t border-slate-700">
+                <div className="flex justify-between text-base font-bold text-on-surface pt-1 border-t border-outline-variant">
                   <span>Total</span>
                   <span>₹{cart.getTotal().toFixed(0)}</span>
                 </div>
@@ -611,7 +611,7 @@ export default function MenuPage() {
               <button
                 onClick={handlePlaceOrder}
                 disabled={placing || cart.items.length === 0}
-                className="w-full bg-brand-500 hover:bg-brand-600 text-white font-semibold py-3.5 rounded-xl transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-brand-500/20"
+                className="w-full bg-primary hover:bg-primary-container text-on-primary hover:text-on-primary-container font-semibold py-3.5 rounded-xl transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-primary/20"
                 id="place-order-button"
               >
                 {placing ? 'Placing Order...' : `Place Order — ₹${cart.getTotal().toFixed(0)}`}
@@ -624,65 +624,65 @@ export default function MenuPage() {
       {/* History Drawer */}
       {showHistory && (
         <div className="fixed inset-0 z-50 flex flex-col">
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowHistory(false)} />
-          <div className="relative mt-auto bg-slate-900 rounded-t-[2rem] max-h-[85vh] h-[80vh] flex flex-col animate-slide-up border-t border-slate-700 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
-            <div className="flex items-center justify-between p-6 border-b border-slate-800">
+          <div className="absolute inset-0 bg-inverse-surface/60 backdrop-blur-sm" onClick={() => setShowHistory(false)} />
+          <div className="relative mt-auto bg-surface-container-lowest rounded-t-[2rem] max-h-[85vh] h-[80vh] flex flex-col animate-slide-up border-t border-outline-variant shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
+            <div className="flex items-center justify-between p-6 border-b border-outline-variant">
               <div>
-                <h2 className="text-xl font-bold text-white mb-1">Your Profile</h2>
+                <h2 className="text-xl font-bold text-on-surface mb-1">Your Profile</h2>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-brand-400 font-bold bg-brand-500/10 px-2 py-0.5 rounded-md">{cart.customerName}</span>
-                  <span className="text-xs text-slate-500">{cart.customerPhone}</span>
+                  <span className="text-xs text-primary font-bold bg-primary/10 px-2 py-0.5 rounded-md">{cart.customerName}</span>
+                  <span className="text-xs text-on-surface-variant">{cart.customerPhone}</span>
                 </div>
               </div>
-              <button onClick={() => setShowHistory(false)} className="p-2 rounded-full hover:bg-slate-800 transition-colors">
-                <X size={20} className="text-slate-400" />
+              <button onClick={() => setShowHistory(false)} className="p-2 rounded-full hover:bg-surface-container transition-colors">
+                <X size={20} className="text-on-surface-variant" />
               </button>
             </div>
 
             <div className="flex-1 overflow-y-auto p-6">
-              <h3 className="text-sm font-semibold text-slate-400 mb-4 flex items-center gap-2">
+              <h3 className="text-sm font-semibold text-on-surface-variant mb-4 flex items-center gap-2">
                 <Clock size={16} /> Order History
               </h3>
               
               {!history ? (
                 <div className="flex justify-center py-10">
-                  <div className="w-8 h-8 border-4 border-brand-500 border-t-transparent rounded-full animate-spin" />
+                  <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
                 </div>
               ) : history.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-12 text-center">
-                  <div className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mb-4">
-                    <Clock size={24} className="text-slate-500" />
+                  <div className="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mb-4">
+                    <Clock size={24} className="text-on-surface-variant/70" />
                   </div>
-                  <p className="text-slate-400 font-medium">No past orders found.</p>
-                  <p className="text-xs text-slate-500 mt-1">Your delicious history will appear here.</p>
+                  <p className="text-on-surface-variant font-medium">No past orders found.</p>
+                  <p className="text-xs text-on-surface-variant/70 mt-1">Your delicious history will appear here.</p>
                 </div>
               ) : (
                 <div className="space-y-4">
                   {history.map((order: any) => (
-                    <div key={order.id} className="bg-slate-800/50 rounded-2xl p-4 border border-slate-700/50 hover:bg-slate-800 transition-colors">
+                    <div key={order.id} className="bg-surface-container-high/50 rounded-2xl p-4 border border-outline-variant/50 hover:bg-surface-container-highest transition-colors">
                       <div className="flex justify-between items-start mb-3">
                         <div>
-                          <p className="text-xs font-bold text-slate-400 mb-0.5">{order.branch.name}</p>
-                          <p className="text-[10px] text-slate-500">{new Date(order.createdAt).toLocaleDateString()} at {new Date(order.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                          <p className="text-xs font-bold text-on-surface-variant mb-0.5">{order.branch.name}</p>
+                          <p className="text-[10px] text-on-surface-variant/70">{new Date(order.createdAt).toLocaleDateString()} at {new Date(order.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
                         </div>
                         <span className={`text-[10px] font-bold px-2.5 py-1 rounded-md ${
-                          order.status === 'COMPLETED' ? 'bg-green-500/10 text-green-400' :
-                          order.status === 'CANCELLED' ? 'bg-red-500/10 text-red-400' :
-                          'bg-amber-500/10 text-amber-400'
+                          order.status === 'COMPLETED' ? 'bg-secondary-container text-secondary' :
+                          order.status === 'CANCELLED' ? 'bg-error-container text-error' :
+                          'bg-primary-container text-primary'
                         }`}>{order.status}</span>
                       </div>
                       
                       <div className="flex flex-wrap gap-1.5 mb-3">
                         {order.items.map((item: any, i: number) => (
-                          <span key={i} className="text-xs text-slate-300 bg-slate-700/50 px-2 py-1 rounded-md">
+                          <span key={i} className="text-xs text-on-surface bg-surface-container-highest/50 px-2 py-1 rounded-md">
                             {item.quantity}x {item.menuItem.name}
                           </span>
                         ))}
                       </div>
 
-                      <div className="flex justify-between items-center pt-3 border-t border-slate-700/50">
-                        <span className="text-[10px] text-slate-500 font-medium uppercase">Total Paid</span>
-                        <span className="text-sm font-black text-brand-400">₹{order.total}</span>
+                      <div className="flex justify-between items-center pt-3 border-t border-outline-variant/50">
+                        <span className="text-[10px] text-on-surface-variant/70 font-medium uppercase">Total Paid</span>
+                        <span className="text-sm font-black text-primary">₹{order.total}</span>
                       </div>
                     </div>
                   ))}
@@ -740,11 +740,11 @@ function MenuItemCard({ item, onAdd, cart }: {
 
   return (
     <>
-      <div className="group relative bg-white/[0.03] border border-white/5 rounded-[2rem] p-4 flex gap-5 hover:bg-white/[0.05] hover:border-white/10 transition-all active:scale-[0.98] duration-500 shadow-2xl shadow-black/20">
+      <div className="group relative bg-surface-container-lowest border border-outline-variant rounded-[2rem] p-4 flex gap-5 hover:bg-surface-container-low hover:border-outline transition-all active:scale-[0.98] duration-500 shadow-2xl shadow-black/5">
         {/* Image Section */}
         <button 
           onClick={() => setShowDetails(true)} 
-          className="relative w-32 h-32 sm:w-36 sm:h-36 flex-shrink-0 overflow-hidden rounded-3xl bg-slate-900 border border-white/5 shadow-inner block text-left"
+          className="relative w-32 h-32 sm:w-36 sm:h-36 flex-shrink-0 overflow-hidden rounded-3xl bg-surface-container border border-outline-variant shadow-inner block text-left"
         >
           {item.imageUrl ? (
             <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" loading="lazy" />
@@ -754,7 +754,7 @@ function MenuItemCard({ item, onAdd, cart }: {
             </div>
           )}
           {item.isPopular && (
-            <div className="absolute top-2.5 left-2.5 px-2.5 py-1 bg-orange-500 text-[9px] font-black text-white rounded-full flex items-center gap-1.5 shadow-lg shadow-orange-500/30 backdrop-blur-sm">
+            <div className="absolute top-2.5 left-2.5 px-2.5 py-1 bg-tertiary text-[9px] font-black text-on-tertiary rounded-full flex items-center gap-1.5 shadow-lg shadow-tertiary/30 backdrop-blur-sm">
               <Flame size={10} fill="currentColor" /> POPULAR
             </div>
           )}
@@ -764,12 +764,12 @@ function MenuItemCard({ item, onAdd, cart }: {
         <div className="flex-1 flex flex-col justify-between py-1 min-w-0">
           <div>
             <button onClick={() => setShowDetails(true)} className="flex items-center gap-2.5 mb-2 hover:opacity-80 transition-opacity text-left w-full">
-              <div className={`w-3.5 h-3.5 rounded-sm border-[1.5px] flex items-center justify-center flex-shrink-0 ${item.isVeg ? 'border-green-500/50' : 'border-red-500/50'}`}>
-                <div className={`w-1.5 h-1.5 rounded-full ${item.isVeg ? 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} />
+              <div className={`w-3.5 h-3.5 rounded-sm border-[1.5px] flex items-center justify-center flex-shrink-0 ${item.isVeg ? 'border-green-600' : 'border-red-600'}`}>
+                <div className={`w-1.5 h-1.5 rounded-full ${item.isVeg ? 'bg-green-600 shadow-[0_0_8px_rgba(22,163,74,0.4)]' : 'bg-red-600 shadow-[0_0_8px_rgba(220,38,38,0.4)]'}`} />
               </div>
-              <h3 className="text-base font-black text-white tracking-tight truncate group-hover:text-brand-400 transition-colors pointer-events-none">{item.name}</h3>
+              <h3 className="text-base font-black text-on-surface tracking-tight truncate group-hover:text-primary transition-colors pointer-events-none">{item.name}</h3>
             </button>
-            <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-4 group-hover:text-slate-400 transition-colors">
+            <p className="text-xs text-on-surface-variant line-clamp-2 leading-relaxed mb-4 group-hover:text-on-surface-variant/90 transition-colors">
               {item.description || "A masterfully crafted selection featuring premium local ingredients and traditional culinary techniques."}
             </p>
           </div>
@@ -777,27 +777,27 @@ function MenuItemCard({ item, onAdd, cart }: {
           <div className="flex items-center justify-between mt-auto">
             <div>
               <div className="flex items-baseline gap-1">
-                <span className="text-[10px] font-black text-slate-600 uppercase">₹</span>
-                <span className="text-xl font-black text-white tracking-tighter">{item.price}</span>
+                <span className="text-[10px] font-black text-outline uppercase">₹</span>
+                <span className="text-xl font-black text-on-surface tracking-tighter">{item.price}</span>
               </div>
               <div className="flex items-center gap-2 mt-0.5">
-                <p className="text-[9px] font-black text-slate-600 uppercase tracking-[0.15em]">Classic Selection</p>
-                {item.tags.includes('spicy') && <div className="w-1 h-1 rounded-full bg-red-500 animate-pulse" />}
+                <p className="text-[9px] font-black text-outline uppercase tracking-[0.15em]">Classic Selection</p>
+                {item.tags.includes('spicy') && <div className="w-1 h-1 rounded-full bg-red-600 animate-pulse" />}
               </div>
             </div>
             
             {cartItem ? (
-              <div className="flex items-center bg-white/5 rounded-2xl p-1.5 border border-white/10 shadow-lg">
+              <div className="flex items-center bg-surface-container rounded-2xl p-1.5 border border-outline-variant shadow-lg">
                 <button
                   onClick={() => cart.updateQuantity(item.id, cartItem.quantity - 1, cartItem.variantId)}
-                  className="w-8 h-8 rounded-xl bg-slate-800 flex items-center justify-center hover:bg-slate-700 text-white transition-all active:scale-90"
+                  className="w-8 h-8 rounded-xl bg-surface-container-high flex items-center justify-center hover:bg-surface-container-highest text-on-surface transition-all active:scale-90"
                 >
                   <Minus size={14} strokeWidth={3} />
                 </button>
-                <span className="text-sm font-black text-white w-8 text-center">{cartItem.quantity}</span>
+                <span className="text-sm font-black text-on-surface w-8 text-center">{cartItem.quantity}</span>
                 <button
                   onClick={() => cart.updateQuantity(item.id, cartItem.quantity + 1, cartItem.variantId)}
-                  className="w-8 h-8 rounded-xl bg-brand-500 flex items-center justify-center hover:bg-brand-400 text-white transition-all active:scale-90 shadow-lg shadow-brand-500/20"
+                  className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center hover:bg-primary-container text-on-primary hover:text-on-primary-container transition-all active:scale-90 shadow-lg shadow-primary/20"
                 >
                   <Plus size={14} strokeWidth={3} />
                 </button>
@@ -805,10 +805,10 @@ function MenuItemCard({ item, onAdd, cart }: {
             ) : (
               <button
                 onClick={handleAdd}
-                className="group/btn relative px-7 py-3 bg-brand-500 text-white font-black text-[10px] tracking-widest uppercase rounded-2xl border-b-4 border-brand-700 hover:bg-brand-400 active:translate-y-0.5 active:border-b-0 transition-all shadow-xl shadow-brand-500/20 overflow-hidden"
+                className="group/btn relative px-7 py-3 bg-primary text-on-primary font-black text-[10px] tracking-widest uppercase rounded-2xl border-b-4 border-surface-tint hover:bg-primary-container hover:text-on-primary-container active:translate-y-0.5 active:border-b-0 transition-all shadow-xl shadow-primary/20 overflow-hidden"
               >
                 <span className="relative z-10">Add to Bag</span>
-                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-on-primary/10 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
               </button>
             )}
           </div>
@@ -818,41 +818,41 @@ function MenuItemCard({ item, onAdd, cart }: {
       {/* Item Details Info Drawer */}
       {showDetails && (
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-fade-in" onClick={() => setShowDetails(false)} />
-          <div className="relative w-full max-w-sm bg-slate-900 rounded-[2rem] overflow-hidden animate-slide-up shadow-2xl border border-slate-800">
+          <div className="absolute inset-0 bg-inverse-surface/80 backdrop-blur-sm animate-fade-in" onClick={() => setShowDetails(false)} />
+          <div className="relative w-full max-w-sm bg-surface-container-lowest rounded-[2rem] overflow-hidden animate-slide-up shadow-2xl border border-outline-variant">
             {item.imageUrl ? (
                <img src={item.imageUrl} alt={item.name} className="w-full h-64 object-cover" />
             ) : (
-               <div className="w-full h-64 bg-slate-800 flex items-center justify-center text-6xl shadow-inner">
+               <div className="w-full h-64 bg-surface-container flex items-center justify-center text-6xl shadow-inner">
                   {item.isVeg ? '🥗' : '🍗'}
                </div>
             )}
             
-            <button onClick={() => setShowDetails(false)} className="absolute top-4 right-4 w-10 h-10 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-black/80 transition-colors">
-              <X size={20} className="text-white" />
+            <button onClick={() => setShowDetails(false)} className="absolute top-4 right-4 w-10 h-10 bg-inverse-surface/50 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-inverse-surface/80 transition-colors">
+              <X size={20} className="text-inverse-on-surface" />
             </button>
 
             <div className="p-6">
                <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2.5">
-                     <div className={`w-4 h-4 rounded-sm border-[2px] flex items-center justify-center flex-shrink-0 ${item.isVeg ? 'border-green-500' : 'border-red-500'}`}>
-                        <div className={`w-2 h-2 rounded-full ${item.isVeg ? 'bg-green-500' : 'bg-red-500'}`} />
+                     <div className={`w-4 h-4 rounded-sm border-[2px] flex items-center justify-center flex-shrink-0 ${item.isVeg ? 'border-green-600' : 'border-red-600'}`}>
+                        <div className={`w-2 h-2 rounded-full ${item.isVeg ? 'bg-green-600' : 'bg-red-600'}`} />
                      </div>
-                     <h3 className="text-xl font-black text-white tracking-tight">{item.name}</h3>
+                     <h3 className="text-xl font-black text-on-surface tracking-tight">{item.name}</h3>
                   </div>
-                  <span className="text-2xl font-black text-brand-400">₹{item.price}</span>
+                  <span className="text-2xl font-black text-primary">₹{item.price}</span>
                </div>
                
-               <p className="text-sm text-slate-400 leading-relaxed mb-6">
+               <p className="text-sm text-on-surface-variant leading-relaxed mb-6">
                   {item.description || "A masterfully crafted selection featuring premium local ingredients and traditional culinary techniques."}
                </p>
 
                <div className="flex flex-wrap gap-2 mb-6">
                   {(item.tags || []).map(t => (
-                     <span key={t} className="px-2 py-1 bg-slate-800 border border-slate-700 text-slate-300 rounded text-xs font-bold uppercase tracking-widest">{t}</span>
+                     <span key={t} className="px-2 py-1 bg-surface-container-high border border-outline-variant text-on-surface-variant rounded text-xs font-bold uppercase tracking-widest">{t}</span>
                   ))}
                   {item.preparationTimeMinutes > 0 && (
-                     <span className="px-2 py-1 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded text-xs font-bold tracking-widest">{item.preparationTimeMinutes} Min</span>
+                     <span className="px-2 py-1 bg-primary/10 border border-primary/20 text-primary rounded text-xs font-bold tracking-widest">{item.preparationTimeMinutes} Min</span>
                   )}
                </div>
 
@@ -861,7 +861,7 @@ function MenuItemCard({ item, onAdd, cart }: {
                      setShowDetails(false);
                      handleAdd();
                   }}
-                  className="w-full py-4 bg-brand-500 hover:bg-brand-600 text-white font-black uppercase tracking-widest rounded-2xl shadow-lg shadow-brand-500/20 transition-all active:scale-[0.98]"
+                  className="w-full py-4 bg-primary hover:bg-primary-container text-on-primary hover:text-on-primary-container font-black uppercase tracking-widest rounded-2xl shadow-lg shadow-primary/20 transition-all active:scale-[0.98]"
                >
                   Add to Bag
                </button>
@@ -873,17 +873,17 @@ function MenuItemCard({ item, onAdd, cart }: {
       {/* Modern Customize Sheet (Mobile Optimized) */}
       {showCustomize && (
         <div className="fixed inset-0 z-[60] flex items-end justify-center">
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-fade-in" onClick={() => setShowCustomize(false)} />
-          <div className="relative w-full max-w-lg bg-slate-900 rounded-t-[3rem] p-8 animate-slide-up border-t border-white/10 shadow-2xl">
-            <div className="w-12 h-1.5 bg-slate-800 rounded-full mx-auto mb-8" />
+          <div className="absolute inset-0 bg-inverse-surface/80 backdrop-blur-sm animate-fade-in" onClick={() => setShowCustomize(false)} />
+          <div className="relative w-full max-w-lg bg-surface-container-lowest rounded-t-[3rem] p-8 animate-slide-up border-t border-outline-variant shadow-2xl">
+            <div className="w-12 h-1.5 bg-surface-container-high rounded-full mx-auto mb-8" />
             
             <div className="flex items-start justify-between mb-8">
               <div>
-                <h3 className="text-2xl font-black text-white tracking-tight mb-2">{item.name}</h3>
-                <p className="text-sm text-slate-500">Tailor your selection to perfection</p>
+                <h3 className="text-2xl font-black text-on-surface tracking-tight mb-2">{item.name}</h3>
+                <p className="text-sm text-on-surface-variant">Tailor your selection to perfection</p>
               </div>
-              <button onClick={() => setShowCustomize(false)} className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
-                <X size={20} className="text-slate-400" />
+              <button onClick={() => setShowCustomize(false)} className="w-10 h-10 bg-surface-container rounded-full flex items-center justify-center hover:bg-surface-container-high transition-colors">
+                <X size={20} className="text-on-surface-variant" />
               </button>
             </div>
 
@@ -891,15 +891,15 @@ function MenuItemCard({ item, onAdd, cart }: {
               {item.variants.length > 0 && (
                 <div>
                   <div className="flex items-center gap-2 mb-4">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500" />
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Select Variant</p>
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    <p className="text-[10px] font-black text-on-surface-variant uppercase tracking-widest">Select Variant</p>
                   </div>
                   <div className="grid grid-cols-1 gap-3">
                     {item.variants.map((v) => (
                       <label
                         key={v.id}
                         className={`flex items-center justify-between p-5 rounded-3xl cursor-pointer transition-all border-2 ${
-                          selectedVariant === v.id ? 'bg-brand-500/10 border-brand-500 shadow-lg shadow-brand-500/5' : 'bg-white/5 border-transparent hover:bg-white/[0.08]'
+                          selectedVariant === v.id ? 'bg-primary/10 border-primary shadow-lg shadow-primary/5' : 'bg-surface-container border-transparent hover:bg-surface-container-high'
                         }`}
                       >
                         <div className="flex items-center gap-4">
@@ -908,11 +908,11 @@ function MenuItemCard({ item, onAdd, cart }: {
                             name="variant"
                             checked={selectedVariant === v.id}
                             onChange={() => setSelectedVariant(v.id)}
-                            className="w-5 h-5 accent-brand-500 bg-transparent border-white/20"
+                            className="w-5 h-5 accent-primary bg-transparent border-outline"
                           />
-                          <span className={`text-sm font-bold ${selectedVariant === v.id ? 'text-white' : 'text-slate-400'}`}>{v.name}</span>
+                          <span className={`text-sm font-bold ${selectedVariant === v.id ? 'text-on-surface' : 'text-on-surface-variant'}`}>{v.name}</span>
                         </div>
-                        <span className={`text-xs font-black ${selectedVariant === v.id ? 'text-brand-400' : 'text-slate-500'}`}>
+                        <span className={`text-xs font-black ${selectedVariant === v.id ? 'text-primary' : 'text-on-surface-variant'}`}>
                           {v.additionalPrice > 0 ? `+₹${v.additionalPrice}` : v.additionalPrice < 0 ? `-₹${Math.abs(v.additionalPrice)}` : 'Included'}
                         </span>
                       </label>
@@ -924,15 +924,15 @@ function MenuItemCard({ item, onAdd, cart }: {
               {item.addons.length > 0 && (
                 <div>
                   <div className="flex items-center gap-2 mb-4">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500" />
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Enhancements</p>
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    <p className="text-[10px] font-black text-on-surface-variant uppercase tracking-widest">Enhancements</p>
                   </div>
                   <div className="grid grid-cols-1 gap-3">
                     {item.addons.map((a) => (
                       <label
                         key={a.id}
                         className={`flex items-center justify-between p-5 rounded-3xl cursor-pointer transition-all border-2 ${
-                          selectedAddons.includes(a.id) ? 'bg-brand-500/10 border-brand-500 shadow-lg shadow-brand-500/5' : 'bg-white/5 border-transparent hover:bg-white/[0.08]'
+                          selectedAddons.includes(a.id) ? 'bg-primary/10 border-primary shadow-lg shadow-primary/5' : 'bg-surface-container border-transparent hover:bg-surface-container-high'
                         }`}
                       >
                         <div className="flex items-center gap-4">
@@ -943,11 +943,11 @@ function MenuItemCard({ item, onAdd, cart }: {
                               if (e.target.checked) setSelectedAddons([...selectedAddons, a.id]);
                               else setSelectedAddons(selectedAddons.filter((id) => id !== a.id));
                             }}
-                            className="w-5 h-5 rounded-lg accent-brand-500 bg-transparent border-white/20"
+                            className="w-5 h-5 rounded-lg accent-primary bg-transparent border-outline"
                           />
-                          <span className={`text-sm font-bold ${selectedAddons.includes(a.id) ? 'text-white' : 'text-slate-400'}`}>{a.name}</span>
+                          <span className={`text-sm font-bold ${selectedAddons.includes(a.id) ? 'text-on-surface' : 'text-on-surface-variant'}`}>{a.name}</span>
                         </div>
-                        <span className={`text-xs font-black ${selectedAddons.includes(a.id) ? 'text-brand-400' : 'text-slate-500'}`}>
+                        <span className={`text-xs font-black ${selectedAddons.includes(a.id) ? 'text-primary' : 'text-on-surface-variant'}`}>
                           {a.price > 0 ? `+₹${a.price}` : 'Free'}
                         </span>
                       </label>
@@ -959,7 +959,7 @@ function MenuItemCard({ item, onAdd, cart }: {
 
             <button
               onClick={confirmAdd}
-              className="w-full bg-brand-500 text-white font-black py-5 rounded-[2rem] border-b-4 border-brand-700 hover:bg-brand-400 active:translate-y-1 active:border-b-0 transition-all shadow-2xl shadow-brand-500/30 text-xs tracking-widest uppercase mb-4"
+              className="w-full bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container font-black py-5 rounded-[2rem] border-b-4 border-surface-tint active:translate-y-1 active:border-b-0 transition-all shadow-2xl shadow-primary/30 text-xs tracking-widest uppercase mb-4"
             >
               Update Bag — Total ₹{(item.price + (item.variants.find(v => v.id === selectedVariant)?.additionalPrice || 0) + item.addons.filter(a => selectedAddons.includes(a.id)).reduce((sum, a) => sum + a.price, 0))}
             </button>

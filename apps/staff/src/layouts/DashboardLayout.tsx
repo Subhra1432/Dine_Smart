@@ -42,18 +42,18 @@ export default function DashboardLayout() {
   const filteredNav = navItems.filter((item) => user && item.roles.includes(user.role));
 
   return (
-    <div className="flex h-screen bg-slate-50 dark:bg-slate-900 transition-colors">
-      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 transform transition-transform lg:translate-x-0 lg:static ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+    <div className="flex h-screen bg-surface dark:bg-inverse-surface transition-colors">
+      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-surface-container-lowest dark:bg-on-surface border-r border-outline-variant/50 dark:border-inverse-on-surface/10 transform transition-transform lg:translate-x-0 lg:static ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex flex-col h-full">
           {/* Brand */}
-          <div className="p-5 border-b border-slate-200 dark:border-slate-800">
+          <div className="p-5 border-b border-outline-variant/50 dark:border-inverse-on-surface/10">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 shadow-md flex items-center justify-center">
-                <UtensilsCrossed size={20} className="text-white" />
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-container shadow-md flex items-center justify-center">
+                <UtensilsCrossed size={20} className="text-on-primary" />
               </div>
               <div>
-                <h1 className="font-bold text-sm text-slate-900 dark:text-white">DineSmart OS</h1>
-                <p className="text-xs text-slate-500">{restaurant?.name}</p>
+                <h1 className="font-bold text-sm text-on-surface dark:text-inverse-on-surface">DineSmart OS</h1>
+                <p className="text-xs text-on-surface-variant/70 dark:text-inverse-on-surface/70">{restaurant?.name}</p>
               </div>
             </div>
           </div>
@@ -69,8 +69,8 @@ export default function DashboardLayout() {
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                     isActive
-                       ? 'bg-brand-500/10 text-brand-600 border border-brand-200 dark:bg-brand-500/15 dark:text-brand-400 dark:border-brand-500/20 shadow-sm'
-                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 hover:bg-slate-100 dark:hover:text-white dark:hover:bg-slate-800'
+                       ? 'bg-primary/10 text-primary border border-primary/20 dark:bg-primary/20 dark:text-inverse-primary dark:border-primary/30 shadow-sm'
+                      : 'text-on-surface-variant/70 dark:text-inverse-on-surface/70 hover:text-on-surface hover:bg-surface-container dark:hover:text-inverse-on-surface dark:hover:bg-inverse-on-surface/10'
                   }`
                 }
               >
@@ -81,26 +81,26 @@ export default function DashboardLayout() {
           </nav>
 
           {/* Support Section */}
-          <div className="mx-3 mb-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-            <h3 className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">Help & Support</h3>
+          <div className="mx-3 mb-4 p-4 rounded-2xl bg-surface dark:bg-inverse-surface border border-outline-variant/50 dark:border-inverse-on-surface/10">
+            <h3 className="text-[10px] font-bold text-on-surface-variant/50 dark:text-inverse-on-surface/50 uppercase tracking-widest mb-3">Help & Support</h3>
             <div className="space-y-2">
-              <a href="mailto:support@dinesmart.ai" className="flex items-center gap-3 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-brand-500 transition-colors">
-                <div className="w-7 h-7 rounded-lg bg-white dark:bg-slate-800 flex items-center justify-center shadow-sm border border-slate-100 dark:border-slate-700">
+              <a href="mailto:support@dinesmart.ai" className="flex items-center gap-3 text-xs font-semibold text-on-surface-variant dark:text-inverse-on-surface/70 hover:text-primary transition-colors">
+                <div className="w-7 h-7 rounded-lg bg-surface-container-lowest dark:bg-inverse-on-surface/10 flex items-center justify-center shadow-sm border border-outline-variant/30 dark:border-inverse-on-surface/10">
                   <Mail size={14} />
                 </div>
                 Email Support
               </a>
               
               {restaurant?.plan === 'GROWTH' || restaurant?.plan === 'PREMIUM' ? (
-                <a href="https://wa.me/919937000000" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-emerald-500 transition-colors">
-                  <div className="w-7 h-7 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center shadow-sm border border-emerald-100 dark:border-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+                <a href="https://wa.me/919937000000" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-xs font-semibold text-on-surface-variant dark:text-inverse-on-surface/70 hover:text-green-500 transition-colors">
+                  <div className="w-7 h-7 rounded-lg bg-green-500/10 dark:bg-green-500/10 flex items-center justify-center shadow-sm border border-green-500/20 text-green-600 dark:text-green-400">
                     <MessageCircle size={14} />
                   </div>
                   WhatsApp Chat
                 </a>
               ) : (
-                <div className="flex items-center gap-3 text-xs font-semibold text-slate-400 cursor-not-allowed opacity-60">
-                  <div className="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800/50 flex items-center justify-center border border-slate-200 dark:border-slate-700">
+                <div className="flex items-center gap-3 text-xs font-semibold text-on-surface-variant/50 cursor-not-allowed opacity-60">
+                  <div className="w-7 h-7 rounded-lg bg-surface-container dark:bg-inverse-on-surface/5 flex items-center justify-center border border-outline-variant/30 dark:border-inverse-on-surface/10">
                     <MessageCircle size={14} />
                   </div>
                   WhatsApp <Lock size={10} className="ml-auto" />
@@ -108,15 +108,15 @@ export default function DashboardLayout() {
               )}
 
               {restaurant?.plan === 'PREMIUM' ? (
-                <a href="tel:+919937000000" className="flex items-center gap-3 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-brand-500 transition-colors">
-                  <div className="w-7 h-7 rounded-lg bg-brand-50 dark:bg-brand-500/10 flex items-center justify-center shadow-sm border border-brand-100 dark:border-brand-500/20 text-brand-600 dark:text-brand-400">
+                <a href="tel:+919937000000" className="flex items-center gap-3 text-xs font-semibold text-on-surface-variant dark:text-inverse-on-surface/70 hover:text-primary transition-colors">
+                  <div className="w-7 h-7 rounded-lg bg-primary/10 dark:bg-primary/10 flex items-center justify-center shadow-sm border border-primary/20 text-primary dark:text-inverse-primary">
                     <Phone size={14} />
                   </div>
                   24/7 Priority Call
                 </a>
               ) : (
-                <div className="flex items-center gap-3 text-xs font-semibold text-slate-400 cursor-not-allowed opacity-60">
-                  <div className="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800/50 flex items-center justify-center border border-slate-200 dark:border-slate-700">
+                <div className="flex items-center gap-3 text-xs font-semibold text-on-surface-variant/50 cursor-not-allowed opacity-60">
+                  <div className="w-7 h-7 rounded-lg bg-surface-container dark:bg-inverse-on-surface/5 flex items-center justify-center border border-outline-variant/30 dark:border-inverse-on-surface/10">
                     <Phone size={14} />
                   </div>
                   Call Support <Lock size={10} className="ml-auto" />
@@ -125,23 +125,23 @@ export default function DashboardLayout() {
             </div>
             
             {restaurant?.plan === 'STARTER' && (
-              <NavLink to="/admin/subscription" className="mt-4 block text-center py-2 bg-brand-500 text-white text-[10px] font-black rounded-lg hover:bg-brand-600 transition-all shadow-md shadow-brand-500/20">
+              <NavLink to="/admin/subscription" className="mt-4 block text-center py-2 bg-primary text-on-primary text-[10px] font-black rounded-lg hover:bg-primary-container transition-all shadow-md shadow-primary/20">
                 UPGRADE FOR PRIORITY
               </NavLink>
             )}
           </div>
 
           {/* User Info */}
-          <div className="p-3 border-t border-slate-200 dark:border-slate-800">
+          <div className="p-3 border-t border-outline-variant/50 dark:border-inverse-on-surface/10">
             <div className="flex items-center gap-3 px-3 py-2">
-              <div className="w-8 h-8 rounded-full bg-brand-100 dark:bg-brand-500/20 flex items-center justify-center text-brand-600 dark:text-brand-400 text-xs font-bold">
+              <div className="w-8 h-8 rounded-full bg-primary/20 dark:bg-primary/20 flex items-center justify-center text-primary dark:text-inverse-primary text-xs font-bold">
                 {user?.email.charAt(0).toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-bold text-slate-900 dark:text-white truncate">{user?.email}</p>
-                <p className="text-[10px] text-slate-500 font-medium">{user?.role}</p>
+                <p className="text-xs font-bold text-on-surface dark:text-inverse-on-surface truncate">{user?.email}</p>
+                <p className="text-[10px] text-on-surface-variant/70 font-medium">{user?.role}</p>
               </div>
-              <button onClick={handleLogout} className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-red-500 dark:hover:text-red-400 transition-colors">
+              <button onClick={handleLogout} className="p-2 rounded-lg hover:bg-surface-container dark:hover:bg-inverse-on-surface/10 text-on-surface-variant/50 hover:text-error dark:hover:text-error-container transition-colors">
                 <LogOut size={16} />
               </button>
             </div>
@@ -150,13 +150,13 @@ export default function DashboardLayout() {
       </aside>
 
       {/* Mobile overlay */}
-      {sidebarOpen && <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 lg:hidden" onClick={() => setSidebarOpen(false)} />}
+      {sidebarOpen && <div className="fixed inset-0 bg-on-surface/50 backdrop-blur-sm z-40 lg:hidden" onClick={() => setSidebarOpen(false)} />}
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col overflow-hidden">
         {/* Top Bar */}
-        <header className="h-14 border-b border-slate-200 dark:border-slate-800 flex items-center px-4 gap-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
-          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="lg:hidden p-1 text-slate-600 dark:text-slate-300">
+        <header className="h-14 border-b border-outline-variant/50 dark:border-inverse-on-surface/10 flex items-center px-4 gap-4 bg-surface-container-lowest/80 dark:bg-inverse-surface/80 backdrop-blur-md">
+          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="lg:hidden p-1 text-on-surface-variant dark:text-inverse-on-surface/70">
             {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
           <div className="flex-1" />
@@ -164,7 +164,7 @@ export default function DashboardLayout() {
         </header>
 
         {/* Page Content */}
-        <div className="flex-1 overflow-y-auto p-4 lg:p-6">
+        <div className="flex-1 overflow-y-auto p-4 lg:p-6 bg-surface dark:bg-inverse-surface">
           <Outlet />
         </div>
       </main>

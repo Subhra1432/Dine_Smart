@@ -31,8 +31,8 @@ function ProtectedRoute({ children, allowedRoles }: { children: React.ReactNode;
     return (
       <div className="min-h-screen bg-slate-900 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 border-4 border-brand-500 border-t-transparent rounded-full animate-spin" />
-          <p className="text-slate-400 text-sm font-medium">Loading DineSmart...</p>
+          <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+          <p className="text-outline text-sm font-medium">Loading DineSmart...</p>
         </div>
       </div>
     );

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,9 +11,9 @@
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background: #0f172a;
-  color: #f8fafc;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: theme('colors.surface');
+  color: theme('colors.on-surface');
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -20,7 +22,7 @@ body {
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+::-webkit-scrollbar-thumb { background: theme('colors.outline-variant'); border-radius: 4px; }
 
 /* Smooth animations */
 .animate-slide-up {
@@ -52,10 +54,11 @@ body {
 
 /* Glass effect */
 .glass {
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid theme('colors.outline-variant');
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }
 
 /* Status tracker */
@@ -64,16 +67,16 @@ body {
 }
 
 .status-dot.active {
-  @apply bg-brand-500;
-  box-shadow: 0 0 12px rgba(249, 115, 22, 0.5);
+  @apply bg-primary;
+  box-shadow: 0 0 12px theme('colors.primary-container');
 }
 
 .status-dot.completed {
-  @apply bg-emerald-500;
+  @apply bg-secondary;
 }
 
 .status-dot.pending {
-  @apply bg-slate-600;
+  @apply bg-surface-container-highest;
 }
 
 /* PWA install prompt */

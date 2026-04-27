@@ -153,23 +153,23 @@ export default function KitchenPage() {
   };
 
   return (
-    <div className="bg-white dark:bg-[#000000] p-4 h-full">
+    <div className="bg-surface-container-lowest dark:bg-inverse-surface p-4 h-full">
       {/* Hidden audio element to avoid Autoplay restrictions */}
       <audio id="kitchen-audio" src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQ==" preload="auto" />
       
       {/* Top Bar */}
       <header className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <ChefHat size={28} className="text-brand-500" />
+          <ChefHat size={28} className="text-primary" />
           <div>
-            <h1 className="text-xl font-bold text-slate-900 dark:text-white">Kitchen Display</h1>
-            <p className="text-xs text-slate-500">{orders?.length || 0} active orders</p>
+            <h1 className="text-xl font-bold text-on-surface dark:text-inverse-on-surface">Kitchen Display</h1>
+            <p className="text-xs text-on-surface-variant">{orders?.length || 0} active orders</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setAudioEnabled(!audioEnabled)}
-            className={`p-2.5 rounded-xl transition-colors ${audioEnabled ? 'bg-brand-500 text-slate-900 dark:text-white' : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400'}`}
+            className={`p-2.5 rounded-xl transition-colors ${audioEnabled ? 'bg-primary text-on-surface dark:text-inverse-on-surface' : 'bg-surface-container-lowest dark:bg-inverse-surface text-on-surface-variant dark:text-outline'}`}
           >
             {audioEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
           </button>
@@ -177,7 +177,7 @@ export default function KitchenPage() {
             <select
               value={selectedBranchId}
               onChange={(e) => setSelectedBranchId(e.target.value)}
-              className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs font-bold px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-brand-500"
+              className="bg-surface-container-lowest dark:bg-inverse-surface text-on-surface dark:text-inverse-on-surface text-xs font-bold px-3 py-2.5 rounded-xl border border-outline-variant dark:border-outline outline-none focus:ring-2 focus:ring-primary"
             >
               <option value="">All Branches</option>
               {branches.map((b: any) => (
@@ -185,7 +185,7 @@ export default function KitchenPage() {
               ))}
             </select>
           )}
-          <button onClick={handleLogout} className="p-2.5 rounded-xl bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-red-400">
+          <button onClick={handleLogout} className="p-2.5 rounded-xl bg-surface-container-lowest dark:bg-inverse-surface text-on-surface-variant dark:text-outline hover:text-red-400">
             <LogOut size={18} />
           </button>
         </div>
@@ -202,17 +202,17 @@ export default function KitchenPage() {
               <div
                 key={order.id}
                 className={`rounded-2xl p-4 border-2 transition-all ${
-                  isUrgent ? 'border-red-500 bg-red-500/5 animate-pulse' : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900'
+                  isUrgent ? 'border-red-500 bg-red-500/5 animate-pulse' : 'border-outline-variant dark:border-outline bg-surface-container-lowest dark:bg-inverse-surface'
                 }`}
               >
                 {/* Card Header */}
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <span className="text-xl font-bold text-slate-900 dark:text-white">#{order.table.number}</span>
-                    <span className="text-[10px] font-bold text-brand-500 bg-brand-500/10 px-1.5 py-0.5 rounded uppercase tracking-wider">{order.branch.name}</span>
+                    <span className="text-xl font-bold text-on-surface dark:text-inverse-on-surface">#{order.table.number}</span>
+                    <span className="text-[10px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded uppercase tracking-wider">{order.branch.name}</span>
                   </div>
                   <div className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
-                    isUrgent ? 'bg-red-500/20 text-red-400' : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400'
+                    isUrgent ? 'bg-red-500/20 text-red-400' : 'bg-surface-container-lowest dark:bg-inverse-surface text-on-surface-variant dark:text-outline'
                   }`}>
                     <Clock size={12} />
                     {elapsed}m
@@ -222,20 +222,20 @@ export default function KitchenPage() {
                 {/* Items */}
                 <div className="space-y-2">
                   {groupKitchenItems(order.items).map((item, idx) => (
-                    <div key={idx} className="bg-white dark:bg-slate-800/50 rounded-xl p-3">
+                    <div key={idx} className="bg-surface-container-lowest dark:bg-inverse-surface/50 rounded-xl p-3">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <p className="text-sm font-semibold text-slate-900 dark:text-white">
-                            <span className="text-brand-400 mr-1">{item.quantity}x</span>
+                          <p className="text-sm font-semibold text-on-surface dark:text-inverse-on-surface">
+                            <span className="text-primary mr-1">{item.quantity}x</span>
                             {item.menuItem.name}
                           </p>
                           {item.variant && (
-                            <p className="text-xs text-slate-500 dark:text-slate-400">{item.variant.name}</p>
+                            <p className="text-xs text-on-surface-variant dark:text-outline">{item.variant.name}</p>
                           )}
                           {item.specialInstructions && (
                             <p className="text-xs text-amber-400 mt-1">📝 {item.specialInstructions}</p>
                           )}
-                          <p className="text-[10px] text-slate-500 mt-0.5">Est. {item.menuItem.preparationTimeMinutes} min</p>
+                          <p className="text-[10px] text-on-surface-variant mt-0.5">Est. {item.menuItem.preparationTimeMinutes} min</p>
                         </div>
 
                         <div className="ml-2">
@@ -262,7 +262,7 @@ export default function KitchenPage() {
                 </div>
                 {/* Overall Actions */}
                 {isKitchenStaff && (
-                  <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex gap-2">
+                  <div className="pt-2 border-t border-outline-variant dark:border-outline flex gap-2">
                     <button
                       onClick={() => handleOrderAction(order, 'START')}
                       className="flex-1 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-500 font-bold text-xs rounded-xl transition-colors border border-amber-500/20"
@@ -284,9 +284,9 @@ export default function KitchenPage() {
       ) : (
         <div className="flex items-center justify-center h-[60vh]">
           <div className="text-center">
-            <ChefHat size={64} className="text-slate-700 mx-auto mb-4" />
-            <p className="text-xl text-slate-500 font-semibold">No active orders</p>
-            <p className="text-sm text-slate-600">New orders will appear here automatically</p>
+            <ChefHat size={64} className="text-on-surface-variant mx-auto mb-4" />
+            <p className="text-xl text-on-surface-variant font-semibold">No active orders</p>
+            <p className="text-sm text-on-surface-variant">New orders will appear here automatically</p>
           </div>
         </div>
       )}

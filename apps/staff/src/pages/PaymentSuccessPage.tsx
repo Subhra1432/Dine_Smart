@@ -55,16 +55,16 @@ export default function PaymentSuccessPage() {
         </div>
 
         <div className="space-y-2">
-          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center justify-center gap-2">
+          <h1 className="text-3xl font-extrabold text-on-surface dark:text-inverse-on-surface flex items-center justify-center gap-2">
             Payment Successful! <PartyPopper className="text-amber-400" />
           </h1>
-          <p className="text-slate-500 dark:text-slate-400">
+          <p className="text-on-surface-variant dark:text-outline">
             Your plan has been upgraded successfully. Welcome to a better DineSmart experience!
           </p>
         </div>
 
         {sessionId && (
-          <div className="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-200 dark:border-slate-700 text-[10px] font-mono text-slate-500 uppercase">
+          <div className="bg-surface-container-lowest dark:bg-inverse-surface/50 p-3 rounded-xl border border-outline-variant text-[10px] font-mono text-on-surface-variant uppercase">
             Receipt ID: {sessionId}
           </div>
         )}
@@ -77,7 +77,7 @@ export default function PaymentSuccessPage() {
             Go to Subscriptions <ArrowRight size={20} />
           </button>
           
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-outline">
             Redirecting automatically in {countdown} seconds...
           </p>
         </div>

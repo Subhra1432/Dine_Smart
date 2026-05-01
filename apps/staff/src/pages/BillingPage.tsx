@@ -190,8 +190,13 @@ export default function BillingPage() {
   };
 
   useEffect(() => {
-    const socket = io('/restaurant', { auth: { token: document.cookie } });
-    socket.emit('join:billing');
+    const socket = io('/restaurant', { 
+      transports: ['websocket', 'polling'],
+      withCredentials: true 
+    });
+    socket.on('connect', () => {
+      socket.emit('join:billing');
+    });
     const audioUrl = useAuthStore.getState().restaurant?.notificationSoundUrl || NOTIFICATION_SOUND;
     const dingAudio = new Audio(audioUrl);
     socket.on('order:new', () => { queryClient.invalidateQueries({ queryKey: ['billingTables'] }); toast.success('🔔 New order received!'); dingAudio.play().catch(() => { }); });

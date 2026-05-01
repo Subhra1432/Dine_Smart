@@ -59,8 +59,13 @@ export default function OverviewPage() {
   });
 
   useEffect(() => {
-    const socket = io('/restaurant', { auth: { token: document.cookie } });
-    socket.emit('join:billing');
+    const socket = io('/restaurant', { 
+      transports: ['websocket', 'polling'],
+      withCredentials: true 
+    });
+    socket.on('connect', () => {
+      socket.emit('join:billing');
+    });
 
     socket.on('order:new', (order) => {
       queryClient.invalidateQueries({ queryKey: ['overview'] });

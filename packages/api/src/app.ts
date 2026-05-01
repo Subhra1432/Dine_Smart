@@ -36,6 +36,9 @@ import notificationRoutes from './modules/notifications/notifications.routes.js'
 const app = express();
 const httpServer = createServer(app);
 
+// Trust proxy for Render/Cloudflare (Rate Limiting)
+app.set('trust proxy', 1);
+
 // Resolve __dirname for ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

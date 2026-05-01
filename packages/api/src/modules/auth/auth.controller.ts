@@ -139,3 +139,22 @@ export async function superAdminLogin(req: Request, res: Response) {
 
   res.json({ success: true, data: { admin: result.admin } });
 }
+
+export async function getSuperAdminMe(req: Request, res: Response) {
+  const { prisma } = await import('../../config/database.js');
+  
+  if (!req.superAdmin?.superAdminId) {
+    throw new Error('Invalid superadmin session');
+  }
+
+  const admin = await prisma.superAdmin.findUnique({
+    where: { id: req.superAdmin.superAdminId },
+    select: { id: true, email: true }
+  });
+
+  if (!admin) {
+    throw new Error('SuperAdmin no longer exists');
+  }
+
+  res.json({ success: true, data: { admin } });
+}

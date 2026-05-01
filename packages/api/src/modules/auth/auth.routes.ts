@@ -20,6 +20,7 @@ router.post('/logout', authenticate, asyncHandler(authController.logout));
 router.post('/forgot-password', authRateLimiter, asyncHandler(authController.forgotPassword));
 router.post('/reset-password/:token', authRateLimiter, asyncHandler(authController.resetPassword));
 router.get('/me', authenticate, asyncHandler(authController.getMe));
+router.get('/superadmin/me', authenticateSuperAdmin, asyncHandler(authController.getSuperAdminMe));
 router.post('/superadmin/login', authRateLimiter, asyncHandler(authController.superAdminLogin));
 
 // Public document upload for registration (no auth required)

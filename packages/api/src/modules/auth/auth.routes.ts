@@ -5,7 +5,7 @@
 import { Router } from 'express';
 import type { Request, Response } from 'express';
 import * as authController from './auth.controller.js';
-import { asyncHandler, authenticate, authRateLimiter } from '../../middleware/index.js';
+import { asyncHandler, authenticate, authenticateSuperAdmin, authRateLimiter } from '../../middleware/index.js';
 import multer from 'multer';
 import { cloudinary } from '../../config/cloudinary.js';
 import { AppError } from '../../middleware/errorHandler.js';

@@ -326,6 +326,7 @@ model Order {
   @@index([createdAt])
   @@index([sessionId])
   @@index([isArchived])
+  @@index([restaurantId, createdAt, paymentStatus])
   @@map("orders")
 }
 

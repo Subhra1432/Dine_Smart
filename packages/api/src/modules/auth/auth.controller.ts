@@ -6,6 +6,7 @@ import type { Request, Response } from 'express';
 import { registerSchema, loginSchema, forgotPasswordSchema, resetPasswordSchema } from '@dinesmart/shared';
 import * as authService from './auth.service.js';
 import { env } from '../../config/env.js';
+import { prisma } from '../../config/database.js';
 
 const COOKIE_OPTIONS = {
   httpOnly: true,
@@ -104,8 +105,6 @@ export async function resetPassword(req: Request, res: Response) {
 }
 
 export async function getMe(req: Request, res: Response) {
-  const { prisma } = await import('../../config/database.js');
-  
   if (!req.user?.userId) {
     throw new Error('Invalid session');
   }

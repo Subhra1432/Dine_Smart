@@ -4,10 +4,11 @@
 
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
+import { fileURLToPath } from 'url';
 
 const prisma = new PrismaClient();
 
-async function seed() {
+export async function main() {
   console.log('🌱 Seeding database...');
 
   // Safety Check: On Render Free Tier, the app restarts frequently.
@@ -292,11 +293,16 @@ async function seed() {
   console.log('Kitchen:      kitchen@spicegarden.com / kitchen123');
 }
 
-seed()
-  .catch((e) => {
-    console.error('❌ Seed failed:', e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+// Only run automatically if this file is executed directly
+const isDirectRun = fileURLToPath(import.meta.url) === process.argv[1];
+
+if (isDirectRun) {
+  main()
+    .catch((e) => {
+      console.error('❌ Seed failed:', e);
+      process.exit(1);
+    })
+    .finally(async () => {
+      await prisma.$disconnect();
+    });
+}

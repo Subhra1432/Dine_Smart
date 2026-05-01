@@ -16,6 +16,7 @@ import { initWorkers } from './config/queue.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { requestLogger } from './middleware/requestLogger.js';
 import { authenticatedRateLimiter } from './middleware/rateLimiter.js';
+import { main as seedDatabase } from '../prisma/seed.js';
 
 // Import route modules
 import authRoutes from './modules/auth/auth.routes.js';
@@ -165,10 +166,21 @@ try {
   logger.warn('⚠️ Workers initialization skipped (Redis issue)', { error: err });
 }
 
-httpServer.listen(env.PORT, () => {
+httpServer.listen(env.PORT, async () => {
   logger.info(`🚀 DineSmart OS API running on port ${env.PORT}`);
   logger.info(`📊 Environment: ${env.NODE_ENV}`);
   logger.info(`🔗 API URL: ${env.API_BASE_URL}`);
+
+  // Trigger seeding if requested
+  if (process.env.RESET_DB === 'true') {
+    try {
+      logger.info('🌱 Database seeding triggered via RESET_DB...');
+      await seedDatabase();
+      logger.info('✅ Database seeding completed successfully');
+    } catch (err) {
+      logger.error('❌ Database seeding failed', { error: err });
+    }
+  }
 });
 
 export default app;

@@ -11,8 +11,7 @@ import { AppError } from '../../middleware/errorHandler.js';
 import { logger } from '../../config/logger.js';
 import type { JwtAccessPayload, JwtRefreshPayload } from '@dinesmart/shared';
 import { seedDemoMenu } from '../../utils/demoSeeder.js';
-
-const BCRYPT_ROUNDS = 12;
+const BCRYPT_ROUNDS = 10;
 
 function generateSlug(name: string): string {
   return name
@@ -230,6 +229,16 @@ export async function login(email: string, password: string) {
   if (!isValid) {
     logger.warn('Login failure: Password mismatch', { email });
     throw new AppError(401, 'Invalid email or password');
+  }
+
+  // Downgrade bcrypt rounds to 10 to improve performance (bcryptjs is very slow at 12)
+  if (user.passwordHash.includes('$12$')) {
+    const optimizedHash = await bcrypt.hash(password, BCRYPT_ROUNDS);
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { passwordHash: optimizedHash },
+    });
+    logger.info('Optimized password hash rounds', { userId: user.id });
   }
 
   const tokens = generateTokens(

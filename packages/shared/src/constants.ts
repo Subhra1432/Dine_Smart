@@ -65,6 +65,7 @@ export type DiscountType = (typeof DISCOUNT_TYPE)[keyof typeof DISCOUNT_TYPE];
 
 export const PLAN = {
   STARTER: 'STARTER',
+  GROWTH: 'GROWTH',
   PREMIUM: 'PREMIUM',
 } as const;
 
@@ -94,6 +95,18 @@ export const PLAN_LIMITS: Record<Plan, {
     whiteLabel: false,
     monthlyPrice: 999,
   },
+  GROWTH: {
+    maxBranches: 3,
+    maxTables: 100,
+    maxCoupons: 5,
+    aiRecommendations: false,
+    aiDemandForecast: false,
+    aiSmartPricing: false,
+    inventory: true,
+    analytics: true,
+    whiteLabel: false,
+    monthlyPrice: 1999,
+  },
   PREMIUM: {
     maxBranches: -1,
     maxTables: -1,
@@ -104,9 +117,10 @@ export const PLAN_LIMITS: Record<Plan, {
     inventory: true,
     analytics: true,
     whiteLabel: true,
-    monthlyPrice: 2499,
+    monthlyPrice: 3999,
   },
 };
+
 
 export const NOTIFICATION_TYPES = {
   ORDER_NEW: 'ORDER_NEW',

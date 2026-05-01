@@ -116,3 +116,36 @@ export function requireTableLimit() {
     next();
   };
 }
+export function requireCouponLimit() {
+  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    if (!req.user) {
+      res.status(401).json({ success: false, error: 'Authentication required' });
+      return;
+    }
+
+    const restaurant = await prisma.restaurant.findUnique({
+      where: { id: req.user.restaurantId },
+      select: { plan: true, _count: { select: { coupons: true } } },
+    });
+
+    if (!restaurant) {
+      res.status(404).json({ success: false, error: 'Restaurant not found' });
+      return;
+    }
+
+    const plan = restaurant.plan as Plan;
+    const limits = PLAN_LIMITS[plan];
+
+    if (limits.maxCoupons !== -1 && restaurant._count.coupons >= limits.maxCoupons) {
+      res.status(403).json({
+        success: false,
+        error: 'PLAN_LIMIT_EXCEEDED',
+        message: `Plan limit reached: ${limits.maxCoupons} coupons. Upgrade to Growth or Premium for more.`,
+        upgradeUrl: '/billing',
+      } as Record<string, unknown>);
+      return;
+    }
+
+    next();
+  };
+}

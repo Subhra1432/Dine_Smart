@@ -354,7 +354,9 @@ export default function SubscriptionPage() {
                     <p className="text-sm text-stone-400 font-medium leading-relaxed max-w-[280px]">
                       {plan.name === 'STARTER'
                         ? 'Optimized for high-velocity single location operations.'
-                        : 'Enterprise-grade orchestration for multi-branch restaurant empires.'}
+                        : plan.name === 'GROWTH'
+                          ? 'Strategic scaling for growing restaurant networks.'
+                          : 'Enterprise-grade orchestration for multi-branch restaurant empires.'}
                     </p>
                   </div>
 
@@ -382,9 +384,7 @@ export default function SubscriptionPage() {
                         ? 'Current Active Tier'
                         : isCurrent
                           ? `Renew Lease Protocol`
-                          : plan.name === 'PREMIUM'
-                            ? `Initialize Upgrade Sequence`
-                            : `Deploy Starter Protocol`
+                          : `Deploy ${plan.name} Protocol`
                       }
                       {!isCurrent && <Zap size={14} className="fill-current" />}
                     </span>

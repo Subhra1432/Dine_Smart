@@ -5,8 +5,9 @@
 import { Router } from 'express';
 import type { Request, Response } from 'express';
 import * as ctrl from './restaurant.controller.js';
-import { asyncHandler, authenticate, requireRole, requireBranchLimit, requireTableLimit } from '../../middleware/index.js';
+import { asyncHandler, authenticate, requireRole, requireBranchLimit, requireTableLimit, requireCouponLimit } from '../../middleware/index.js';
 import { prisma } from '../../config/database.js';
+import { PLAN_LIMITS, type Plan } from '@dinesmart/shared';
 
 const router = Router();
 
@@ -73,10 +74,10 @@ router.get('/subscription', asyncHandler(async (req: Request, res: Response) => 
 }));
 
 router.post('/subscription/pay', requireRole(['OWNER', 'MANAGER']), asyncHandler(async (req: Request, res: Response) => {
-  const { plan, paymentMethod } = req.body as { plan: string; paymentMethod: string };
+  const { plan, paymentMethod } = req.body as { plan: Plan; paymentMethod: string };
 
-  if (!['STARTER', 'PREMIUM'].includes(plan)) {
-    res.status(400).json({ success: false, error: 'Invalid plan. Only STARTER and PREMIUM are available.' });
+  if (!PLAN_LIMITS[plan]) {
+    res.status(400).json({ success: false, error: 'Invalid plan selected' });
     return;
   }
 
@@ -86,7 +87,6 @@ router.post('/subscription/pay', requireRole(['OWNER', 'MANAGER']), asyncHandler
   }
 
   // ── Downgrade Protection ─────────────────
-  // If switching to STARTER, verify current usage is within STARTER limits.
   const currentRestaurant = await prisma.restaurant.findUnique({
     where: { id: req.user!.restaurantId },
     include: {
@@ -94,24 +94,32 @@ router.post('/subscription/pay', requireRole(['OWNER', 'MANAGER']), asyncHandler
     },
   });
 
-  if (currentRestaurant && plan === 'STARTER') {
-    const STARTER_MAX_TABLES = 20;
-    const STARTER_MAX_BRANCHES = 1;
+  if (currentRestaurant) {
+    const limits = PLAN_LIMITS[plan];
     const reasons: string[] = [];
 
-    if (currentRestaurant._count.tables > STARTER_MAX_TABLES) {
-      reasons.push(`You have ${currentRestaurant._count.tables} tables (Starter allows ${STARTER_MAX_TABLES})`);
+    if (limits.maxTables !== -1 && currentRestaurant._count.tables > limits.maxTables) {
+      reasons.push(`You have ${currentRestaurant._count.tables} tables (Selected plan allows ${limits.maxTables})`);
     }
-    if (currentRestaurant._count.branches > STARTER_MAX_BRANCHES) {
-      reasons.push(`You have ${currentRestaurant._count.branches} branches (Starter allows ${STARTER_MAX_BRANCHES})`);
+    if (limits.maxBranches !== -1 && currentRestaurant._count.branches > limits.maxBranches) {
+      reasons.push(`You have ${currentRestaurant._count.branches} branches (Selected plan allows ${limits.maxBranches})`);
     }
 
-    // Check active coupons
-    const activeCoupons = await prisma.coupon.count({
-      where: { restaurantId: req.user!.restaurantId, isActive: true },
-    });
-    if (activeCoupons > 0) {
-      reasons.push(`You have ${activeCoupons} active coupon(s) — Starter plan does not include coupon features`);
+    // Check active coupons if plan doesn't support them
+    if (limits.maxCoupons === 0) {
+      const activeCoupons = await prisma.coupon.count({
+        where: { restaurantId: req.user!.restaurantId, isActive: true },
+      });
+      if (activeCoupons > 0) {
+        reasons.push(`You have ${activeCoupons} active coupon(s) — Selected plan does not include coupon features`);
+      }
+    } else if (limits.maxCoupons !== -1) {
+       const activeCoupons = await prisma.coupon.count({
+        where: { restaurantId: req.user!.restaurantId, isActive: true },
+      });
+      if (activeCoupons > limits.maxCoupons) {
+        reasons.push(`You have ${activeCoupons} active coupon(s) (Selected plan allows ${limits.maxCoupons})`);
+      }
     }
 
     if (reasons.length > 0) {
@@ -119,35 +127,32 @@ router.post('/subscription/pay', requireRole(['OWNER', 'MANAGER']), asyncHandler
         success: false,
         error: 'DOWNGRADE_BLOCKED',
         reasons,
-        message: 'Cannot downgrade to Starter plan. Please resolve usage limits first.',
+        message: 'Cannot switch to this plan. Please resolve usage limits first.',
       });
       return;
     }
   }
 
-  const amount = plan === 'STARTER' ? 999 : 2499;
+  const amount = PLAN_LIMITS[plan].monthlyPrice;
   
-
   const { stripe, STRIPE_CONFIG, isDemoMode } = await import('../../lib/stripe.js');
   
   if (isDemoMode) {
-    // ── Demo Mode Path ─────────────────────
-    // If Stripe is not configured, we simulate a successful payment immediately.
     const expiresAt = new Date();
-    expiresAt.setDate(expiresAt.getDate() + 30); // 30 day extension
+    expiresAt.setDate(expiresAt.getDate() + 30);
 
     await prisma.$transaction([
       prisma.restaurant.update({
         where: { id: req.user!.restaurantId },
         data: {
-          plan: plan as 'STARTER' | 'PREMIUM',
+          plan: plan,
           planExpiresAt: expiresAt,
         },
       }),
       prisma.subscriptionPayment.create({
         data: {
           restaurantId: req.user!.restaurantId,
-          plan: plan as 'STARTER' | 'PREMIUM',
+          plan: plan,
           amount: amount,
           method: paymentMethod,
           status: 'COMPLETED (DEMO)',
@@ -164,7 +169,6 @@ router.post('/subscription/pay', requireRole(['OWNER', 'MANAGER']), asyncHandler
     });
   }
 
-  // ── Production Stripe Path ────────────────
   const session = await stripe!.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [{
@@ -198,6 +202,7 @@ router.post('/subscription/pay', requireRole(['OWNER', 'MANAGER']), asyncHandler
   });
 }));
 
+
 router.get('/subscription/payments', requireRole(['OWNER', 'MANAGER']), asyncHandler(async (req: Request, res: Response) => {
   const payments = await prisma.subscriptionPayment.findMany({
     where: { restaurantId: req.user!.restaurantId },
@@ -215,7 +220,7 @@ router.get('/coupons', requireRole(['OWNER', 'MANAGER']), asyncHandler(async (re
   res.json({ success: true, data: coupons });
 }));
 
-router.post('/coupons', requireRole(['OWNER', 'MANAGER']), asyncHandler(async (req: Request, res: Response) => {
+router.post('/coupons', requireRole(['OWNER', 'MANAGER']), requireCouponLimit(), asyncHandler(async (req: Request, res: Response) => {
   const { code, discountType, discountValue, minOrderValue, maxUses, expiresAt, isActive } = req.body;
   const coupon = await prisma.coupon.create({
     data: {

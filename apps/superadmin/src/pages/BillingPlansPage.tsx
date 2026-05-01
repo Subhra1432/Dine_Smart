@@ -22,7 +22,8 @@ interface Restaurant {
 
 const PLANS = [
   { name: 'STARTER', price: 999, features: ['1 Branch', '20 Tables', 'Basic Analytics', 'QR Code Ordering', 'KDS System'] },
-  { name: 'PREMIUM', price: 2499, features: ['Unlimited Branches', 'Unlimited Tables', 'AI Insights', 'Inventory Management', 'Coupon System', 'White Label'] },
+  { name: 'GROWTH', price: 1999, features: ['3 Branches', '100 Tables', 'Advanced Inventory', 'Sales Forecasting', 'Priority Support'] },
+  { name: 'PREMIUM', price: 3999, features: ['Unlimited Branches', 'Unlimited Tables', 'AI Insights', 'Coupon & Loyalty System', 'White Label Branding'] },
 ];
 
 export default function BillingPlansPage() {
@@ -149,6 +150,7 @@ export default function BillingPlansPage() {
                         className="bg-stone-50 dark:bg-stone-800 text-[9px] font-black uppercase tracking-widest text-stone-600 dark:text-stone-300 rounded-lg px-3 py-1.5 border border-stone-200 dark:border-primary/20 focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer hover:border-primary transition-all"
                       >
                         <option value="STARTER">Starter</option>
+                        <option value="GROWTH">Growth</option>
                         <option value="PREMIUM">Premium</option>
                       </select>
                     </td>

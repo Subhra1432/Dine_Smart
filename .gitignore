@@ -1,0 +1,13 @@
+node_modules
+dist
+.env
+.DS_Store
+*.log
+.cache
+.npm
+.npm-cache
+.prisma-cache
+Library
+.env
+*.wav
+*.mp3

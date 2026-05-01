@@ -1,0 +1,138 @@
+services:
+  deps:
+    image: node:20-slim
+    container_name: dinesmart-deps
+    working_dir: /app
+    volumes:
+      - .:/app
+      - app_node_modules:/app/node_modules
+    command: /bin/sh -c "if [ ! -d /app/node_modules/.bin ]; then npm install; fi"
+
+  # PostgreSQL
+  postgres:
+    image: postgres:16-alpine
+    container_name: dinesmart-postgres
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: dinesmart
+      POSTGRES_PASSWORD: dinesmart_secret
+      POSTGRES_DB: dinesmart
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U dinesmart']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    container_name: dinesmart-redis
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Node API
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: dinesmart-api
+    restart: unless-stopped
+    ports:
+      - '4000:4000'
+      - '4001:4001'
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/packages/api/node_modules
+      - /app/packages/shared/node_modules
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql://dinesmart:dinesmart_secret@postgres:5432/dinesmart?schema=public
+      - REDIS_URL=redis://redis:6379
+      - PORT=4001
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD-SHELL', 'curl -f http://localhost:4001/api/health || exit 1']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+    command: /bin/sh -c "cd /app/packages/api && npx prisma generate && npx prisma db push --accept-data-loss && (npx tsx prisma/seed.ts || true) && cd /app && npx tsx --watch packages/api/src/app.ts"
+
+  # Customer PWA Frontend
+  customer:
+    image: node:20-slim
+    container_name: dinesmart-customer
+    restart: unless-stopped
+    ports:
+      - '5173:5173'
+    working_dir: /app
+    volumes:
+      - .:/app
+      - app_node_modules:/app/node_modules
+    environment:
+      - API_URL=http://api:4000
+      - VITE_CUSTOMER_URL=http://localhost:5173
+    depends_on:
+      deps:
+        condition: service_completed_successfully
+    command: /bin/sh -c "npm run dev --workspace=@dinesmart/customer -- --host 0.0.0.0"
+
+  # Staff Panel Frontend
+  staff:
+    image: node:20-slim
+    container_name: dinesmart-staff
+    restart: unless-stopped
+    ports:
+      - '5174:5174'
+    working_dir: /app
+    volumes:
+      - .:/app
+      - app_node_modules:/app/node_modules
+    environment:
+      - API_URL=http://api:4000
+      - VITE_CUSTOMER_URL=http://localhost:5173
+    depends_on:
+      deps:
+        condition: service_completed_successfully
+    command: /bin/sh -c "npm run dev --workspace=@dinesmart/staff -- --host 0.0.0.0"
+
+  # SuperAdmin Dashboard
+  superadmin:
+    image: node:20-slim
+    container_name: dinesmart-superadmin
+    restart: unless-stopped
+    ports:
+      - '5175:5175'
+    working_dir: /app
+    volumes:
+      - .:/app
+      - app_node_modules:/app/node_modules
+    environment:
+      - API_URL=http://api:4000
+    depends_on:
+      deps:
+        condition: service_completed_successfully
+    command: /bin/sh -c "npm run dev --workspace=@dinesmart/superadmin -- --host 0.0.0.0"
+
+volumes:
+  app_node_modules:
+  postgres_data:
+  redis_data:

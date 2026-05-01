@@ -1,0 +1,59 @@
+services:
+  - type: web
+    name: dinesmart-api
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build:all && npm run db:push && (npm run db:seed || true)
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "10000"
+      - key: DATABASE_URL
+        sync: false
+      - key: DIRECT_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: JWT_SUPERADMIN_SECRET
+        generateValue: true
+      - key: CSRF_SECRET
+        generateValue: true
+      - key: JWT_ACCESS_EXPIRES_IN
+        value: "15m"
+      - key: JWT_REFRESH_EXPIRES_IN
+        value: "7d"
+      - key: API_BASE_URL
+        value: "https://dinesmart-api.onrender.com"
+      - key: FRONTEND_CUSTOMER_URL
+        value: "https://dinesmart-api.onrender.com"
+      - key: FRONTEND_URL
+        value: "https://dinesmart-api.onrender.com"
+      - key: FRONTEND_SUPERADMIN_URL
+        value: "https://dinesmart-api.onrender.com"
+      - key: QR_BASE_URL
+        value: "https://dinesmart-api.onrender.com"
+      - key: LOG_LEVEL
+        value: "info"
+      # Optional: Set these manually in Render dashboard if needed
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_VERIFY_SERVICE_SID
+        sync: false
+  - type: keyvalue
+    name: dinesmart-redis
+    plan: free
+    ipAllowList: []
+
+databases:
+  - name: dinesmart-db
+    plan: free
+    databaseName: dinesmart
+    user: dinesmart

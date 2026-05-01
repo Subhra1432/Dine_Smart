@@ -16,7 +16,7 @@ import { initWorkers } from './config/queue.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { requestLogger } from './middleware/requestLogger.js';
 import { authenticatedRateLimiter } from './middleware/rateLimiter.js';
-import { main as seedDatabase } from '../prisma/seed.js';
+import { runDatabaseSeed } from './config/seed.js';
 
 // Import route modules
 import authRoutes from './modules/auth/auth.routes.js';
@@ -175,7 +175,7 @@ httpServer.listen(env.PORT, async () => {
   if (process.env.RESET_DB === 'true') {
     try {
       logger.info('🌱 Database seeding triggered via RESET_DB...');
-      await seedDatabase();
+      await runDatabaseSeed();
       logger.info('✅ Database seeding completed successfully');
     } catch (err) {
       logger.error('❌ Database seeding failed', { error: err });

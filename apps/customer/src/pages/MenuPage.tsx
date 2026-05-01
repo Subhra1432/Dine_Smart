@@ -6,7 +6,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Search, ShoppingCart, Flame, Minus, Plus, X, Tag, User, Clock, LogOut, UtensilsCrossed, Star, Edit3, Check, ArrowRight } from 'lucide-react';
+import { Search, ShoppingCart, Flame, Minus, Plus, X, Tag, User, Clock, LogOut, UtensilsCrossed, Star, Edit3, Check, ArrowRight, Scan } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { getPublicMenu, placeOrder, validateCoupon, getRecommendations, getCustomerHistory, getAvailableCoupons } from '../lib/api';
 import { useCartStore } from '../store/cart';
@@ -53,11 +53,18 @@ interface MenuData {
 
 export default function MenuPage() {
   const queryClient = useQueryClient();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { slug: pathSlug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const slug = pathSlug || searchParams.get('restaurant') || '';
   const tableId = searchParams.get('table') || searchParams.get('tableId') || '';
+
+  // Auto-redirect spice-garden demo to table 1 if no tableId provided
+  useEffect(() => {
+    if (slug === 'spice-garden' && !tableId) {
+      setSearchParams({ table: '1' });
+    }
+  }, [slug, tableId, setSearchParams]);
 
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
@@ -117,6 +124,39 @@ export default function MenuPage() {
     queryFn: () => getPublicMenu(slug, tableId) as Promise<MenuData>,
     enabled: !!slug && !!tableId,
   });
+
+  if (!slug) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center bg-white">
+        <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+          <Scan size={40} className="text-primary" />
+        </div>
+        <h1 className="text-2xl font-black text-stone-900 uppercase tracking-tighter mb-2">Welcome to DineSmart</h1>
+        <p className="text-sm text-stone-500 font-medium max-w-xs mx-auto">Please scan the QR code located at your table to view the digital menu and place your order.</p>
+      </div>
+    );
+  }
+
+  if (!tableId) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center bg-white">
+        <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-6 animate-pulse">
+          <Scan size={40} className="text-primary" />
+        </div>
+        <h1 className="text-2xl font-black text-stone-900 uppercase tracking-tighter mb-2">Scanning Table...</h1>
+        <p className="text-sm text-stone-500 font-medium max-w-xs mx-auto mb-8">We couldn't identify your table. Please re-scan the QR code on your table.</p>
+        
+        {slug === 'spice-garden' && (
+          <button 
+            onClick={() => window.location.search = '?table=1'}
+            className="px-8 py-4 bg-primary text-white text-xs font-black uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-primary/20 hover:scale-105 transition-all"
+          >
+            Enter Demo Mode (Table 1)
+          </button>
+        )}
+      </div>
+    );
+  }
 
   // Fetch recommendations
   const cartItemIds = cart.items.map((i) => i.menuItemId);

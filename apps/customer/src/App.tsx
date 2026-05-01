@@ -12,11 +12,11 @@ function App() {
     <div className="min-h-screen bg-surface">
       <Routes>
         <Route path="/" element={<MenuPage />} />
-        <Route path="/menu" element={<MenuPage />} />
-        <Route path="/menu/:slug" element={<MenuPage />} />
+        <Route path="/offline" element={<OfflinePage />} />
         <Route path="/order/:sessionId" element={<OrderTracking />} />
         <Route path="/track/:sessionId" element={<OrderTracking />} />
-        <Route path="/offline" element={<OfflinePage />} />
+        <Route path="/menu/:slug" element={<MenuPage />} />
+        <Route path="/:slug" element={<MenuPage />} />
         <Route path="*" element={
           <div className="flex items-center justify-center min-h-screen p-6">
             <div className="text-center">

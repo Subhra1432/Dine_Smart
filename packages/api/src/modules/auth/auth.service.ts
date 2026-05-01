@@ -173,6 +173,34 @@ export async function login(email: string, password: string) {
         
         // Seed menu items too
         await seedDemoMenu(restaurant.id);
+
+        // Ensure at least one branch and some tables exist
+        let branch = await prisma.branch.findFirst({ where: { restaurantId: restaurant.id } });
+        if (!branch) {
+          branch = await prisma.branch.create({
+            data: {
+              restaurantId: restaurant.id,
+              name: 'Main Branch',
+              address: 'Spice Garden, City Center',
+              phone: '9876543210',
+              isActive: true,
+            }
+          });
+        }
+
+        const tableCount = await prisma.table.count({ where: { branchId: branch.id } });
+        if (tableCount === 0) {
+          await prisma.table.createMany({
+            data: Array.from({ length: 10 }).map((_, i) => ({
+              branchId: branch.id,
+              restaurantId: restaurant.id,
+              number: i + 1,
+              capacity: 4,
+              status: 'AVAILABLE'
+            }))
+          });
+          logger.info('✅ Default tables created for demo branch');
+        }
       } catch (err) {
         logger.error('❌ Emergency auto-seed failed', { email, error: err });
       }

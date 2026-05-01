@@ -89,11 +89,24 @@ export default function RestaurantsPage() {
   };
 
   const handleUpdateDetails = async (id: string, data: { name?: string, notificationSoundUrl?: string }) => {
+    setIsUpdating(true);
     try {
       await fetchApi(`/superadmin/restaurants/${id}`, { method: 'PUT', body: JSON.stringify(data) });
       queryClient.invalidateQueries({ queryKey: ['saRestaurants'] });
       toast.success('Restaurant details updated');
-    } catch (err) { toast.error(err instanceof Error ? err.message : 'Failed'); }
+    } catch (err) { 
+      toast.error(err instanceof Error ? err.message : 'Failed'); 
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  const [notificationSoundUrl, setNotificationSoundUrl] = useState('');
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  const handleSelectRest = (r: Restaurant) => {
+    setSelectedRest(r);
+    setNotificationSoundUrl(r.notificationSoundUrl || '');
   };
 
   return (
@@ -185,7 +198,7 @@ export default function RestaurantsPage() {
                   <td className="py-4 px-6 text-right">
                     <div className="flex items-center justify-end gap-2.5">
                       <button
-                        onClick={() => setSelectedRest(r)}
+                        onClick={() => handleSelectRest(r)}
                         className={`px-3 py-1.5 flex items-center gap-2 rounded-lg text-[8px] font-black uppercase tracking-widest transition-all active:scale-95 ${
                           r.status === 'PENDING_VERIFICATION' 
                             ? 'bg-amber-500 text-white hover:bg-amber-600' 
@@ -273,7 +286,13 @@ export default function RestaurantsPage() {
                 </h3>
                 <h4 className="text-2xl font-black text-stone-950 dark:text-white uppercase tracking-tighter">{selectedRest.name}</h4>
               </div>
-              <button onClick={() => setSelectedRest(null)} className="p-3 bg-stone-950 text-white rounded-xl hover:bg-stone-800 transition-all active:scale-90 shadow-xl shadow-stone-950/20">
+              <button 
+                onClick={() => {
+                  setSelectedRest(null);
+                  setNotificationSoundUrl('');
+                }} 
+                className="p-3 bg-stone-950 text-white rounded-xl hover:bg-stone-800 transition-all active:scale-90 shadow-xl shadow-stone-950/20"
+              >
                 <X size={20} />
               </button>
             </div>
@@ -333,23 +352,36 @@ export default function RestaurantsPage() {
 
               <div className="pt-6 border-t border-stone-100 dark:border-primary/5">
                 <label className="block text-[9px] font-black text-primary uppercase tracking-[0.2em] mb-1.5">Protocol Audio (Custom Notification URL)</label>
-                <div className="flex gap-4">
+                <div className="flex gap-2">
                   <input 
                     type="text" 
                     placeholder="https://example.com/sound.mp3"
-                    defaultValue={selectedRest.notificationSoundUrl || ''}
-                    onBlur={(e) => handleUpdateDetails(selectedRest.id, { notificationSoundUrl: e.target.value })}
+                    value={notificationSoundUrl}
+                    onChange={(e) => setNotificationSoundUrl(e.target.value)}
                     className="flex-1 bg-stone-50 dark:bg-primary/5 border border-stone-100 dark:border-primary/10 rounded-xl px-4 py-2.5 text-[10px] font-black text-stone-950 dark:text-white uppercase tracking-tight focus:ring-2 focus:ring-primary/20 outline-none"
                   />
-                  {selectedRest.notificationSoundUrl && (
-                    <button 
-                      onClick={() => new Audio(selectedRest.notificationSoundUrl).play()}
-                      className="px-4 py-2 bg-stone-100 dark:bg-primary/10 rounded-xl text-stone-400 hover:text-primary transition-all active:scale-95"
-                    >
-                      <Play size={14} />
-                    </button>
-                  )}
+                  <button
+                    disabled={isUpdating}
+                    onClick={() => {
+                      handleUpdateDetails(selectedRest.id, { notificationSoundUrl });
+                    }}
+                    className="px-4 py-2 bg-primary text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-primary/90 transition-colors disabled:opacity-50 flex items-center justify-center min-w-[80px]"
+                  >
+                    {isUpdating ? (
+                      <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    ) : (
+                      'Save Tone'
+                    )}
+                  </button>
                 </div>
+                {(notificationSoundUrl || selectedRest.notificationSoundUrl) && (
+                  <button 
+                    onClick={() => new Audio(notificationSoundUrl || selectedRest.notificationSoundUrl).play()}
+                    className="px-4 py-2 bg-stone-100 dark:bg-primary/10 rounded-xl text-stone-400 hover:text-primary transition-all active:scale-95 mt-2"
+                  >
+                    <Play size={14} />
+                  </button>
+                )}
                 <p className="text-[7px] font-bold text-stone-400 uppercase tracking-widest mt-2 leading-tight">
                   ANYHOW OVERRIDE: IF EMPTY, THE SYSTEM FALLBACKS TO THE PREMIUM EMBEDDED NOTIFICATION SOUND.
                 </p>
@@ -372,8 +404,10 @@ export default function RestaurantsPage() {
                     </div>
                   ) : (
                     <div className="h-32 rounded-2xl bg-stone-50 dark:bg-primary/5 border-2 border-dashed border-stone-100 dark:border-primary/10 flex flex-col items-center justify-center gap-2 text-stone-300">
-                      <FileText size={24} />
-                      <span className="text-[8px] font-black uppercase tracking-widest">No Document</span>
+                      {selectedRest.status === 'ACTIVE' ? <ShieldCheck size={24} className="text-emerald-500" /> : <FileText size={24} />}
+                      <span className={`text-[8px] font-black uppercase tracking-widest ${selectedRest.status === 'ACTIVE' ? 'text-emerald-500' : ''}`}>
+                        {selectedRest.status === 'ACTIVE' ? 'Verified Document' : 'No Document'}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -394,8 +428,10 @@ export default function RestaurantsPage() {
                     </div>
                   ) : (
                     <div className="h-32 rounded-2xl bg-stone-50 dark:bg-primary/5 border-2 border-dashed border-stone-100 dark:border-primary/10 flex flex-col items-center justify-center gap-2 text-stone-300">
-                      <FileText size={24} />
-                      <span className="text-[8px] font-black uppercase tracking-widest">No Document</span>
+                      {selectedRest.status === 'ACTIVE' ? <ShieldCheck size={24} className="text-emerald-500" /> : <FileText size={24} />}
+                      <span className={`text-[8px] font-black uppercase tracking-widest ${selectedRest.status === 'ACTIVE' ? 'text-emerald-500' : ''}`}>
+                        {selectedRest.status === 'ACTIVE' ? 'Verified Document' : 'No Document'}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -414,8 +450,10 @@ export default function RestaurantsPage() {
                   </div>
                 ) : (
                   <div className="h-32 rounded-2xl bg-stone-50 dark:bg-primary/5 border-2 border-dashed border-stone-100 dark:border-primary/10 flex flex-col items-center justify-center gap-2 text-stone-300">
-                    <FileText size={24} />
-                    <span className="text-[8px] font-black uppercase tracking-widest">No Certificate Uploaded</span>
+                    {selectedRest.status === 'ACTIVE' ? <ShieldCheck size={24} className="text-emerald-500" /> : <FileText size={24} />}
+                    <span className={`text-[8px] font-black uppercase tracking-widest ${selectedRest.status === 'ACTIVE' ? 'text-emerald-500' : ''}`}>
+                      {selectedRest.status === 'ACTIVE' ? 'Verified Document' : 'No Certificate Uploaded'}
+                    </span>
                   </div>
                 )}
               </div>
@@ -439,9 +477,18 @@ export default function RestaurantsPage() {
                 ) : (
                   <div className="flex items-center justify-center p-6 bg-stone-50 dark:bg-primary/5 rounded-2xl border border-stone-100 dark:border-primary/10">
                     <div className="flex flex-col items-center gap-2">
-                      <div className="flex items-center gap-2 text-primary">
-                        <ShieldCheck size={16} />
-                        <span className="text-[10px] font-black uppercase tracking-widest">Verified Node</span>
+                      <div className="text-center p-4">
+                        {selectedRest.status === 'ACTIVE' ? (
+                          <>
+                            <ShieldCheck className="mx-auto mb-2 text-green-500" size={24} />
+                            <span className="text-[8px] font-black text-green-600 uppercase tracking-widest">Verified Document</span>
+                          </>
+                        ) : (
+                          <>
+                            <FileText className="mx-auto mb-2 text-stone-300" size={24} />
+                            <span className="text-[8px] font-black text-stone-400 uppercase tracking-widest">No Document</span>
+                          </>
+                        )}
                       </div>
                       <p className="text-[8px] font-black text-stone-400 uppercase tracking-[0.2em]">All documents cleared from system records</p>
                     </div>

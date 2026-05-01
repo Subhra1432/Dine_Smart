@@ -82,8 +82,15 @@ export const getMe = () => fetchApi('/auth/me');
 export const refreshToken = () => fetchApi('/auth/refresh', { method: 'POST' });
 
 // Restaurant
+export interface ProfileUpdateData {
+  name?: string;
+  logoUrl?: string | null;
+  bannerText?: string | null;
+  bannerImageUrl?: string | null;
+  notificationSoundUrl?: string | null;
+}
 export const getProfile = () => fetchApi('/restaurant/profile');
-export const updateProfile = (data: { name?: string; logoUrl?: string; bannerText?: string; bannerImageUrl?: string }) => 
+export const updateProfile = (data: ProfileUpdateData) => 
   fetchApi('/restaurant/profile', { method: 'PUT', body: JSON.stringify(data) });
 export const getBranches = () => fetchApi('/restaurant/branches');
 export const getTables = (branchId?: string) => fetchApi(`/restaurant/tables${branchId ? `?branchId=${branchId}` : ''}`);

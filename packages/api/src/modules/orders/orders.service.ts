@@ -113,7 +113,10 @@ export async function createOrder(data: CreateOrderInput) {
     }
   }
 
-  const tax = (subtotal - discount) * TAX_RATE;
+  const cgstRate = (table.restaurant as any).cgstRate ?? 2.5;
+  const sgstRate = (table.restaurant as any).sgstRate ?? 2.5;
+  const taxRate = (cgstRate + sgstRate) / 100;
+  const tax = (subtotal - discount) * taxRate;
   const total = subtotal - discount + tax;
 
   // Handle customer
@@ -250,6 +253,7 @@ export async function getOrderBySession(sessionId: string) {
           requireOrderVerification: true 
         } 
       },
+      review: { select: { id: true } },
     },
     orderBy: { createdAt: 'desc' },
   });
@@ -544,7 +548,7 @@ export async function requestPaymentAttention(orderId: string) {
 export async function addItemToOrder(orderId: string, restaurantId: string, itemData: { menuItemId: string; variantId?: string; addonIds?: string[]; quantity: number; specialInstructions?: string }) {
   const order = await prisma.order.findUnique({
     where: { id: orderId },
-    include: { table: true }
+    include: { table: true, restaurant: true }
   });
   if (!order || order.restaurantId !== restaurantId) throw new AppError(404, 'Order not found');
 
@@ -591,7 +595,10 @@ export async function addItemToOrder(orderId: string, restaurantId: string, item
   // Recalculate order total
   const allItems = await prisma.orderItem.findMany({ where: { orderId } });
   const subtotal = allItems.reduce((sum, i) => sum + i.totalPrice, 0);
-  const tax = (subtotal - (order.discount || 0)) * TAX_RATE;
+  const cgstRate = (order as any).restaurant.cgstRate ?? 2.5;
+  const sgstRate = (order as any).restaurant.sgstRate ?? 2.5;
+  const taxRate = (cgstRate + sgstRate) / 100;
+  const tax = (subtotal - (order.discount || 0)) * taxRate;
   const total = subtotal - (order.discount || 0) + tax;
 
   await prisma.order.update({
@@ -612,7 +619,7 @@ export async function addItemToOrder(orderId: string, restaurantId: string, item
 export async function updatePublicOrderItem(orderId: string, itemId: string, data: { quantity?: number }) {
   const order = await prisma.order.findUnique({
     where: { id: orderId },
-    include: { branch: true },
+    include: { branch: true, restaurant: true },
   });
 
   if (!order) throw new AppError(404, 'Order not found');
@@ -649,7 +656,10 @@ export async function updatePublicOrderItem(orderId: string, itemId: string, dat
   // Recalculate order total
   const allItems = await prisma.orderItem.findMany({ where: { orderId } });
   const subtotal = allItems.reduce((sum, i) => sum + i.totalPrice, 0);
-  const tax = (subtotal - order.discount) * TAX_RATE;
+  const cgstRate = (order as any).restaurant.cgstRate ?? 2.5;
+  const sgstRate = (order as any).restaurant.sgstRate ?? 2.5;
+  const taxRate = (cgstRate + sgstRate) / 100;
+  const tax = (subtotal - order.discount) * taxRate;
   const total = subtotal - order.discount + tax;
 
   await prisma.order.update({

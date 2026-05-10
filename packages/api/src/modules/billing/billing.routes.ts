@@ -146,6 +146,15 @@ router.post('/orders/:orderId/print-bill', asyncHandler(async (req: Request, res
   const order = await ordersService.getOrder(req.params['orderId']!, req.user!.restaurantId);
   const restaurant = await prisma.restaurant.findUnique({ where: { id: req.user!.restaurantId } });
 
+  const cgstRate = (restaurant as any)?.cgstRate ?? 2.5;
+  const sgstRate = (restaurant as any)?.sgstRate ?? 2.5;
+  const subtotal = order.subtotal;
+  const discount = order.discount;
+  const taxableAmount = subtotal - discount;
+  const cgst = (taxableAmount * cgstRate) / 100;
+  const sgst = (taxableAmount * sgstRate) / 100;
+  const total = taxableAmount + cgst + sgst;
+
   const totalItems = order.items.reduce((sum, item) => sum + item.quantity, 0);
   const billHtml = `<!DOCTYPE html>
 <html><head><style>
@@ -161,11 +170,13 @@ router.post('/orders/:orderId/print-bill', asyncHandler(async (req: Request, res
   .bold { font-weight: bold; }
   .box { border: 2px solid #000; padding: 4px 10px; display: inline-block; font-weight: bold; margin: 8px 0; }
   h2 { margin: 5px 0; font-size: 18px; }
+  .row { display: flex; justify-content: space-between; }
 </style></head><body>
   <div class="center">
-    <h2>Table #${(order as any).table?.number || ''}</h2>
+    <h2>${restaurant?.name || 'DineSmart'}</h2>
+    <h3>Table #${(order as any).table?.number || ''}</h2>
     <div class="box">
-      🍽️ ${order.type === 'TAKE_AWAY' ? 'TAKE AWAY' : 'DINE IN'}
+      🍽️ ${(order as any).type === 'PARCEL' ? 'PARCEL' : (order as any).type === 'TAKE_AWAY' ? 'TAKE AWAY' : 'DINE IN'}
     </div>
     <p class="bold">Order #${order.id.slice(-8).toUpperCase()}</p>
     <p>${new Date(order.createdAt).toLocaleString('en-IN', { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true })}</p>
@@ -175,14 +186,46 @@ router.post('/orders/:orderId/print-bill', asyncHandler(async (req: Request, res
   
   <div class="bold">ITEMS:</div>
   ${order.items.map((item) => `
-    <div>${item.quantity}x ${item.menuItem.name}</div>
+    <div class="row">
+      <span>${item.quantity}x ${item.menuItem.name}</span>
+      <span>₹${item.totalPrice.toFixed(2)}</span>
+    </div>
   `).join('')}
+  
+  <div class="divider"></div>
+  
+  <div class="row">
+    <span>Subtotal</span>
+    <span>₹${subtotal.toFixed(2)}</span>
+  </div>
+  ${discount > 0 ? `
+  <div class="row">
+    <span>Discount</span>
+    <span>-₹${discount.toFixed(2)}</span>
+  </div>
+  ` : ''}
+  <div class="row">
+    <span>CGST (${cgstRate}%)</span>
+    <span>₹${cgst.toFixed(2)}</span>
+  </div>
+  <div class="row">
+    <span>SGST (${sgstRate}%)</span>
+    <span>₹${sgst.toFixed(2)}</span>
+  </div>
+  
+  <div class="divider"></div>
+  
+  <div class="row bold" style="font-size: 16px;">
+    <span>GRAND TOTAL</span>
+    <span>₹${total.toFixed(2)}</span>
+  </div>
   
   <div class="divider"></div>
   
   <div class="center">
     <p class="bold">Total Items: ${totalItems}</p>
     <p style="font-size: 12px; color: #555;">Printed: ${new Date().toLocaleTimeString('en-IN', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true })}</p>
+    <p style="font-size: 10px; color: #777;">Thank you! Visit Again.</p>
   </div>
 </body></html>`;
 
@@ -478,7 +521,7 @@ router.post('/orders/:orderId/print-kitchen', asyncHandler(async (req: Request, 
     <h2>🍳 KITCHEN ORDER</h2>
     <p>${restaurant?.name || 'DineSmart Restaurant'}</p>
     <p>Table #${(order as any).table?.number || '-'}</p>
-    <div class="type-badge">${(order as any).type === 'TAKE_AWAY' ? '📦 TAKE AWAY' : '🍽️ DINE IN'}</div>
+    <div class="type-badge">${(order as any).type === 'PARCEL' ? '📦 PARCEL' : (order as any).type === 'TAKE_AWAY' ? '📦 TAKE AWAY' : '🍽️ DINE IN'}</div>
     <p>Order #${order.id.slice(-8).toUpperCase()}</p>
     <p>${new Date(order.createdAt).toLocaleString('en-IN')}</p>
   </div>

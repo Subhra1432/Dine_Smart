@@ -112,6 +112,8 @@ model Restaurant {
   planExpiresAt DateTime?
   isActive      Boolean          @default(true)
   notificationSoundUrl String?
+  cgstRate      Float            @default(2.5)
+  sgstRate      Float            @default(2.5)
   createdAt     DateTime         @default(now())
 
   branches      Branch[]

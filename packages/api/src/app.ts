@@ -33,6 +33,7 @@ import couponRoutes from './modules/coupons/coupons.routes.js';
 import loyaltyRoutes from './modules/loyalty/loyalty.routes.js';
 import superadminRoutes from './modules/superadmin/superadmin.routes.js';
 import notificationRoutes from './modules/notifications/notifications.routes.js';
+import takeawayRoutes from './modules/takeaway/takeaway.routes.js';
 
 const app = express();
 const httpServer = createServer(app);
@@ -97,6 +98,7 @@ app.use('/api/v1/coupons', couponRoutes);
 app.use('/api/v1/loyalty', authenticatedRateLimiter, loyaltyRoutes);
 app.use('/api/v1/superadmin', superadminRoutes);
 app.use('/api/v1/notifications', authenticatedRateLimiter, notificationRoutes);
+app.use('/api/v1/takeaway', takeawayRoutes);
 
 // ── Serve Static Frontends (Production) ──
 

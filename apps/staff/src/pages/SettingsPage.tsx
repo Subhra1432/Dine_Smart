@@ -7,7 +7,7 @@ import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { getProfile, updateProfile, getBranches, getTables, getUsers, getCoupons, updateUser, deleteUser, clearOrderHistory } from '../lib/api';
 import { useAuthStore } from '../store/auth';
-import { Building, Users, QrCode, Tag, Settings, Trash2, Pencil, Plus, X, Lock, AlertTriangle } from 'lucide-react';
+import { Building, Users, QrCode, Tag, Settings, Trash2, Pencil, Plus, X, Lock, AlertTriangle, Percent } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 import { TableQRCode } from '../components/TableQRCode';
 import { PageLoader } from '../components/PageLoader';
@@ -54,6 +54,7 @@ export default function SettingsPage() {
   const [tableFormData, setTableFormData] = useState({ number: '', capacity: '', branchId: '' });
   const [userFormData, setUserFormData] = useState({ email: '', password: '', role: 'CASHIER', branchId: '' });
   const [brandingFormData, setBrandingFormData] = useState({ bannerText: '', bannerImageUrl: '' });
+  const [taxFormData, setTaxFormData] = useState({ cgstRate: '2.5', sgstRate: '2.5' });
 
   // Sync profile data to branding form
   useEffect(() => {
@@ -61,6 +62,10 @@ export default function SettingsPage() {
       setBrandingFormData({
         bannerText: (profile as any).bannerText || 'WELCOME TO DINESMART — SAVOR THE EXPERIENCE',
         bannerImageUrl: (profile as any).bannerImageUrl || ''
+      });
+      setTaxFormData({
+        cgstRate: String((profile as any).cgstRate ?? 2.5),
+        sgstRate: String((profile as any).sgstRate ?? 2.5)
       });
     }
   }, [profile]);
@@ -80,6 +85,14 @@ export default function SettingsPage() {
   const handleUpdateBranding = (e: React.FormEvent) => {
     e.preventDefault();
     updateProfileMutation.mutate(brandingFormData);
+  };
+
+  const handleUpdateTax = (e: React.FormEvent) => {
+    e.preventDefault();
+    updateProfileMutation.mutate({
+      cgstRate: parseFloat(taxFormData.cgstRate),
+      sgstRate: parseFloat(taxFormData.sgstRate)
+    });
   };
 
   const handleBannerSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -267,6 +280,21 @@ export default function SettingsPage() {
     return `${base}/menu/${restaurant?.slug}?tableId=${tableId}`;
   };
 
+  const getTakeawayUrl = () => {
+    let base = testUrl || (import.meta as any).env.VITE_CUSTOMER_URL;
+    if (!base) {
+      const { origin, hostname } = window.location;
+      if (hostname.includes('staff')) {
+        base = origin.replace('staff', 'customer');
+      } else if (hostname === 'localhost' || hostname === '127.0.0.1') {
+        base = origin.replace(/:\d+$/, ':5173');
+      } else {
+        base = origin;
+      }
+    }
+    return `${base}/menu/${restaurant?.slug}?mode=takeaway`;
+  };
+
   return (
     <div className="w-full max-w-[1400px] mx-auto space-y-10 pb-24 animate-in fade-in slide-in-from-bottom-8 duration-1000">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 px-4">
@@ -424,34 +452,114 @@ export default function SettingsPage() {
                 </div>
               )}
 
-              {/* Branch Network (Inside General for Owner/Manager) */}
+
+
+
+            </div>
+
+            {/* Right Sidebar */}
+            <div className="lg:col-span-4 space-y-8">
+              <div className="glass-card p-8 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-saffron-500/10 rounded-full -mr-16 -mt-16 blur-[60px]" />
+                <div className="relative z-10">
+                  <h2 className="text-[11px] font-black text-stone-400 dark:text-stone-500 flex items-center gap-3 uppercase tracking-[0.4em] mb-8">
+                    <Settings size={14} className="text-saffron-500" /> Info
+                  </h2>
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="p-5 bg-stone-50/50 dark:bg-stone-900/50 rounded-2xl border border-stone-100 dark:border-white/5">
+                      <p className="text-[9px] font-black text-stone-400 uppercase tracking-widest mb-2">User</p>
+                      <p className="text-sm font-black text-stone-950 dark:text-white tracking-tight truncate">{user?.email}</p>
+                    </div>
+                    <div className="p-5 bg-stone-50/50 dark:bg-stone-900/50 rounded-2xl border border-stone-100 dark:border-white/5">
+                      <p className="text-[9px] font-black text-stone-400 uppercase tracking-widest mb-2">Branches</p>
+                      <p className="text-2xl font-black text-saffron-500 tracking-tighter">{(branches as any[])?.length || 0}</p>
+                    </div>
+                    <div className="p-5 bg-stone-50/50 dark:bg-stone-900/50 rounded-2xl border border-stone-100 dark:border-white/5">
+                      <p className="text-[9px] font-black text-stone-400 uppercase tracking-widest mb-2">Tables</p>
+                      <p className="text-2xl font-black text-saffron-500 tracking-tighter">{(tables as any[])?.length || 0}</p>
+                    </div>
+                    <div className="p-5 bg-stone-50/50 dark:bg-stone-900/50 rounded-2xl border border-stone-100 dark:border-white/5">
+                      <p className="text-[9px] font-black text-stone-400 uppercase tracking-widest mb-2">Team</p>
+                      <p className="text-2xl font-black text-saffron-500 tracking-tighter">{(users as any[])?.length || 0}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {(isOwner || isManager) && (
-                <div className="glass-card p-6 md:p-10">
-                  <div className="flex items-center justify-between mb-10">
+                <div className="glass-card p-8 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-saffron-500/10 rounded-full -mr-16 -mt-16 blur-[60px]" />
+                  <div className="relative z-10">
+                    <h2 className="text-[11px] font-black text-stone-400 dark:text-stone-500 flex items-center gap-4 uppercase tracking-[0.6em] mb-8">
+                      <Percent size={16} className="text-saffron-500" /> Tax Settings
+                    </h2>
+                    
+                    <form onSubmit={handleUpdateTax} className="space-y-6">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-3">
+                          <label className="text-[10px] font-black text-stone-400 dark:text-stone-500 uppercase tracking-[0.3em] ml-1">CGST (%)</label>
+                          <input 
+                            type="number" 
+                            step="0.01"
+                            value={taxFormData.cgstRate}
+                            onChange={e => setTaxFormData({ ...taxFormData, cgstRate: e.target.value })}
+                            className="w-full px-6 py-4 bg-stone-50/50 dark:bg-stone-900/50 border border-stone-100 dark:border-white/5 rounded-2xl text-stone-950 dark:text-white focus:border-saffron-500/50 transition-all font-black text-xs"
+                          />
+                        </div>
+                        <div className="space-y-3">
+                          <label className="text-[10px] font-black text-stone-400 dark:text-stone-500 uppercase tracking-[0.3em] ml-1">SGST (%)</label>
+                          <input 
+                            type="number" 
+                            step="0.01"
+                            value={taxFormData.sgstRate}
+                            onChange={e => setTaxFormData({ ...taxFormData, sgstRate: e.target.value })}
+                            className="w-full px-6 py-4 bg-stone-50/50 dark:bg-stone-900/50 border border-stone-100 dark:border-white/5 rounded-2xl text-stone-950 dark:text-white focus:border-saffron-500/50 transition-all font-black text-xs"
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-end pt-2">
+                        <button 
+                          type="submit" 
+                          disabled={updateProfileMutation.isPending}
+                          className="glass-button w-full px-10 py-4 text-[10px] font-black uppercase tracking-[0.4em] disabled:opacity-50"
+                        >
+                          {updateProfileMutation.isPending ? 'Syncing...' : 'Save Tax Rates'}
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              )}
+
+              {(isOwner || isManager) && (
+                <div className="glass-card p-8 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-saffron-500/10 rounded-full -mr-16 -mt-16 blur-[60px]" />
+                  <div className="flex items-center justify-between mb-8 relative z-10">
                     <h2 className="text-[11px] font-black text-stone-400 dark:text-stone-500 flex items-center gap-4 uppercase tracking-[0.6em]">
                       <Building size={16} className="text-saffron-500" /> Branches
                     </h2>
                     {isOwner && (
-                      <button onClick={() => setShowAddBranch(true)} className="glass-button px-6 py-3 text-[10px]">+ Add Branch</button>
+                      <button onClick={() => setShowAddBranch(true)} className="glass-button px-4 py-2 text-[10px]">+ Add</button>
                     )}
                   </div>
-                  <div className="space-y-6">
+                  <div className="space-y-6 relative z-10">
                     {(branches as any[])?.filter(br => {
                       if (isManager && user?.branchId && br.id !== user.branchId) return false;
                       return true;
                     }).map((br) => (
-                      <div key={br.id} className="p-8 bg-stone-50/50 dark:bg-stone-900/50 rounded-[3rem] border border-stone-100 dark:border-white/5">
-                        <div className="flex flex-col md:flex-row items-center justify-between gap-10">
-                          <div className="flex-1 text-center md:text-left">
-                            <h3 className="text-2xl font-black text-stone-950 dark:text-white uppercase tracking-tight mb-2">{br.name}</h3>
-                            <p className="text-xs text-stone-400 font-bold uppercase tracking-widest">{br.address}</p>
+                      <div key={br.id} className="p-6 bg-stone-50/50 dark:bg-stone-900/50 rounded-2xl border border-stone-100 dark:border-white/5">
+                        <div className="flex flex-col gap-4">
+                          <div>
+                            <h3 className="text-lg font-black text-stone-950 dark:text-white uppercase tracking-tight mb-1">{br.name}</h3>
+                            <p className="text-[10px] text-stone-400 font-bold uppercase tracking-widest">{br.address}</p>
                           </div>
-                          <div className="flex flex-wrap justify-center gap-8 bg-white/50 dark:bg-stone-800/50 p-6 rounded-3xl border border-white/80 dark:border-white/5">
+                          <div className="flex justify-between gap-4 bg-white/50 dark:bg-stone-800/50 p-4 rounded-xl border border-white/80 dark:border-white/5">
                             {[
-                              { label: 'Require Verification', key: 'requireOrderVerification' },
-                              { label: 'Allow Modification', key: 'allowOrderModification' }
+                              { label: 'Verify', key: 'requireOrderVerification' },
+                              { label: 'Modify', key: 'allowOrderModification' }
                             ].map((toggle) => (
-                              <label key={toggle.key} className="flex flex-col items-center gap-3 cursor-pointer group/toggle">
+                              <label key={toggle.key} className="flex flex-col items-center gap-2 cursor-pointer group/toggle">
                                 <span className="text-[8px] font-black text-stone-400 uppercase tracking-widest">{toggle.label}</span>
                                 <div className="relative inline-flex items-center">
                                   <input
@@ -482,36 +590,6 @@ export default function SettingsPage() {
                   </div>
                 </div>
               )}
-            </div>
-
-            {/* Right Sidebar */}
-            <div className="lg:col-span-4 space-y-8">
-              <div className="glass-card p-8 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-saffron-500/10 rounded-full -mr-16 -mt-16 blur-[60px]" />
-                <div className="relative z-10">
-                  <h2 className="text-[11px] font-black text-stone-400 dark:text-stone-500 flex items-center gap-3 uppercase tracking-[0.4em] mb-8">
-                    <Settings size={14} className="text-saffron-500" /> Info
-                  </h2>
-                  <div className="space-y-6">
-                    <div className="p-5 bg-stone-50/50 dark:bg-stone-900/50 rounded-2xl border border-stone-100 dark:border-white/5">
-                      <p className="text-[9px] font-black text-stone-400 uppercase tracking-widest mb-2">User</p>
-                      <p className="text-sm font-black text-stone-950 dark:text-white tracking-tight truncate">{user?.email}</p>
-                    </div>
-                    <div className="p-5 bg-stone-50/50 dark:bg-stone-900/50 rounded-2xl border border-stone-100 dark:border-white/5">
-                      <p className="text-[9px] font-black text-stone-400 uppercase tracking-widest mb-2">Branches</p>
-                      <p className="text-2xl font-black text-saffron-500 tracking-tighter">{(branches as any[])?.length || 0}</p>
-                    </div>
-                    <div className="p-5 bg-stone-50/50 dark:bg-stone-900/50 rounded-2xl border border-stone-100 dark:border-white/5">
-                      <p className="text-[9px] font-black text-stone-400 uppercase tracking-widest mb-2">Tables</p>
-                      <p className="text-2xl font-black text-saffron-500 tracking-tighter">{(tables as any[])?.length || 0}</p>
-                    </div>
-                    <div className="p-5 bg-stone-50/50 dark:bg-stone-900/50 rounded-2xl border border-stone-100 dark:border-white/5">
-                      <p className="text-[9px] font-black text-stone-400 uppercase tracking-widest mb-2">Team</p>
-                      <p className="text-2xl font-black text-saffron-500 tracking-tighter">{(users as any[])?.length || 0}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         )}
@@ -549,6 +627,13 @@ export default function SettingsPage() {
                 </div>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 justify-items-center">
+                  <div className="relative group/table w-full flex justify-center">
+                    <TableQRCode
+                      title="Takeaway"
+                      qrCodeUrl={getTakeawayUrl()}
+                      baseUrlOverride={testUrl || undefined}
+                    />
+                  </div>
                   {(tables as any[])?.sort((a, b) => a.number - b.number).map((t) => (
                     <div key={t.id} className="relative group/table w-full flex justify-center">
                       {(isOwner || isManager) && (

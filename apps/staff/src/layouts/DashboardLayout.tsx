@@ -9,7 +9,7 @@ import { logout } from '../lib/api';
 import {
   LayoutDashboard, Receipt, ChefHat, UtensilsCrossed, BarChart3,
   Package, Settings, LogOut, Menu, X, CreditCard, Tag, MessageSquare,
-  Mail, Phone, MessageCircle, Lock, ShieldCheck, Sun, Moon
+  Mail, Phone, MessageCircle, Lock, ShieldCheck, Sun, Moon, ShoppingBag
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
@@ -18,6 +18,7 @@ const navItems = [
   { path: '/admin', icon: LayoutDashboard, label: 'Overview', roles: ['OWNER', 'MANAGER'] },
   { path: '/billing', icon: Receipt, label: 'Billing', roles: ['MANAGER', 'CASHIER'] },
   { path: '/kitchen', icon: ChefHat, label: 'Kitchen', roles: ['MANAGER', 'KITCHEN_STAFF', 'CASHIER'] },
+  { path: '/takeaway', icon: ShoppingBag, label: 'Take Away', roles: ['MANAGER', 'CASHIER'] },
   { path: '/admin/menu', icon: UtensilsCrossed, label: 'Menu', roles: ['OWNER', 'MANAGER'] },
   { path: '/admin/coupons', icon: Tag, label: 'Coupons', roles: ['OWNER', 'MANAGER'] },
   { path: '/admin/analytics', icon: BarChart3, label: 'Analytics', roles: ['OWNER', 'MANAGER'] },

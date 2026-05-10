@@ -65,8 +65,29 @@ export async function placeOrder(body: {
   customerPhone?: string;
   customerName?: string;
   notes?: string;
+  type?: string;
 }) {
   return fetchApi('/orders', {
+    method: 'POST',
+    body: JSON.stringify(body),
+  });
+}
+
+export async function placeTakeawayOrder(body: {
+  branchId: string;
+  items: Array<{
+    menuItemId: string;
+    variantId?: string;
+    quantity: number;
+    addonIds: string[];
+    specialInstructions: string;
+  }>;
+  couponCode?: string;
+  customerPhone?: string;
+  customerName?: string;
+  notes?: string;
+}) {
+  return fetchApi('/takeaway/order', {
     method: 'POST',
     body: JSON.stringify(body),
   });

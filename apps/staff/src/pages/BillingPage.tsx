@@ -17,7 +17,7 @@ import { NOTIFICATION_SOUND } from '../assets/audio';
 import { useAuthStore } from '../store/auth';
 import {
   DollarSign, Clock, CheckCircle, X, Printer, CreditCard,
-  Circle, AlertCircle, User, Phone, Plus, Search, ChevronRight, Trash2, Check, Volume2, EyeOff, UtensilsCrossed, ShoppingCart
+  Circle, AlertCircle, User, Phone, Plus, Search, ChevronRight, Trash2, Check, Volume2, EyeOff, UtensilsCrossed, ShoppingCart, Package
 } from 'lucide-react';
 import { PageLoader } from '../components/PageLoader';
 
@@ -99,8 +99,8 @@ export default function BillingPage() {
   const [clearedAt, setClearedAt] = useState<number>(0);
   const [collectionPopup, setCollectionPopup] = useState<{ method: string; amount: number; orderIds: string[] } | null>(null);
   const [collectingOrderId, setCollectingOrderId] = useState<string | null>(null);
-  const [orderTypeFilter, setOrderTypeFilter] = useState<'DINE_IN' | 'TAKE_AWAY'>(
-    () => (localStorage.getItem('billingOrderTypeFilter') as any) || 'DINE_IN'
+  const [orderTypeFilter, setOrderTypeFilter] = useState<'DINE_IN' | 'PARCEL'>(
+    (localStorage.getItem('billingOrderTypeFilter') as 'DINE_IN' | 'PARCEL') || 'DINE_IN'
   );
   const location = useLocation();
 
@@ -199,7 +199,7 @@ export default function BillingPage() {
   const takeAwayPendingCount = useMemo(() => {
     if (!tables) return 0;
     return tables.reduce((count, t) => {
-      return count + (t.activeOrders?.filter(o => o.type === 'TAKE_AWAY' && o.status === 'PENDING').length || 0);
+      return count + (t.activeOrders?.filter(o => o.type === 'PARCEL' && o.status === 'PENDING').length || 0);
     }, 0);
   }, [tables]);
 
@@ -420,13 +420,13 @@ export default function BillingPage() {
             </button>
             <button
               onClick={() => {
-                setOrderTypeFilter('TAKE_AWAY');
-                localStorage.setItem('billingOrderTypeFilter', 'TAKE_AWAY');
+                setOrderTypeFilter('PARCEL');
+                localStorage.setItem('billingOrderTypeFilter', 'PARCEL');
               }}
-              className={`px-4 py-1.5 rounded-lg text-[9px] font-black transition-all uppercase tracking-[0.3em] flex items-center gap-2 ${orderTypeFilter === 'TAKE_AWAY' ? 'bg-primary text-stone-950 shadow-xl' : 'text-stone-400 dark:text-stone-500 hover:text-stone-300'}`}
+              className={`px-4 py-1.5 rounded-lg text-[9px] font-black transition-all uppercase tracking-[0.3em] flex items-center gap-2 ${orderTypeFilter === 'PARCEL' ? 'bg-primary text-stone-950 shadow-xl' : 'text-stone-400 dark:text-stone-500 hover:text-stone-300'}`}
             >
-              <ShoppingCart size={12} />
-              Take Away
+              <Package size={12} />
+              Parcel
               {takeAwayPendingCount > 0 && (
                 <span className="bg-red-500 text-white text-[8px] font-black px-1.5 py-0.5 rounded-full min-w-[14px] text-center">
                   {takeAwayPendingCount}
@@ -633,8 +633,8 @@ export default function BillingPage() {
                         )}
                         <div className="flex items-center gap-2">
                           <h3 className="text-[9px] font-black uppercase tracking-[0.3em] text-primary">Order #{order.id.slice(-6).toUpperCase()}</h3>
-                          <span className={`text-[7px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-[0.1em] ${order.type === 'TAKE_AWAY' ? 'bg-amber-500/20 text-amber-500' : 'bg-blue-500/20 text-blue-500'}`}>
-                            {order.type === 'TAKE_AWAY' ? 'Take Away' : 'Dine In'}
+                          <span className={`text-[7px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-[0.1em] ${order.type === 'PARCEL' ? 'bg-amber-500/20 text-amber-500' : order.type === 'TAKE_AWAY' ? 'bg-purple-500/20 text-purple-500' : 'bg-blue-500/20 text-blue-500'}`}>
+                            {order.type === 'PARCEL' ? 'Parcel' : order.type === 'TAKE_AWAY' ? 'Take Away' : 'Dine In'}
                           </span>
                         </div>
                         <p className="text-[8px] font-black text-stone-400 dark:text-stone-600 mt-0.5 uppercase tracking-[0.3em]">{new Date(order.createdAt).toLocaleTimeString()}</p>

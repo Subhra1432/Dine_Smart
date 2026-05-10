@@ -12,6 +12,7 @@ import DashboardLayout from './layouts/DashboardLayout';
 import OverviewPage from './pages/OverviewPage';
 import BillingPage from './pages/BillingPage';
 import KitchenPage from './pages/KitchenPage';
+import TakeawayPage from './pages/TakeawayPage';
 import MenuManagementPage from './pages/MenuManagementPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import InventoryPage from './pages/InventoryPage';
@@ -100,8 +101,13 @@ export default function App() {
           </ProtectedRoute>
         }>
           <Route path="/kitchen" element={
-            <ProtectedRoute allowedRoles={['OWNER', 'MANAGER', 'KITCHEN_STAFF']}>
+            <ProtectedRoute allowedRoles={['OWNER', 'MANAGER', 'KITCHEN_STAFF', 'CASHIER']}>
               <KitchenPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/takeaway" element={
+            <ProtectedRoute allowedRoles={['OWNER', 'MANAGER', 'CASHIER']}>
+              <TakeawayPage />
             </ProtectedRoute>
           } />
           

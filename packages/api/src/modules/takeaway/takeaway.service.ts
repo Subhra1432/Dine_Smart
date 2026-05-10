@@ -118,7 +118,7 @@ export async function createTakeawayOrder(data: any) {
         restaurantId,
         branchId: branch.id,
         sessionId,
-        type: 'TAKEAWAY_QR',
+        type: 'TAKE_AWAY',
         status: initialStatus,
         subtotal,
         tax,
@@ -172,7 +172,7 @@ export async function getTakeawayOrders(restaurantId: string) {
   const orders = await prisma.order.findMany({
     where: { 
       restaurantId, 
-      type: 'TAKEAWAY_QR',
+      type: 'TAKE_AWAY',
       isArchived: false,
     },
     include: {

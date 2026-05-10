@@ -29,8 +29,8 @@ export function TermsModal({ isOpen, onAccept }: TermsModalProps) {
             <div className="w-16 h-16 bg-[#D97706]/10 border border-[#D97706]/30 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(217,119,6,0.1)]">
               <Shield size={28} className="text-[#D97706]" />
             </div>
-            <h3 className="text-3xl font-serif font-black text-white tracking-tight mb-2">Digital Protocols</h3>
-            <p className="text-[10px] font-black text-[#D97706] uppercase tracking-[0.4em] opacity-80">Security & Usage Manifest</p>
+            <h3 className="text-3xl font-serif font-black text-white tracking-tight mb-2">Terms & Conditions</h3>
+            <p className="text-[10px] font-black text-[#D97706] uppercase tracking-[0.4em] opacity-80">Please review before continuing</p>
           </div>
         </div>
 
@@ -88,7 +88,7 @@ export function TermsModal({ isOpen, onAccept }: TermsModalProps) {
           <div className="space-y-6">
             {!hasScrolledToBottom && (
               <p className="text-[10px] text-[#D97706] text-center font-black uppercase tracking-[0.2em] animate-pulse">
-                Scroll to authenticate manifest
+                Scroll to the bottom to accept
               </p>
             )}
 
@@ -99,13 +99,13 @@ export function TermsModal({ isOpen, onAccept }: TermsModalProps) {
             >
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
               <span className="relative flex items-center justify-center gap-2 uppercase tracking-[0.2em] text-[11px]">
-                {hasScrolledToBottom ? 'Accept & Initialize' : 'Review Manifest'}
+                {hasScrolledToBottom ? 'I Accept' : 'Read Terms'}
                 <Check size={18} />
               </span>
             </button>
             
             <p className="text-[9px] font-bold text-center text-white/20 uppercase tracking-widest">
-              Session persistence will be established upon acceptance.
+              By accepting, you agree to our terms of service.
             </p>
           </div>
         </div>

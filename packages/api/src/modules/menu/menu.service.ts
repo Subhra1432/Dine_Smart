@@ -91,7 +91,7 @@ export async function verifyOtp(slug: string, phone: string, code: string, name?
 
   // Find or create customer
   let customer = await prisma.customer.findUnique({
-    where: { phone }
+    where: { restaurantId_phone: { restaurantId: restaurant.id, phone } }
   });
 
   if (!customer) {
@@ -99,13 +99,13 @@ export async function verifyOtp(slug: string, phone: string, code: string, name?
       data: {
         phone,
         name: name || 'Guest',
-        isVerified: true
+        restaurantId: restaurant.id
       }
     });
   } else if (name && !customer.name) {
     customer = await prisma.customer.update({
       where: { id: customer.id },
-      data: { name, isVerified: true }
+      data: { name }
     });
   }
 

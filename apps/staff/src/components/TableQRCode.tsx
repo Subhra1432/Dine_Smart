@@ -3,12 +3,13 @@ import { QRCodeCanvas } from 'qrcode.react';
 import toast from 'react-hot-toast';
 
 interface TableQRCodeProps {
-  tableNumber: number;
+  tableNumber?: number;
+  title?: string;
   qrCodeUrl: string; // The actual menu URL to encode (e.g., http://localhost:5173/menu?restaurant=slug&table=id)
   baseUrlOverride?: string;
 }
 
-export function TableQRCode({ tableNumber, qrCodeUrl, baseUrlOverride }: TableQRCodeProps) {
+export function TableQRCode({ tableNumber, title, qrCodeUrl, baseUrlOverride }: TableQRCodeProps) {
   // If override is provided, swap the host portion while keeping the path + query params
   const finalQrUrl = useMemo(() => {
     if (!baseUrlOverride || !baseUrlOverride.trim()) return qrCodeUrl;
@@ -29,7 +30,7 @@ export function TableQRCode({ tableNumber, qrCodeUrl, baseUrlOverride }: TableQR
       const pngUrl = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
       const downloadLink = document.createElement('a');
       downloadLink.href = pngUrl;
-      downloadLink.download = `table-${tableNumber}-qr.png`;
+      downloadLink.download = `${title || `table-${tableNumber}`}-qr.png`;
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);
@@ -49,7 +50,7 @@ export function TableQRCode({ tableNumber, qrCodeUrl, baseUrlOverride }: TableQR
       
       <div className="relative p-5 bg-white rounded-3xl mb-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group-hover/qr:shadow-saffron-500/10 transition-all duration-700">
         <QRCodeCanvas
-          id={`qr-table-${tableNumber}`}
+          id={`qr-table-${tableNumber || title?.replace(/\s+/g, '-')}`}
           value={finalQrUrl}
           size={160}
           level="H"
@@ -71,8 +72,8 @@ export function TableQRCode({ tableNumber, qrCodeUrl, baseUrlOverride }: TableQR
 
       <div className="w-full text-center space-y-6 relative z-10">
         <div className="bg-stone-900/50 py-4 rounded-2xl border border-white/5 shadow-inner">
-          <p className="text-[9px] font-black text-stone-500 uppercase tracking-[0.3em] mb-1">Table</p>
-          <p className="text-4xl font-black text-white leading-none tracking-tighter">{tableNumber}</p>
+          <p className="text-[9px] font-black text-stone-500 uppercase tracking-[0.3em] mb-1">{title ? 'Service' : 'Table'}</p>
+          <p className="text-4xl font-black text-white leading-none tracking-tighter">{title || tableNumber}</p>
         </div>
         
         <div className="px-4">

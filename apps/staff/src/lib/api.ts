@@ -154,6 +154,10 @@ export const printCustomerSummary = (customerId: string) =>
 export const printTableSummary = (tableId: string) => fetch(`${API_BASE}/billing/table/${tableId}/summary-bill`, { method: 'POST', credentials: 'include' });
 export const printKitchenTicket = (orderId: string) => fetch(`${API_BASE}/billing/orders/${orderId}/print-kitchen`, { method: 'POST', credentials: 'include' });
 
+// Takeaway specific
+export const getTakeawayOrders = () => fetchApi('/takeaway/orders');
+export const updateTakeawayStatus = (id: string, status: string) => fetchApi(`/takeaway/status/${id}`, { method: 'PUT', body: JSON.stringify({ status }) });
+
 // Kitchen
 export const getKitchenOrders = (branchId?: string) => fetchApi(`/kitchen/orders${branchId ? `?branchId=${branchId}` : ''}`);
 export const updateItemStatus = (itemId: string, status: string) =>

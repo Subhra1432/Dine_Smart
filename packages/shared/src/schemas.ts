@@ -123,7 +123,7 @@ export const updateAddonSchema = createAddonSchema.partial().extend({
 // ── Order Schemas ────────────────────────
 
 export const createOrderSchema = z.object({
-  tableId: z.string().uuid('Invalid table ID'),
+  tableId: z.string().uuid('Invalid table ID').optional(),
   items: z.array(z.object({
     menuItemId: z.string().uuid('Invalid menu item ID'),
     variantId: z.string().uuid().optional(),
@@ -131,7 +131,7 @@ export const createOrderSchema = z.object({
     addonIds: z.array(z.string().uuid()).default([]),
     specialInstructions: z.string().max(500).default(''),
   })).default([]),
-  type: z.enum(['DINE_IN', 'TAKE_AWAY']).default('DINE_IN'),
+  type: z.enum(['DINE_IN', 'TAKE_AWAY', 'PARCEL', 'TAKEAWAY_QR']).default('DINE_IN'),
   couponCode: z.string().optional(),
   customerPhone: z.string().regex(/^\+?[1-9]\d{7,14}$/).optional(),
   customerName: z.string().max(100).optional(),

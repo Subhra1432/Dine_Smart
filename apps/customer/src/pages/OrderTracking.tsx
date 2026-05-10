@@ -213,16 +213,20 @@ export default function OrderTracking() {
             <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-brand-primary/5 blur-[120px] pointer-events-none" />
 
             {/* Top Header */}
-            <nav className="relative z-10 px-6 py-6 flex items-center justify-between backdrop-blur-md sticky top-0 border-b border-white/5 bg-black/20">
-                <button onClick={() => window.history.back()} className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
-                    <ChevronLeft size={20} className="text-white/70" />
-                </button>
-                <div className="text-center">
-                    <h1 className="text-[10px] font-bold text-brand-primary tracking-[0.3em] uppercase">Live Tracking</h1>
-                    <p className="text-xs font-medium text-white/40 tracking-widest mt-0.5">#{order.id.slice(-6).toUpperCase()}</p>
+            <nav className="relative z-50 px-6 py-4 grid grid-cols-3 items-center backdrop-blur-md sticky top-0 border-b border-white/5 bg-black/20">
+                <div className="flex justify-start">
+                    <button onClick={() => window.history.back()} className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+                        <ChevronLeft size={20} className="text-white/70" />
+                    </button>
                 </div>
-                <div className="w-10 h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-full">
-                    <span className="text-xs font-bold text-brand-primary">{order.table.number}</span>
+                <div className="flex flex-col items-center text-center">
+                    <h1 className="text-xs font-bold text-amber-500 tracking-[0.3em] uppercase">Live Tracking</h1>
+                    <p className="text-xs font-medium text-white tracking-widest mt-0.5">#{order.id.slice(-6).toUpperCase()}</p>
+                </div>
+                <div className="flex justify-end">
+                    <div className="w-10 h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-full">
+                        <span className="text-xs font-bold text-brand-primary">{order.table.number}</span>
+                    </div>
                 </div>
             </nav>
 
@@ -485,9 +489,6 @@ export default function OrderTracking() {
                     )}
                 </div>
             </main>
-
-
-
         </div>
     );
 }

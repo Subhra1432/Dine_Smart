@@ -34,6 +34,7 @@ A centralized, high-speed management interface for restaurant employees:
 *   **Table Management**: Live occupancy tracking and instant QR code generation for spatial anchors.
 *   **Menu Engineering**: Dynamic, drag-and-drop control over categories, items, and inventory.
 *   **Financial Hub**: Integrated billing, payment status tracking, and end-of-day reconciliation.
+*   **Tax Customization**: Restaurants can set their own CGST and SGST rates, which are automatically calculated and printed on detailed invoices.
 *   **Real-time Analytics**: Detailed reporting on revenue, top-performing items, and operational efficiency.
 
 ### 🛡️ 3. SuperAdmin Portal (Platform Control)

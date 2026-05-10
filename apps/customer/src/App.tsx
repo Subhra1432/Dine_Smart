@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import MenuPage from './pages/MenuPage';
 import OrderTracking from './pages/OrderTracking';
 import OfflinePage from './pages/OfflinePage';
+import TakeawayEntry from './pages/TakeawayEntry';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/track/:sessionId" element={<OrderTracking />} />
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/menu/:slug" element={<MenuPage />} />
+        <Route path="/:slug/takeaway" element={<TakeawayEntry />} />
         <Route path="/:slug" element={<MenuPage />} />
         <Route path="*" element={
           <div className="flex items-center justify-center min-h-screen p-6">

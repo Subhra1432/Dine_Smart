@@ -45,6 +45,8 @@ interface CartStore {
   getTax: () => number;
   getTotal: () => number;
   getItemCount: () => number;
+  takeawayMode: boolean;
+  setTakeawayMode: (mode: boolean) => void;
 }
 
 export const useCartStore = create<CartStore>()(
@@ -58,8 +60,10 @@ export const useCartStore = create<CartStore>()(
   sessionId: null,
   restaurantSlug: '',
   tableId: '',
+  takeawayMode: false,
 
-  setRestaurantInfo: (slug, tableId) => set({ restaurantSlug: slug, tableId }),
+  setTakeawayMode: (mode) => set({ takeawayMode: mode }),
+  setRestaurantInfo: (slug, tableId) => set({ restaurantSlug: slug, tableId, takeawayMode: false }),
 
   addItem: (item) => set((state) => {
     const existing = state.items.find(

@@ -218,6 +218,11 @@ export default function BillingPage() {
     [tables, selectedTableId]
   );
 
+  const sidebarOrders = useMemo(() => {
+    if (!selectedTable?.activeOrders) return [];
+    return selectedTable.activeOrders.filter(o => (o.type || 'DINE_IN') === orderTypeFilter);
+  }, [selectedTable, orderTypeFilter]);
+
   const tableGrandTotal = useMemo(() => {
     if (!selectedTable?.activeOrders) return 0;
     return selectedTable.activeOrders.reduce((sum, order) => sum + (order.total || 0), 0);
@@ -612,9 +617,9 @@ export default function BillingPage() {
           </div>
 
           <div className="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
-            {selectedTable.activeOrders && selectedTable.activeOrders.length > 0 ? (
+            {sidebarOrders.length > 0 ? (
               <div className="space-y-6">
-                {selectedTable.activeOrders.map((order) => (
+                {sidebarOrders.map((order) => (
                   <div key={order.id} className="relative group/order overflow-hidden p-5 rounded-[2rem] border border-white/40 dark:border-white/10 bg-white/60 dark:bg-stone-900/40 backdrop-blur-2xl shadow-xl">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 blur-[40px] pointer-events-none" />
 
@@ -771,7 +776,7 @@ export default function BillingPage() {
                     <p className="text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-[0.4em]">Payment</p>
                     <div className="h-px flex-1 bg-gradient-to-r from-transparent via-stone-300 dark:via-white/20 to-transparent" />
                   </div>
-                  {selectedTable.activeOrders.every(o => o.paymentStatus === 'PAID') ? (
+                  {sidebarOrders.every(o => o.paymentStatus === 'PAID') ? (
                     <div className="p-8 bg-green-500/10 border border-green-500/20 rounded-[2rem] flex flex-col items-center justify-center gap-4 text-center animate-in fade-in zoom-in duration-500 backdrop-blur-md">
                       <div className="w-16 h-16 rounded-3xl bg-green-500/20 flex items-center justify-center shadow-[0_0_30px_rgba(34,197,94,0.3)]">
                         <CheckCircle size={24} className="text-green-500" />
@@ -795,7 +800,7 @@ export default function BillingPage() {
                             key={m}
                             onClick={() => {
                               if (isReadOnly) return;
-                              const unpaidOrders = selectedTable.activeOrders.filter((o: any) => o.paymentStatus !== 'PAID');
+                              const unpaidOrders = sidebarOrders.filter((o: any) => o.paymentStatus !== 'PAID');
                               const totalAmount = unpaidOrders.reduce((sum: number, o: any) => sum + o.total, 0);
                               setCollectionPopup({ method: m, amount: totalAmount, orderIds: unpaidOrders.map((o: any) => o.id) });
                             }}

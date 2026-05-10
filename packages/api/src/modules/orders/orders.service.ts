@@ -168,7 +168,7 @@ export async function createOrder(data: CreateOrderInput) {
         branchId,
         tableId: data.tableId,
         sessionId,
-        type: data.type || 'DINE_IN',
+        type: (data.type === 'DINE_IN' || data.type === 'TAKE_AWAY') ? data.type : 'DINE_IN',
         status: initialStatus,
         subtotal,
         tax,
@@ -232,7 +232,7 @@ export async function createOrder(data: CreateOrderInput) {
       branchId,
       type: 'ORDER_NEW',
       title: `New Order #${order.id.slice(-6)}`,
-      body: `Table ${order.table.number} placed an order for ₹${total.toFixed(2)}`,
+      body: `Table ${(order as any).table?.number || 'N/A'} placed an order for ₹${total.toFixed(2)}`,
     },
   });
 

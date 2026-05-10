@@ -320,8 +320,14 @@ export default function BillingPage() {
     try {
       const res = await printBill(orderId);
       const html = await res.text();
-      const win = window.open('', '_blank');
-      if (win) { win.document.write(html); win.print(); }
+      const win = window.open('', '_blank', 'width=350,height=600,top=100,left=100');
+      if (win) { 
+        win.document.write(html); 
+        win.document.close();
+        win.focus();
+        win.onafterprint = () => win.close();
+        win.print(); 
+      }
     } catch { toast.error('Failed to print bill'); }
   };
 
@@ -329,8 +335,14 @@ export default function BillingPage() {
     try {
       const res = await printKitchenTicket(orderId);
       const html = await res.text();
-      const win = window.open('', '_blank');
-      if (win) { win.document.write(html); win.print(); }
+      const win = window.open('', '_blank', 'width=350,height=600,top=100,left=100');
+      if (win) { 
+        win.document.write(html); 
+        win.document.close();
+        win.focus();
+        win.onafterprint = () => win.close();
+        win.print(); 
+      }
     } catch { toast.error('Failed to print kitchen ticket'); }
   };
 
@@ -339,8 +351,14 @@ export default function BillingPage() {
       const res = await printCustomerSummary(customerId);
       if (!res.ok) { const error = await res.json(); throw new Error(error.message || 'Failed to generate summary'); }
       const html = await res.text();
-      const win = window.open('', '_blank');
-      if (win) { win.document.write(html); win.print(); }
+      const win = window.open('', '_blank', 'width=350,height=600,top=100,left=100');
+      if (win) { 
+        win.document.write(html); 
+        win.document.close();
+        win.focus();
+        win.onafterprint = () => win.close();
+        win.print(); 
+      }
     } catch (err: any) {
       toast.error(err.message || 'Failed to print summary');
     }
@@ -351,8 +369,14 @@ export default function BillingPage() {
       const res = await printTableSummary(tableId);
       if (!res.ok) { const error = await res.json(); throw new Error(error.message || 'Failed to generate summary'); }
       const html = await res.text();
-      const win = window.open('', '_blank');
-      if (win) { win.document.write(html); win.print(); }
+      const win = window.open('', '_blank', 'width=350,height=600,top=100,left=100');
+      if (win) { 
+        win.document.write(html); 
+        win.document.close();
+        win.focus();
+        win.onafterprint = () => win.close();
+        win.print(); 
+      }
     } catch (err: any) {
       toast.error(err.message || 'Failed to print summary');
     }

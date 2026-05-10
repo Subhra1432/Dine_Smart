@@ -197,8 +197,7 @@ export async function login(email: string, password: string) {
               branchId: branch.id,
               restaurantId: restaurant.id,
               number: i + 1,
-              capacity: 4,
-              status: 'AVAILABLE'
+              capacity: 4
             }))
           });
           logger.info('✅ Default tables created for demo branch');

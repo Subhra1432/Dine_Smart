@@ -149,7 +149,8 @@ router.post('/orders/:orderId/print-bill', asyncHandler(async (req: Request, res
   const totalItems = order.items.reduce((sum, item) => sum + item.quantity, 0);
   const billHtml = `<!DOCTYPE html>
 <html><head><style>
-  body { font-family: monospace; width: 300px; margin: 0 auto; padding: 10px; font-size: 14px; line-height: 1.4; }
+  body { font-family: monospace; width: 80mm; margin: 0 auto; padding: 5mm; font-size: 14px; line-height: 1.4; }
+  @page { size: 80mm auto; margin: 0; }
   .center { text-align: center; }
   .divider { border-top: 2px dashed #000; margin: 10px 0; }
   .bold { font-weight: bold; }
@@ -239,7 +240,8 @@ router.post('/customer-summary-bill', asyncHandler(async (req: Request, res: Res
 
   const summaryHtml = `<!DOCTYPE html>
 <html><head><style>
-  body { font-family: monospace; width: 300px; margin: 0 auto; padding: 10px; font-size: 12px; }
+  body { font-family: monospace; width: 80mm; margin: 0 auto; padding: 5mm; font-size: 12px; }
+  @page { size: 80mm auto; margin: 0; }
   .center { text-align: center; }
   .divider { border-top: 1px dashed #000; margin: 8px 0; }
   .row { display: flex; justify-content: space-between; }
@@ -329,7 +331,8 @@ router.post('/table/:tableId/summary-bill', asyncHandler(async (req: Request, re
 
   const summaryHtml = `<!DOCTYPE html>
 <html><head><style>
-  body { font-family: monospace; width: 300px; margin: 0 auto; padding: 10px; font-size: 12px; }
+  body { font-family: monospace; width: 80mm; margin: 0 auto; padding: 5mm; font-size: 12px; }
+  @page { size: 80mm auto; margin: 0; }
   .center { text-align: center; }
   .divider { border-top: 1px dashed #000; margin: 8px 0; }
   .row { display: flex; justify-content: space-between; }
@@ -447,7 +450,8 @@ router.post('/orders/:orderId/print-kitchen', asyncHandler(async (req: Request, 
 
   const kitchenHtml = `<!DOCTYPE html>
 <html><head><style>
-  body { font-family: monospace; width: 300px; margin: 0 auto; padding: 10px; font-size: 14px; }
+  body { font-family: monospace; width: 80mm; margin: 0 auto; padding: 5mm; font-size: 14px; }
+  @page { size: 80mm auto; margin: 0; }
   .center { text-align: center; }
   .divider { border-top: 2px dashed #000; margin: 8px 0; }
   .row { display: flex; justify-content: space-between; padding: 4px 0; }

@@ -23,10 +23,9 @@ function createWindow() {
   // Load the application
   // During development, it loads the local Vite server.
   // In production, it loads your live Staff Portal URL.
-  // UPDATE THIS URL TO YOUR ACTUAL PRODUCTION DOMAIN:
   const targetUrl = isDev 
-    ? 'http://localhost:5174' 
-    : 'https://dinesmart-staff-production.up.railway.app'; // <--- Update to your actual render/railway URL
+    ? 'http://localhost:5174/staff/' 
+    : 'https://dine-smart-9auy.onrender.com/staff/';
 
   mainWindow.loadURL(targetUrl).catch((err) => {
     console.error('Failed to load URL:', err);

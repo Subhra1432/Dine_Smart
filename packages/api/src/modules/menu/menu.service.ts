@@ -86,7 +86,7 @@ export async function sendOtp(phone: string, slug?: string) {
     return { message: 'OTP sent successfully (Bypass active: use 123456)', bypass: true };
   }
 
-  // Real Twilio Verify
+  // Real Twilio Verify via REST API (no SDK needed)
   const { env } = await import('../../config/env.js');
   if (!env.TWILIO_ACCOUNT_SID || !env.TWILIO_AUTH_TOKEN || !env.TWILIO_VERIFY_SERVICE_SID) {
     logger.warn('[OTP] Twilio not configured, falling back to bypass');
@@ -94,16 +94,25 @@ export async function sendOtp(phone: string, slug?: string) {
   }
 
   try {
-    const twilio = (await import('twilio')).default;
-    const client = twilio(env.TWILIO_ACCOUNT_SID, env.TWILIO_AUTH_TOKEN);
-    
-    // Ensure phone has country code
     const formattedPhone = phone.startsWith('+') ? phone : `+91${phone.replace(/^0+/, '')}`;
-    
-    await client.verify.v2
-      .services(env.TWILIO_VERIFY_SERVICE_SID)
-      .verifications.create({ to: formattedPhone, channel: 'sms' });
-    
+    const url = `https://verify.twilio.com/v2/Services/${env.TWILIO_VERIFY_SERVICE_SID}/Verifications`;
+    const auth = Buffer.from(`${env.TWILIO_ACCOUNT_SID}:${env.TWILIO_AUTH_TOKEN}`).toString('base64');
+
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Basic ${auth}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({ To: formattedPhone, Channel: 'sms' }),
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      logger.error('[OTP] Twilio send failed', { error: err });
+      throw new Error(err.message || 'Twilio API error');
+    }
+
     logger.info(`[OTP] Twilio OTP sent to ${formattedPhone}`);
     return { message: 'OTP sent successfully', bypass: false };
   } catch (error: any) {
@@ -124,22 +133,28 @@ export async function verifyOtp(slug: string, phone: string, code: string, name?
       throw new AppError(400, 'Invalid verification code');
     }
   } else {
-    // Real Twilio Verify check
+    // Real Twilio Verify check via REST API
     const { env } = await import('../../config/env.js');
     if (!env.TWILIO_ACCOUNT_SID || !env.TWILIO_AUTH_TOKEN || !env.TWILIO_VERIFY_SERVICE_SID) {
-      // Fallback if Twilio not configured
       if (code !== '123456') throw new AppError(400, 'Invalid verification code');
     } else {
       try {
-        const twilio = (await import('twilio')).default;
-        const client = twilio(env.TWILIO_ACCOUNT_SID, env.TWILIO_AUTH_TOKEN);
         const formattedPhone = phone.startsWith('+') ? phone : `+91${phone.replace(/^0+/, '')}`;
-        
-        const verification = await client.verify.v2
-          .services(env.TWILIO_VERIFY_SERVICE_SID)
-          .verificationChecks.create({ to: formattedPhone, code });
-        
-        if (verification.status !== 'approved') {
+        const url = `https://verify.twilio.com/v2/Services/${env.TWILIO_VERIFY_SERVICE_SID}/VerificationCheck`;
+        const auth = Buffer.from(`${env.TWILIO_ACCOUNT_SID}:${env.TWILIO_AUTH_TOKEN}`).toString('base64');
+
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Basic ${auth}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams({ To: formattedPhone, Code: code }),
+        });
+
+        const result = await res.json() as { status?: string; message?: string };
+
+        if (!res.ok || result.status !== 'approved') {
           throw new AppError(400, 'Invalid or expired OTP');
         }
         logger.info(`[OTP] Twilio verified for ${formattedPhone}`);

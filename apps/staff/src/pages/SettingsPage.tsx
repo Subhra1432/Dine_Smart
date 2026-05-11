@@ -7,7 +7,7 @@ import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { getProfile, updateProfile, getBranches, getTables, getUsers, getCoupons, updateUser, deleteUser, clearOrderHistory } from '../lib/api';
 import { useAuthStore } from '../store/auth';
-import { Building, Users, QrCode, Tag, Settings, Trash2, Pencil, Plus, X, Lock, AlertTriangle, Percent } from 'lucide-react';
+import { Building, Users, QrCode, Tag, Settings, Trash2, Pencil, Plus, X, Lock, AlertTriangle, Percent, Smartphone } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 import { TableQRCode } from '../components/TableQRCode';
 import { PageLoader } from '../components/PageLoader';
@@ -528,6 +528,47 @@ export default function SettingsPage() {
                         </button>
                       </div>
                     </form>
+                  </div>
+                </div>
+              )}
+
+              {(isOwner || isManager) && (
+                <div className="glass-card p-8 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-saffron-500/10 rounded-full -mr-16 -mt-16 blur-[60px]" />
+                  <div className="relative z-10">
+                    <h2 className="text-[11px] font-black text-stone-400 dark:text-stone-500 flex items-center gap-4 uppercase tracking-[0.6em] mb-8">
+                      <Smartphone size={16} className="text-saffron-500" /> OTP Settings
+                    </h2>
+                    
+                    <div className="flex items-center justify-between p-6 bg-stone-50/50 dark:bg-stone-900/50 rounded-2xl border border-stone-100 dark:border-white/5">
+                      <div className="flex-1">
+                        <p className="text-sm font-black text-stone-950 dark:text-white uppercase tracking-tight mb-1">OTP Bypass Mode</p>
+                        <p className="text-[10px] text-stone-400 font-bold uppercase tracking-widest">
+                          {(profile as any)?.otpBypass !== false ? 'Using code 123456 (No SMS sent)' : 'Using Twilio SMS verification'}
+                        </p>
+                      </div>
+                      <label className="relative inline-flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={(profile as any)?.otpBypass !== false}
+                          onChange={async (e) => {
+                            try {
+                              await updateProfile({ otpBypass: e.target.checked });
+                              queryClient.invalidateQueries({ queryKey: ['profile'] });
+                              toast.success(e.target.checked ? 'OTP Bypass enabled (use 123456)' : 'Twilio OTP enabled (real SMS)');
+                            } catch (err: any) {
+                              toast.error(err.message || 'Failed to update');
+                            }
+                          }}
+                          className="sr-only peer"
+                        />
+                        <div className="w-14 h-8 bg-stone-200 dark:bg-stone-700 peer-checked:bg-saffron-500 rounded-full transition-all duration-300 relative after:content-[''] after:absolute after:top-1 after:left-1 after:w-6 after:h-6 after:bg-white after:rounded-full after:transition-all after:duration-300 peer-checked:after:translate-x-6 after:shadow-md" />
+                      </label>
+                    </div>
+                    
+                    <p className="text-[9px] text-stone-400 dark:text-stone-600 mt-4 uppercase tracking-widest leading-relaxed">
+                      When bypass is OFF, customers will receive real SMS OTP via Twilio. Ensure Twilio credentials are configured in environment variables.
+                    </p>
                   </div>
                 </div>
               )}

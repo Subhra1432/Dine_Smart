@@ -36,6 +36,9 @@ const envSchema = z.object({
   SMTP_USER: z.string().default(''),
   SMTP_PASS: z.string().default(''),
   QR_BASE_URL: z.string().default('https://dinesmart.app'),
+  TWILIO_ACCOUNT_SID: z.string().default(''),
+  TWILIO_AUTH_TOKEN: z.string().default(''),
+  TWILIO_VERIFY_SERVICE_SID: z.string().default(''),
   LOG_LEVEL: z.string().default('debug'),
 });
 

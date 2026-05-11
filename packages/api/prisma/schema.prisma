@@ -116,6 +116,7 @@ model Restaurant {
   notificationSoundUrl String?
   cgstRate      Float            @default(2.5)
   sgstRate      Float            @default(2.5)
+  otpBypass     Boolean          @default(true)
   createdAt     DateTime         @default(now())
 
   branches      Branch[]

@@ -105,7 +105,7 @@ export default function DashboardLayout() {
           {/* Navigation Matrix */}
           <nav className="flex-1 px-6 pt-4 pb-6 space-y-1.5 overflow-y-auto scrollbar-hide">
             <div className="px-4 mb-4">
-              <span className="text-[9px] font-black text-stone-400 dark:text-stone-500 uppercase tracking-[0.6em] opacity-60">Command Matrix</span>
+              <span className="text-[9px] font-black text-stone-400 dark:text-stone-500 uppercase tracking-[0.6em] opacity-60">Navigation</span>
             </div>
             {filteredNav.map((item) => (
               <NavLink

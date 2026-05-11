@@ -111,12 +111,13 @@ export async function getPublicHistory(req: Request, res: Response) {
 }
 
 export async function sendOtp(req: Request, res: Response) {
+  const slug = req.params['restaurantSlug'];
   const { phone } = req.body;
   if (!phone) {
     res.status(400).json({ success: false, error: 'Phone number is required' });
     return;
   }
-  const data = await menuService.sendOtp(phone);
+  const data = await menuService.sendOtp(phone, slug);
   res.json({ success: true, data });
 }
 

@@ -412,7 +412,7 @@ export default function MenuPage() {
         document.body
       )}
 
-      {(!slug || !tableId) ? (
+      {(!slug || (!tableId && !isTakeawayMode)) ? (
         <div className="flex flex-col items-center justify-center min-h-screen p-6 text-center bg-stone-950 relative overflow-hidden">
           {/* Decorative Elements */}
           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-saffron-500/10 rounded-full blur-[120px] animate-pulse" />

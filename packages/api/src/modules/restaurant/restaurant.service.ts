@@ -19,7 +19,7 @@ export async function getProfile(restaurantId: string) {
   return restaurant;
 }
 
-export async function updateProfile(restaurantId: string, data: { name?: string; logoUrl?: string; bannerText?: string; bannerImageUrl?: string }) {
+export async function updateProfile(restaurantId: string, data: { name?: string; logoUrl?: string; bannerText?: string; bannerImageUrl?: string; cgstRate?: number; sgstRate?: number; otpBypass?: boolean }) {
   return prisma.restaurant.update({ where: { id: restaurantId }, data });
 }
 

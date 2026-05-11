@@ -108,7 +108,7 @@ export async function sendOtp(phone: string, slug?: string) {
     });
 
     if (!res.ok) {
-      const err = await res.json();
+      const err = await res.json() as { message?: string };
       logger.error('[OTP] Twilio send failed', { error: err });
       throw new Error(err.message || 'Twilio API error');
     }

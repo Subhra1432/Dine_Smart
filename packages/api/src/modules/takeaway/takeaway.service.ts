@@ -111,21 +111,11 @@ export async function createTakeawayOrder(data: any) {
 
   let initialStatus: any = branch.requireOrderVerification ? 'PENDING' : 'CONFIRMED';
 
-  // Takeaway orders need a tableId — use the first table in the branch
-  const firstTable = await prisma.table.findFirst({
-    where: { branchId: branch.id },
-    orderBy: { number: 'asc' },
-  });
-  if (!firstTable) {
-    throw new AppError(400, 'No tables configured for this branch. Please add at least one table.');
-  }
-
   const order = await prisma.$transaction(async (tx) => {
     const newOrder = await tx.order.create({
       data: {
         restaurantId,
         branchId: branch.id,
-        tableId: firstTable.id,
         sessionId,
         type: 'TAKE_AWAY',
         status: initialStatus,

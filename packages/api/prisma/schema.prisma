@@ -303,7 +303,7 @@ model Order {
   id            String        @id @default(uuid())
   restaurantId  String
   branchId      String
-  tableId       String
+  tableId       String?
   sessionId     String        @default(uuid())
   type          OrderType     @default(DINE_IN)
   status        OrderStatus   @default(PENDING)
@@ -321,7 +321,7 @@ model Order {
 
   restaurant Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
   branch     Branch     @relation(fields: [branchId], references: [id], onDelete: Cascade)
-  table      Table      @relation(fields: [tableId], references: [id], onDelete: Cascade)
+  table      Table?     @relation(fields: [tableId], references: [id], onDelete: Cascade)
   customer   Customer?  @relation(fields: [customerId], references: [id])
   items      OrderItem[]
   payments   Payment[]

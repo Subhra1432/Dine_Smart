@@ -30,6 +30,8 @@ enum Plan {
 enum OrderType {
   DINE_IN
   TAKE_AWAY
+  PARCEL
+  TAKEAWAY_QR
 }
 
 enum OrderStatus {

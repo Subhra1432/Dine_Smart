@@ -8,7 +8,7 @@ app_port: 7860
 pinned: false
 ---
 
-# 🍽️ DineSmart OS: Next-Gen Restaurant Intelligence Platform
+# DineSmart OS: Next-Gen Restaurant Intelligence Platform
 
 ![DineSmart Banner](https://via.placeholder.com/1200x400/1c1917/f59e0b?text=DineSmart+OS)
 
@@ -16,11 +16,11 @@ DineSmart OS is an ultra-premium, multi-tenant SaaS architecture designed to dig
 
 ---
 
-## ✨ Ecosystem Overview
+## Ecosystem Overview
 
 DineSmart operates across three specialized, interconnected portals, all kept in perfect sync via a robust WebSockets engine and centralized PostgreSQL database.
 
-### 📱 1. Customer Portal (PWA)
+### 1. Customer Portal (PWA)
 A high-performance, mobile-first web application designed for frictionless ordering:
 *   **Zero-Friction Access**: Customers scan table-specific QR codes to instantly access the menu.
 *   **Passwordless Authentication**: Secure OTP-based login flow.
@@ -28,7 +28,7 @@ A high-performance, mobile-first web application designed for frictionless order
 *   **Deep Customization**: Support for complex item variants, addons, and special instructions.
 *   **Live Tracking**: Customers track their order status from kitchen preparation to table delivery.
 
-### 👨‍🍳 2. Staff Portal (Command Center)
+### 2. Staff Portal (Command Center)
 A centralized, high-speed management interface for restaurant employees:
 *   **Kitchen Display System (KDS)**: Real-time order tracking with prioritized urgent orders and persistent audio alerts.
 *   **Table Management**: Live occupancy tracking and instant QR code generation for spatial anchors.
@@ -37,7 +37,7 @@ A centralized, high-speed management interface for restaurant employees:
 *   **Tax Customization**: Restaurants can set their own CGST and SGST rates, which are automatically calculated and printed on detailed invoices.
 *   **Real-time Analytics**: Detailed reporting on revenue, top-performing items, and operational efficiency.
 
-### 🛡️ 3. SuperAdmin Portal (Platform Control)
+### 3. SuperAdmin Portal (Platform Control)
 The master control center for SaaS operators and platform administrators:
 *   **Tenant Management**: Onboard new restaurants, generate tenant API keys, and manage existing accounts.
 *   **Subscription & Billing**: Manage service tiers (Starter vs. Premium) and feature gating.
@@ -46,7 +46,7 @@ The master control center for SaaS operators and platform administrators:
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 DineSmart is built on a modern, type-safe monorepo architecture:
 
@@ -72,7 +72,7 @@ DineSmart is built on a modern, type-safe monorepo architecture:
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 *   Node.js (v18+)
@@ -122,7 +122,7 @@ Alternatively, you can run services individually:
 
 ---
 
-## 🔐 Environment Variables
+## Environment Variables
 
 | Variable | Description |
 |---|---|
@@ -137,7 +137,7 @@ Alternatively, you can run services individually:
 
 ---
 
-## 💎 Design Philosophy: Saffron & Stone
+## Design Philosophy: Saffron & Stone
 
 DineSmart OS rejects generic UI in favor of a bespoke **Industrial Intelligence** aesthetic:
 *   **Fluid Motion**: All animations use optimized `transition-transform` and custom cubic-bezier curves `cubic-bezier(0.16, 1, 0.3, 1)` to achieve an ultra-smooth, 120fps feel.
@@ -147,7 +147,7 @@ DineSmart OS rejects generic UI in favor of a bespoke **Industrial Intelligence*
 
 ---
 
-## 📄 License
+## License
 
 **PROPRIETARY AND CONFIDENTIAL**
 
